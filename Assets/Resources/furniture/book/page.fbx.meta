@@ -15,6 +15,15 @@ ModelImporter:
   - first:
       74: 3151614582554020763
     second: bookAnim|bookAnimAction
+  - first:
+      74: 4526792162386797628
+    second: IsOpening
+  - first:
+      74: 5984496454500463648
+    second: Open
+  - first:
+      74: -2018080752452318181
+    second: IsClosing
   externalObjects: {}
   materials:
     materialImportMode: 2

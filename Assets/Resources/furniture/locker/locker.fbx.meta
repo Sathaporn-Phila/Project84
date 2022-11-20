@@ -15,6 +15,9 @@ ModelImporter:
   - first:
       74: -798938240393185653
     second: locker.control|locker
+  - first:
+      74: 7878025755783931648
+    second: locker.control|locker.controlAction
   externalObjects: {}
   materials:
     materialImportMode: 2

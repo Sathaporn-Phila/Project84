@@ -26,9 +26,9 @@ public class rMachine : MonoBehaviour
         foreach(var item in rEnum){
             rSlotLed.Add(item.eachSlot,item.eachLed);
         }
-        foreach(var item in rSlotLed){
+        /*foreach(var item in rSlotLed){
             Debug.Log(item.Key.name+" "+item.Value.name);
-        }
+        }*/
         
         //rSlotLed = pair.Where(slot=>changecheckPattern(reg,patterns["slot"],slot))
                     //.Zip(pair.Where(led=>changecheckPattern(reg,patterns["led"],led)),(slot,led)=>new{slot,led}));

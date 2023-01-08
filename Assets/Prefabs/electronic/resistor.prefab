@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6879032477909074318}
   - component: {fileID: 8688513361697420612}
   - component: {fileID: 3014045544286115089}
-  - component: {fileID: 6469041348043837485}
+  - component: {fileID: 219431164573278108}
   m_Layer: 0
   m_Name: resistor
   m_TagString: Untagged
@@ -102,8 +102,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &6469041348043837485
-BoxCollider:
+--- !u!136 &219431164573278108
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -112,6 +112,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 8.8469515, y: 2.461702, z: 2.4617023}
-  m_Center: {x: 0, y: 0.00000017881392, z: 0}
+  m_Radius: 1.2
+  m_Height: 9
+  m_Direction: 0
+  m_Center: {x: 0, y: 0, z: 0}

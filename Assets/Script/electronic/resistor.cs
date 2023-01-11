@@ -4,8 +4,10 @@ using UnityEngine;
 using Unity.Collections;
 using Unity.Jobs;
 using System.Linq;
+using TMPro;
 public class resistor : MonoBehaviour
 {
+    Query query;
     MaterialPropertyBlock mpb;
     public MaterialPropertyBlock Mpb {
         get {
@@ -68,11 +70,10 @@ public class resistor : MonoBehaviour
         {"silver",new Sticker("silver",new Color((float)192/255,(float)192/255,(float)192/255),0.1f)},
     };
     void Awake(){
-        //กรองค่า r และความเบี่ยงเบน
         prop = new Attribute(stickerData);
-        foreach(Sticker attr in prop.allSticker){
+        /*foreach(Sticker attr in prop.allSticker){
             Debug.Log(attr.colorName+new Vector4(attr.color.r,attr.color.g,attr.color.b));
-        }
+        }*/
         MeshRenderer renderer = GetComponent<MeshRenderer>();
         Mpb.SetVectorArray("_ColorArray",prop.getAllColor());
         for(int i=0;i<renderer.materials.Length;i++){

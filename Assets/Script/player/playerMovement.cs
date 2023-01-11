@@ -15,11 +15,14 @@ public class playerMovement : MonoBehaviour
     private float speed = 2f,turnSpeed = 2f;
     [SerializeField]
     private InputManager inputManager;
+    string playerPath = Directory.GetCurrentDirectory()+"/Assets/Script/player/player.json";
     //[Serializable]
     public class PlayerData {
         public Vector3 position;
-        public PlayerData(Vector3 pos){
+        public Quaternion rotation;
+        public PlayerData(Vector3 pos,Quaternion rot){
             position = pos;
+            rotation = rot;
         } 
     }
     void Start()
@@ -28,7 +31,13 @@ public class playerMovement : MonoBehaviour
         hitbox = GetComponent<BoxCollider>();
         inputManager = InputManager.Instance;
         float distGround = hitbox.bounds.min.y;
-        
+        if(File.Exists(playerPath)){
+            var jsonData = File.ReadAllText(playerPath);
+            Vector3 position = JsonUtility.FromJson<PlayerData>(jsonData).position;
+            Quaternion rotation = JsonUtility.FromJson<PlayerData>(jsonData).rotation;
+            rb.MovePosition(position);
+            rb.MoveRotation(rotation);
+        }
 
         /*if(PlayerPrefs.HasKey("Player Position X")){
             Vector3 position = new Vector3(
@@ -45,6 +54,7 @@ public class playerMovement : MonoBehaviour
         desiredforward = transform.rotation * Quaternion.AngleAxis(90*expectForward.x,Vector3.up);
         rotation = Quaternion.Slerp(transform.rotation,desiredforward, Time.deltaTime);
         rb.MoveRotation(rotation);
+
     }
     void move(Vector3 expectForward){
         if(expectForward.y > 0 && isGround()){
@@ -76,11 +86,9 @@ public class playerMovement : MonoBehaviour
 
     }
     private void savePlayerPosition(){
-        PlayerData data = new PlayerData(rb.position);
-        string filename = "player.json";
+        PlayerData data = new PlayerData(rb.position,rb.rotation);
         string jsonData = JsonUtility.ToJson(data);
-        Debug.Log(jsonData);
-        File.WriteAllText(Directory.GetCurrentDirectory()+"/Assets/Script/player/"+filename,jsonData);
+        File.WriteAllText(playerPath,jsonData);
         //string jsonData = JsonUtility.ToJson(data);
         
         

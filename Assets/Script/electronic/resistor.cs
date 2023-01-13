@@ -35,7 +35,7 @@ public class resistor : MonoBehaviour
             //allSticker = stickers;
             oneOfthreeBar = stickers.Where(x=>x.Key!="gold"&&x.Key!="silver").ToDictionary(c => c.Key, c => c.Value);
             fourthBar = stickers.Where(x=>!oneOfthreeBar.Contains(x)).ToDictionary(c => c.Key, c => c.Value);
-            Debug.Log(oneOfthreeBar.Count);
+
 
             //NativeArray<JobHandle> jobs = new NativeArray<JobHandle>();
             for(int bar=0;bar<4;bar++){

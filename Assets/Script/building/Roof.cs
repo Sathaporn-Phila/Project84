@@ -21,7 +21,6 @@ public class Roof : MonoBehaviour
         }
     }
     private void SetMaterial(GameObject obj){
-        Debug.Log(obj.name);
         Renderer meshRenderer = obj.GetComponent<Renderer>();
         
         Mpb.SetColor(shaderProperties,colorPattern);

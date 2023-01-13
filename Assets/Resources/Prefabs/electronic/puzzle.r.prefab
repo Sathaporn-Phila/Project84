@@ -95,7 +95,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: aea0c9de8c11210409402c5b2fc80287, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -193,7 +193,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: aea0c9de8c11210409402c5b2fc80287, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -367,6 +367,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1511566588073445180}
+  - component: {fileID: 4283230469703915971}
   m_Layer: 0
   m_Name: r.machine
   m_TagString: Untagged
@@ -400,6 +401,19 @@ Transform:
   m_Father: {fileID: 5230848548724295415}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &4283230469703915971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2283880682046872966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 148a5db7a6c3e604fb8251dd28886121, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 0
 --- !u!1 &2374139812512357247
 GameObject:
   m_ObjectHideFlags: 0
@@ -764,7 +778,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: aea0c9de8c11210409402c5b2fc80287, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1034,7 +1048,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: aea0c9de8c11210409402c5b2fc80287, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1081,7 +1095,8 @@ GameObject:
   - component: {fileID: 4667617898349732060}
   - component: {fileID: 7215765249088350983}
   - component: {fileID: 5600304688755198839}
-  - component: {fileID: 3651059144500175221}
+  - component: {fileID: 7134947790211425286}
+  - component: {fileID: 6886169992534424010}
   m_Layer: 0
   m_Name: resistor.machine.slot.001
   m_TagString: Untagged
@@ -1154,20 +1169,32 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &3651059144500175221
-MeshCollider:
+--- !u!65 &7134947790211425286
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4957104796184903802}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -9062193527248451793, guid: 7c3306cc08a728845b1d19b019f51695, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 1.7231926, y: 1.7231917, z: 6.1928697}
+  m_Center: {x: 0.0000009536743, y: 0.000000029802322, z: -0.00000017881393}
+--- !u!114 &6886169992534424010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4957104796184903802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fd841b6e9074004997bde2dfd9198f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightIntensity: 2
 --- !u!1 &5769586820580411505
 GameObject:
   m_ObjectHideFlags: 0
@@ -1622,7 +1649,8 @@ GameObject:
   - component: {fileID: 8788952421129794206}
   - component: {fileID: 5759763811114349626}
   - component: {fileID: 7483535740420705092}
-  - component: {fileID: 3843642446072094274}
+  - component: {fileID: 6974980997049641306}
+  - component: {fileID: 4749749060056771920}
   m_Layer: 0
   m_Name: resistor.machine.slot.003
   m_TagString: Untagged
@@ -1695,20 +1723,32 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &3843642446072094274
-MeshCollider:
+--- !u!65 &6974980997049641306
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7490778921708258459}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -2450177059610313036, guid: 7c3306cc08a728845b1d19b019f51695, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 1.7231926, y: 1.7231917, z: 6.1928697}
+  m_Center: {x: 0, y: 0.000000029802322, z: -0.00000017881393}
+--- !u!114 &4749749060056771920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7490778921708258459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fd841b6e9074004997bde2dfd9198f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightIntensity: 2
 --- !u!1 &8103126332903458243
 GameObject:
   m_ObjectHideFlags: 0
@@ -1720,7 +1760,8 @@ GameObject:
   - component: {fileID: 4321763946448689112}
   - component: {fileID: 4743736077604774114}
   - component: {fileID: 1917018146635887427}
-  - component: {fileID: 9052292604022253991}
+  - component: {fileID: 8565493139924997997}
+  - component: {fileID: 2999719995499530637}
   m_Layer: 0
   m_Name: resistor.machine.slot.002
   m_TagString: Untagged
@@ -1793,20 +1834,32 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &9052292604022253991
-MeshCollider:
+--- !u!65 &8565493139924997997
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8103126332903458243}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 1040244217204034433, guid: 7c3306cc08a728845b1d19b019f51695, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 1.7231926, y: 1.7231917, z: 6.1928697}
+  m_Center: {x: 0.0000009536743, y: 0.000000029802322, z: -0.00000017881393}
+--- !u!114 &2999719995499530637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8103126332903458243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fd841b6e9074004997bde2dfd9198f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightIntensity: 2
 --- !u!1 &8823222703531250965
 GameObject:
   m_ObjectHideFlags: 0
@@ -1818,7 +1871,8 @@ GameObject:
   - component: {fileID: 5951315313843600515}
   - component: {fileID: 500434701395540872}
   - component: {fileID: 1918538080287519132}
-  - component: {fileID: 8956180168699708112}
+  - component: {fileID: 8954952781757420542}
+  - component: {fileID: 6034813620313391393}
   m_Layer: 0
   m_Name: resistor.machine.slot.004
   m_TagString: Untagged
@@ -1891,8 +1945,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8956180168699708112
-MeshCollider:
+--- !u!65 &8954952781757420542
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1901,10 +1955,22 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -7595199385180377809, guid: 7c3306cc08a728845b1d19b019f51695, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 1.7231926, y: 1.7231917, z: 6.1928697}
+  m_Center: {x: -0.00000047683716, y: 0.000000029802322, z: -0.00000017881393}
+--- !u!114 &6034813620313391393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8823222703531250965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fd841b6e9074004997bde2dfd9198f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightIntensity: 2
 --- !u!1001 &1461129432975107871
 PrefabInstance:
   m_ObjectHideFlags: 0

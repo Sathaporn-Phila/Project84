@@ -177,6 +177,7 @@ GameObject:
   - component: {fileID: 8019589754041006686}
   - component: {fileID: 3518259269232986661}
   - component: {fileID: 7785589315836611416}
+  - component: {fileID: 3593799370908724382}
   m_Layer: 0
   m_Name: mini-box
   m_TagString: Untagged
@@ -249,6 +250,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &3593799370908724382
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1276184485431563928}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -6411808347101018299, guid: 37aa50f0b3387c248b941bd70e4f67b3, type: 3}
 --- !u!1 &4285949676406902619
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,7 +356,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6854229885550538377}
-  - component: {fileID: 5807957233630906855}
   m_Layer: 0
   m_Name: box
   m_TagString: Untagged
@@ -369,20 +383,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &5807957233630906855
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6076707646401639475}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -6411808347101018299, guid: 37aa50f0b3387c248b941bd70e4f67b3, type: 3}
 --- !u!1 &8223131832717267667
 GameObject:
   m_ObjectHideFlags: 0

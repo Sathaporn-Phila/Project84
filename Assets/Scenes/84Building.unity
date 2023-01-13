@@ -16685,9 +16685,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 364d0dac75c162c4f9485d7d7ff982e6, type: 2}
     - target: {fileID: 6424140138625549243, guid: c31e83a3af2296b4192cbda56c0687f7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6424140138625549243, guid: c31e83a3af2296b4192cbda56c0687f7, type: 3}
       propertyPath: resistorPrefab
       value: 
       objectReference: {fileID: 7175132156566049937, guid: 63e14994a4b11704986fbdcf132da627, type: 3}
+    - target: {fileID: 7134947790211425286, guid: c31e83a3af2296b4192cbda56c0687f7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7816653804247442619, guid: c31e83a3af2296b4192cbda56c0687f7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -16736,7 +16744,16 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8668586240584313927, guid: c31e83a3af2296b4192cbda56c0687f7, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8954952781757420542, guid: c31e83a3af2296b4192cbda56c0687f7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 9052292604022253991, guid: c31e83a3af2296b4192cbda56c0687f7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c31e83a3af2296b4192cbda56c0687f7, type: 3}
 --- !u!1001 &672518866
 PrefabInstance:

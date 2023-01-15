@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Text.RegularExpressions;
+using System.Linq;
+using TMPro;
 
 public class slot : MonoBehaviour
 {
@@ -30,7 +32,9 @@ public class slot : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if(rgx.IsMatch(other.gameObject.name)){
             GameObject led = resistorMachine.getLedFrom(this.gameObject.name);
-            setLight(led);
+            if(other.gameObject.GetComponent<resistor>().Prop.val.ToString() == resistorMachine.getSlotGroup().Find(x=>x.slotObj==this.gameObject).textObj.GetComponent<TextMeshPro>().text){
+                setLight(led);
+            }
         }
     }
 

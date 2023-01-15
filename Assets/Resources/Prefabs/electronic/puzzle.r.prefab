@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 450062209224997093}
   - component: {fileID: 3075041815471686843}
   m_Layer: 0
-  m_Name: resistor.machine.led.003
+  m_Name: resistor.machine.led.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65,7 +65,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1511566588073445180}
-  m_RootOrder: 4
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4302613888836844642
 MeshFilter:
@@ -144,7 +144,7 @@ GameObject:
   - component: {fileID: 8630210936121330801}
   - component: {fileID: 6557811588730727766}
   m_Layer: 0
-  m_Name: resistor.machine.led.001
+  m_Name: resistor.machine.led.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -163,7 +163,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1511566588073445180}
-  m_RootOrder: 2
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2384530458550225462
 MeshFilter:
@@ -389,15 +389,15 @@ Transform:
   m_Children:
   - {fileID: 7710501338545337502}
   - {fileID: 3243817792187979764}
-  - {fileID: 2205174979739066007}
-  - {fileID: 8443579370966786559}
-  - {fileID: 7425169189832498898}
-  - {fileID: 8463810847958585785}
-  - {fileID: 4667617898349732060}
-  - {fileID: 4321763946448689112}
-  - {fileID: 8788952421129794206}
-  - {fileID: 5951315313843600515}
   - {fileID: 5296633542037709381}
+  - {fileID: 5951315313843600515}
+  - {fileID: 8788952421129794206}
+  - {fileID: 4321763946448689112}
+  - {fileID: 4667617898349732060}
+  - {fileID: 8463810847958585785}
+  - {fileID: 7425169189832498898}
+  - {fileID: 8443579370966786559}
+  - {fileID: 2205174979739066007}
   m_Father: {fileID: 5230848548724295415}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
@@ -413,7 +413,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 148a5db7a6c3e604fb8251dd28886121, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnType: 0
 --- !u!1 &2374139812512357247
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,13 +437,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2374139812512357247}
   m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 4.75, y: 1.02, z: -3.5}
+  m_LocalPosition: {x: 4.75, y: 1.0200005, z: -3.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9128732825005152423}
   m_Father: {fileID: 1511566588073445180}
-  m_RootOrder: 10
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
 --- !u!1 &2898902441640952340
 GameObject:
@@ -729,7 +728,7 @@ GameObject:
   - component: {fileID: 7915937172561487339}
   - component: {fileID: 8418407085384706521}
   m_Layer: 0
-  m_Name: resistor.machine.led.002
+  m_Name: resistor.machine.led.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -748,7 +747,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1511566588073445180}
-  m_RootOrder: 3
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8736285372371369760
 MeshFilter:
@@ -999,7 +998,7 @@ GameObject:
   - component: {fileID: 8458424862288787693}
   - component: {fileID: 8646606889790406845}
   m_Layer: 0
-  m_Name: resistor.machine.led.004
+  m_Name: resistor.machine.led.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1018,7 +1017,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1511566588073445180}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &419812743307728687
 MeshFilter:
@@ -1098,7 +1097,7 @@ GameObject:
   - component: {fileID: 7134947790211425286}
   - component: {fileID: 6886169992534424010}
   m_Layer: 0
-  m_Name: resistor.machine.slot.001
+  m_Name: resistor.machine.slot.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1652,7 +1651,7 @@ GameObject:
   - component: {fileID: 6974980997049641306}
   - component: {fileID: 4749749060056771920}
   m_Layer: 0
-  m_Name: resistor.machine.slot.003
+  m_Name: resistor.machine.slot.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1671,7 +1670,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1511566588073445180}
-  m_RootOrder: 8
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5759763811114349626
 MeshFilter:
@@ -1763,7 +1762,7 @@ GameObject:
   - component: {fileID: 8565493139924997997}
   - component: {fileID: 2999719995499530637}
   m_Layer: 0
-  m_Name: resistor.machine.slot.002
+  m_Name: resistor.machine.slot.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1782,7 +1781,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1511566588073445180}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4743736077604774114
 MeshFilter:
@@ -1874,7 +1873,7 @@ GameObject:
   - component: {fileID: 8954952781757420542}
   - component: {fileID: 6034813620313391393}
   m_Layer: 0
-  m_Name: resistor.machine.slot.004
+  m_Name: resistor.machine.slot.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1893,7 +1892,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1511566588073445180}
-  m_RootOrder: 9
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &500434701395540872
 MeshFilter:

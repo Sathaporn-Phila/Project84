@@ -2,72 +2,78 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
+using System.Threading.Tasks;
 using System.Linq;
+using TMPro;
 public class rMachine : MonoBehaviour
 {
-    private Dictionary<GameObject,GameObject> rSlotLed;
-    Query query;
-    public enum SpawnType {resistor,gate,diode}
+    List<SlotGroup> slotGroups = new List<SlotGroup>();
+    List<GameObject> obj2CloneList;
+    
+    public class SlotGroup {
+        public GameObject slotObj;
+        public GameObject led;
+        public GameObject textObj;
+        public SlotGroup(GameObject eachSlot,GameObject eachLed,GameObject eachText){
+            slotObj = eachSlot;
+            led = eachLed;
+            textObj = eachText;
+        }
+    }
+    //private Dictionary<GameObject,GameObject> rSlotLed =  new Dictionary<GameObject,GameObject>();
+    protected Query query = new Query();
     
     private Dictionary<string,string> patterns = new Dictionary<string,string>(){
-        {"pair",@"\d*$"},{"slot",@"\b.slot\.\d*$"},{"led",@"\b.led\.\d*$"}}
-        ;
-    
-    Regex reg;
-    [SerializeField]SpawnType spawnType = new SpawnType();
-
-    GameObject prefab2Spawn(SpawnType type){
-        GameObject Prefab;
-        switch(type){
-            case SpawnType.resistor:
-                Prefab = (GameObject)Resources.Load("Prefabs/electronic/resistor");
-                Prefab.transform.localScale = new Vector3((float)0.7,(float)0.7,(float)0.7);
-                Prefab.transform.Rotate(Quaternion.Euler(0,0,0).eulerAngles);
-                break;
-            case SpawnType.gate:
-                Prefab = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                break;
-            case SpawnType.diode:
-                Prefab = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                break;
-            default:
-                Prefab = null;
-                break;
-            
-        }
-        return Prefab;
-    }
-    bool changecheckPattern(Regex rgx,string newPattern,GameObject obj){
-        rgx = new Regex(newPattern);
-        return rgx.IsMatch(obj.name);
-    }
+        {"pair",@"\d*$"},{"slot",@"\b.slot\.\d*$"},{"led",@"\b.led\.\d*$"}
+    };
     public GameObject getLedFrom(string key){
-        GameObject led = rSlotLed.FirstOrDefault(x => x.Key.name == key).Value;
+        GameObject led = slotGroups.Find(x => x.slotObj.name == key).led;
         return led;
     }
-    private void Awake() {
-        rSlotLed = new Dictionary<GameObject,GameObject>();
-        query = new Query();
+    /*List<GameObject> getOhmText(){
+        List<GameObject> ohmSticker = 
+    }*/
+    private void matchSlotGroup(){
         List<GameObject> slots = query.queryByName(this.gameObject,new Regex(patterns["slot"]));
         List<GameObject> led = query.queryByName(this.gameObject,new Regex(patterns["led"]));
-        var rEnum = slots.Zip(led,(eachSlot,eachLed)=> new{eachSlot,eachLed});
-        GameObject obj2Clone = prefab2Spawn(spawnType);
-        foreach(var item in rEnum){
-            GameObject cloneObj = Instantiate(obj2Clone,item.eachSlot.transform.position+5*Vector3.up,Quaternion.Euler(0,0,0));
-            cloneObj.AddComponent<resistor>();
-            rSlotLed.Add(item.eachSlot,item.eachLed);
+        List<GameObject> text = (this.gameObject.transform.Find("ohm.sticker/Canvas").GetComponentsInChildren<Transform>()).Skip(1).Select(t=>t.gameObject).ToList();
+        for(int i=0;i<slots.Count;i++){
+            SlotGroup slotGroup = new SlotGroup(slots[i],led[i],text[i]);
+            slotGroups.Add(slotGroup);
         }
-        /*foreach(var item in rSlotLed){
-            Debug.Log(item.Key.name+" "+item.Value.name);
-        }*/
-        
-        //rSlotLed = pair.Where(slot=>changecheckPattern(reg,patterns["slot"],slot))
-                    //.Zip(pair.Where(led=>changecheckPattern(reg,patterns["led"],led)),(slot,led)=>new{slot,led}));
-    }
 
+    }
+    private void spawnResistor(List<GameObject> resistorList){
+        int i=0;
+        foreach(SlotGroup slotGroup in slotGroups){
+            GameObject cloneObj = Instantiate(resistorList[i],slotGroup.slotObj.transform.position+7*Vector3.up,resistorList[i].transform.rotation);
+            if(i>1){
+                cloneObj.GetComponent<resistor>().Prop = resistorList[i].GetComponent<resistor>().Prop; 
+                cloneObj.GetComponent<resistor>().SetColor();
+            }
+            slotGroup.textObj.GetComponent<TextMeshPro>().text = resistorList[i].GetComponent<resistor>().Prop.val.ToString();
+            /*resistorList[i].transform.position = slotGroup.slotObj.transform.position + Vector3.up*5;
+            resistorList[i].transform.rotation = Quaternion.Euler(0,0,0);*/
+            i++;
+        }
+        
+    }
+    public List<SlotGroup> getSlotGroup(){
+        return slotGroups;
+    }
+    private void Awake() {
+        matchSlotGroup();
+        /*foreach(var item in rSlotLed){
+            Debug.Log(item.Key.name+" "+item.Value.name);*/
+    }
+    
     // Update is called once per frame
+    private void Start() {
+        obj2CloneList = this.gameObject.transform.parent.GetComponentInChildren<Box>().getSpawnObject();
+        spawnResistor(obj2CloneList);
+    }
+        
     void Update()
     {
-        
     }
 }

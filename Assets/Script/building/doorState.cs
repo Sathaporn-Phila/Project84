@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class doorState : MonoBehaviour
 {
-    // Start is called before the first frame update
+    //Start is called before the first frame update
     Animator m_animator;
     private void Awake() {
         m_animator = GetComponent<Animator>();

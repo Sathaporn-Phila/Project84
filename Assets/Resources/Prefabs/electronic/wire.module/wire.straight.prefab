@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6810117127734177951}
+  - component: {fileID: 2386785116142620683}
   m_Layer: 0
   m_Name: wire.straight
-  m_TagString: Untagged
+  m_TagString: wire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33,6 +34,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &2386785116142620683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6181671931580148261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 460a34cfaabffdf41aaf41a83ef741c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  voltage: 0
+  baseVoltage: 5
+  cosValue: 0
+  current: 0
 --- !u!1 &8551343683115071621
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,6 +9,7 @@ public class playerMovement : MonoBehaviour
     // Start is called before the first frame update
     Vector3 nextMovement;
     Quaternion rotation,desiredforward = Quaternion.identity;
+    public bool spawnFromSave;
     private Rigidbody rb;
     private BoxCollider hitbox;
     [SerializeField]
@@ -31,7 +32,7 @@ public class playerMovement : MonoBehaviour
         hitbox = GetComponent<BoxCollider>();
         inputManager = InputManager.Instance;
         float distGround = hitbox.bounds.min.y;
-        if(File.Exists(playerPath)){
+        if(File.Exists(playerPath) && spawnFromSave){
             var jsonData = File.ReadAllText(playerPath);
             Vector3 position = JsonUtility.FromJson<PlayerData>(jsonData).position;
             Quaternion rotation = JsonUtility.FromJson<PlayerData>(jsonData).rotation;

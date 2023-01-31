@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4756313576613744367}
-  m_Layer: 0
+  - component: {fileID: 4676567191379611606}
+  m_Layer: 7
   m_Name: wire.y
-  m_TagString: Untagged
+  m_TagString: wireY
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33,6 +34,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &4676567191379611606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5281034973013234773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eed012bc522fd994c8023797ca00b07b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  voltage: 0
+  baseVoltage: 5
+  cosValue: 0
 --- !u!1 &5356269844209881283
 GameObject:
   m_ObjectHideFlags: 0
@@ -45,7 +61,7 @@ GameObject:
   - component: {fileID: 4360374822873466501}
   - component: {fileID: 8367676177259160554}
   - component: {fileID: 8039418971731938243}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cover.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,7 +159,7 @@ GameObject:
   - component: {fileID: 7597726725434839601}
   - component: {fileID: 3712882476134425222}
   - component: {fileID: 5506600680421623025}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wire.y
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5266185623170172483}
+  - component: {fileID: 8493936915106618307}
   m_Layer: 0
   m_Name: wire.straight.hole
-  m_TagString: Untagged
+  m_TagString: WaveGenerator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33,6 +34,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &8493936915106618307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4782522915237371129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc9ca69d42644a54ca912d864b560665, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsVoltageGenerator: 0
+  phaseStart: 0
+  voltage: 0
+  baseVoltage: 5
+  cosValue: 0
 --- !u!1 &4920364328153284671
 GameObject:
   m_ObjectHideFlags: 0

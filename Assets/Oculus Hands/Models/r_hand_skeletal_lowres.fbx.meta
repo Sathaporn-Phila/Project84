@@ -192,12 +192,7 @@ ModelImporter:
   - first:
       137: 13700000
     second: hands:Rhand
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: unnamed1
-    second: {fileID: 2100000, guid: fbf8faf7879b15147a27350e53fdf8aa, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 1
     materialName: 0

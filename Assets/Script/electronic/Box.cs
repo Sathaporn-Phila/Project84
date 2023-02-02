@@ -39,7 +39,7 @@ public class Box: MonoBehaviour
         return Prefab;
     }
     private void Awake() {
-        query = new Query();
+        query = this.gameObject.AddComponent<Query>();
         Regex regex = new Regex(pattern);
         GameObject obj2Clone = prefab2Spawn(spawnType);
         List<GameObject> slots = query.queryByName(this.gameObject,regex);

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Text.RegularExpressions;
+using System.Linq;
 public class wireY : MonoBehaviour
 {
     public float voltage,baseVoltage=5,cosValue,Count;
@@ -64,16 +65,56 @@ public class wireY : MonoBehaviour
 
     private float calVoltage(List<Ray> ctrlFlowRay){
         float volt = 0;
+        int minusVoltTome = 0;
         foreach(Ray ray in ctrlFlowRay){
 
-            float voltInput = wireQueryGroup.findWireHit(ray,controlRay.scale,0);
-
-            if(ctrlFlowRay.Count > 1){
+            GameObject voltInputObj = wireQueryGroup.findParentObjectHit(ray,controlRay.scale,0);
+            if(voltInputObj.CompareTag("diodeSlot")){
+                wireDiodeSlot wireDiodeSlot = voltInputObj.GetComponent<wireDiodeSlot>();
+                Ray raySlot = wireDiodeSlot.toggleRay.getRay();
+                float angle = Mathf.Atan2(ray.direction.z,ray.direction.x)*Mathf.Rad2Deg - Mathf.Atan2(raySlot.direction.z,raySlot.direction.x)*Mathf.Rad2Deg;
+    
+                if(Mathf.Abs(angle)<90){
+                    //สามารถมี volt ได้ครั้งเดียว
+                    if(minusVoltTome<1 && wireDiodeSlot.getVoltage()<0){
+                        volt = wireDiodeSlot.getVoltage();
+                        minusVoltTome++;
+                    }else{
+                        volt = Mathf.Max(volt,wireDiodeSlot.getVoltage());
+                    }
+                }
+            }else if(voltInputObj.CompareTag("wire")){
+                wire wireObj = voltInputObj.GetComponent<wire>();
+                    //สามารถมี volt ติดลบ ได้ครั้งเดียว
+                if(minusVoltTome<1 && wireObj.getVoltage()<0){
+                    volt = wireObj.getVoltage();
+                    minusVoltTome++;
+                }else{
+                    volt = Mathf.Max(volt,wireObj.getVoltage());
+                }
+            }else if(voltInputObj.CompareTag("wire2way")){
+                float voltTemp = 0;
+                wire2way wireObj = voltInputObj.GetComponent<wire2way>();
+                foreach(var item in wireObj.toggleRays){
+                    if(item.allGameObject.Contains(this.gameObject)){
+                        voltTemp = item.volt;
+                        break;
+                    }
+                }
+                    //สามารถมี volt ติดลบได้ครั้งเดียว
+                if(minusVoltTome<1 && voltTemp<0){
+                    volt = voltTemp;
+                    minusVoltTome++;
+                }else{
+                    volt = Mathf.Max(volt,voltTemp);
+                }
+            }
+            /*if(ctrlFlowRay.Count > 1){
                 volt = Mathf.Max(volt,voltInput);
                     //voltage = inputVoltage;
             }else if(Mathf.Abs(voltInput)>0){
                 volt = voltInput;
-            }
+            }*/
         }
         return volt; 
     }
@@ -102,11 +143,7 @@ public class wireY : MonoBehaviour
 
     void FixedUpdate(){
         cosValue = waveGenerator.getCosValue();
-        if(cosValue>=0){
-            voltage = calVoltage(controlRay.input);
-        }else{
-            voltage = calVoltage(controlRay.output);
-        }
+        voltage = calVoltage(controlRay.input.Concat(controlRay.output).ToList());
         wireQueryGroup.SetColor(voltage,childRenderer);
     }
     void Update()

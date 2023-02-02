@@ -7,7 +7,7 @@ public class wire : MonoBehaviour
     public float voltage=0,cosValue;
     public int current;
     MeshRenderer childRenderer;
-    List<toggleRay> toggleRay = new List<toggleRay>();
+    public List<toggleRay> toggleRay = new List<toggleRay>();
     WaveGenerator waveGen;
     wireQuery wireQueryGroup;
     
@@ -52,7 +52,12 @@ public class wire : MonoBehaviour
     }
 
     private void FixedUpdate() {
-        voltage = wireQueryGroup.findWireHit(toggleRay[current].getRay(),transform.localScale.z,0);
+        if(wireQueryGroup.findParentObjectHit(toggleRay[current].getRay(),transform.localScale.z,0)){
+            voltage = wireQueryGroup.findWireHit(toggleRay[current].getRay(),transform.localScale.z,0);
+        }else if(wireQueryGroup.findParentObjectHit(toggleRay[current].getRay(),transform.localScale.z,7)){
+            voltage = wireQueryGroup.findWireHit(toggleRay[current].getRay(),transform.localScale.z,7);
+        }
+
         if(toggleRay.Count.Equals(1)){
             cosValue = waveGen.getCosValue();
             toggleRay[current].toggle(cosValue);

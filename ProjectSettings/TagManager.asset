@@ -8,6 +8,7 @@ TagManager:
   - WaveGenerator
   - wire2way
   - wire
+  - diodeSlot
   layers:
   - Default
   - TransparentFX

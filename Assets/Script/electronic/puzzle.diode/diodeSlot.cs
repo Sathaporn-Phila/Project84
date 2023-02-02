@@ -12,8 +12,8 @@ public class diodeSlot : MonoBehaviour
     wireQuery wireQueryGroup;
     void Start()
     {
-        /*diode = (GameObject)Resources.Load("Prefabs/electronic/diode");
-        Instantiate(diode,this.gameObject.transform.position+Vector3.up*3,this.gameObject.transform.rotation);*/
+        diode = (GameObject)Resources.Load("Prefabs/electronic/diode");
+        Instantiate(diode,this.gameObject.transform.position+Vector3.up*3,this.gameObject.transform.rotation);
         wireQueryGroup = this.gameObject.AddComponent<wireQuery>();
         wireDiodeSlot = this.transform.parent.GetComponent<wireDiodeSlot>();
     }

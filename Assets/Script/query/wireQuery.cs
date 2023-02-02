@@ -23,6 +23,8 @@ public class wireQuery : MonoBehaviour
                 }
             }else if(hitParentObj.CompareTag("wireY")){
                 volt = hitParentObj.GetComponent<wireY>().getVoltage();
+            }else if(hitParentObj.CompareTag("diodeSlot")){
+                volt = hitParentObj.GetComponent<wireDiodeSlot>().getVoltage();
             }
         }
         return volt;
@@ -32,9 +34,6 @@ public class wireQuery : MonoBehaviour
         Debug.DrawRay(ray.origin,ray.direction,Color.magenta);
         if(Physics.Raycast(ray,out hit,length+(float)0.01,1<<layer)){
             GameObject hitParentObj = hit.collider.gameObject.transform.parent.gameObject;
-            if(this.gameObject.name == "wire.slot.diode.004"){
-                Debug.Log(hitParentObj.name);
-            }
             return hitParentObj;
         }else{
             return null;

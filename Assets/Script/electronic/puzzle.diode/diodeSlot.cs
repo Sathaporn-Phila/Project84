@@ -12,8 +12,8 @@ public class diodeSlot : MonoBehaviour
     wireQuery wireQueryGroup;
     void Start()
     {
-        diode = (GameObject)Resources.Load("Prefabs/electronic/diode");
-        Instantiate(diode,this.gameObject.transform.position+Vector3.up*3,this.gameObject.transform.rotation);
+        /*diode = (GameObject)Resources.Load("Prefabs/electronic/diode");
+        Instantiate(diode,this.gameObject.transform.position+Vector3.up*3,this.gameObject.transform.rotation);*/
         wireQueryGroup = this.gameObject.AddComponent<wireQuery>();
         wireDiodeSlot = this.transform.parent.GetComponent<wireDiodeSlot>();
     }
@@ -27,13 +27,12 @@ public class diodeSlot : MonoBehaviour
             CapsuleCollider collider = other.GetComponent<CapsuleCollider>();
             collideGameObject = collider.gameObject;
             Ray cathodeDirection = new Ray(other.transform.position-(Vector3.down*collider.radius/2),collider.transform.TransformDirection(-Vector3.forward));
+            float angle = Mathf.Atan2(cathodeDirection.direction.z,cathodeDirection.direction.x)*Mathf.Rad2Deg - Mathf.Atan2(wireDiodeSlot.toggleRay.getRay().direction.z,wireDiodeSlot.toggleRay.getRay().direction.x)*Mathf.Rad2Deg;
 
             //change current direction when diode change direction
-            if(cathodeDirection.direction != wireDiodeSlot.toggleRay.getRay().direction){
+            if(Mathf.Abs(angle) < 90 ){
                 wireDiodeSlot.toggleRay.setDirection(-cathodeDirection.direction);
                 //Debug.Log(wireDiodeSlot.scale);
-                GameObject wireYHit = wireQueryGroup.findParentObjectHit(wireDiodeSlot.toggleRay.getRay(),wireDiodeSlot.scale,7);
-                wireYHit.GetComponent<wireY>().controlRay.Switchflow(wireDiodeSlot.gameObject);
             }
 
         }     

@@ -23,6 +23,7 @@ public class wireDiodeSlot : MonoBehaviour
     }
     private void Awake() {
         toggleRay = new toggleRay(new Ray(transform.position,transform.TransformDirection(-1,0,-1)),0);
+        Debug.DrawRay(toggleRay.m_ray.origin,toggleRay.m_ray.direction,Color.blue,60);
         Mesh mesh = this.gameObject.transform.Find("wire.slot.diode").GetComponent<MeshFilter>().mesh;
         scale = Vector2.Distance(Vector2.zero,new Vector2(mesh.bounds.size.x,mesh.bounds.size.z));
         waveGenerator = this.gameObject.transform.parent.Find("wire.straight.hole").gameObject.GetComponent<WaveGenerator>();

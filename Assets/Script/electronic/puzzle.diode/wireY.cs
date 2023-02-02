@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Text.RegularExpressions;
 public class wireY : MonoBehaviour
 {
-    public float voltage,baseVoltage=5,cosValue;
+    public float voltage,baseVoltage=5,cosValue,Count;
     MeshRenderer childRenderer;
     public FlowControlRay controlRay;
     WaveGenerator waveGenerator;
@@ -17,7 +17,7 @@ public class wireY : MonoBehaviour
     public class FlowControlRay {
         public List<Ray> input;
         public List<Ray> output;
-        float scale;
+        public float scale;
 
         public FlowControlRay(List<Ray> rayInput,List<Ray> rayOutput,float length){
             input = rayInput;
@@ -39,7 +39,6 @@ public class wireY : MonoBehaviour
             }
             if(!isSwitch){
                 foreach(Ray ray in this.output){
-                    Debug.Log(findParentObjectHit(ray,scale).name);
                     if(findParentObjectHit(ray,scale).name.Equals(objCompare.name)){
                         output.Remove(ray);
                         input.Add(ray);
@@ -66,9 +65,11 @@ public class wireY : MonoBehaviour
     private float calVoltage(List<Ray> ctrlFlowRay){
         float volt = 0;
         foreach(Ray ray in ctrlFlowRay){
-            float voltInput = wireQueryGroup.findWireHit(ray,transform.localScale.z,0);
-            if(Mathf.Abs(voltInput)>0 && ctrlFlowRay.Count > 1){
-                volt = Mathf.Max(voltage,voltInput);
+
+            float voltInput = wireQueryGroup.findWireHit(ray,controlRay.scale,0);
+
+            if(ctrlFlowRay.Count > 1){
+                volt = Mathf.Max(volt,voltInput);
                     //voltage = inputVoltage;
             }else if(Mathf.Abs(voltInput)>0){
                 volt = voltInput;
@@ -96,6 +97,7 @@ public class wireY : MonoBehaviour
             controlRay.input = raysOut;
             controlRay.output = raysIn;
         }
+        Count = controlRay.input.Count;
     }
 
     void FixedUpdate(){

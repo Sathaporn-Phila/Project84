@@ -5,12 +5,13 @@ using System.Text.RegularExpressions;
 using System.Linq;
 public class wireY : MonoBehaviour
 {
-    public float voltage,baseVoltage=5,cosValue,Count;
+    public float voltage,baseVoltage=5,cosValue;
     MeshRenderer childRenderer;
     public FlowControlRay controlRay;
     WaveGenerator waveGenerator;
     wireQuery wireQueryGroup;
     MeshFilter meshFilter;
+    public bool diodeVolt;
     public float getVoltage(){
         return voltage;
     }
@@ -25,73 +26,43 @@ public class wireY : MonoBehaviour
             output = rayOutput;
             scale = length;
         }
-        public void Switchflow(GameObject objCompare){
-            bool isSwitch = false;
-            foreach(Ray ray in this.input){
-                
-                //Debug.Log(findParentObjectHit(ray,scale).name);
-                
-                if(findParentObjectHit(ray,scale).name.Equals(objCompare.name)){
-                    input.Remove(ray);
-                    output.Add(ray);
-                    isSwitch = true;
-                    break;
-                }
-            }
-            if(!isSwitch){
-                foreach(Ray ray in this.output){
-                    if(findParentObjectHit(ray,scale).name.Equals(objCompare.name)){
-                        output.Remove(ray);
-                        input.Add(ray);
-                        isSwitch = true;
-                        break;
-                    }
-                }
-            }
-        }
-        private GameObject findParentObjectHit(Ray ray,float length){
-            RaycastHit hit;
-            Debug.DrawRay(ray.origin,ray.direction*length,Color.magenta,60);
-            if(Physics.Raycast(ray,out hit,length)){
-                GameObject hitParentObj = hit.collider.gameObject.transform.parent.gameObject;
-                return hitParentObj;
-            }else{
-                return null;
-            }
-        }
+
         
     }
-
-
     private float calVoltage(List<Ray> ctrlFlowRay){
         float volt = 0;
-        int minusVoltTome = 0;
+        float distance = 0;
+        bool isDiodeOutputWay = false;
+        //int minusVoltTome = 0;
         foreach(Ray ray in ctrlFlowRay){
 
             GameObject voltInputObj = wireQueryGroup.findParentObjectHit(ray,controlRay.scale,0);
             if(voltInputObj.CompareTag("diodeSlot")){
+
                 wireDiodeSlot wireDiodeSlot = voltInputObj.GetComponent<wireDiodeSlot>();
                 Ray raySlot = wireDiodeSlot.toggleRay.getRay();
                 float angle = Mathf.Atan2(ray.direction.z,ray.direction.x)*Mathf.Rad2Deg - Mathf.Atan2(raySlot.direction.z,raySlot.direction.x)*Mathf.Rad2Deg;
-    
+                
                 if(Mathf.Abs(angle)<90){
-                    //สามารถมี volt ได้ครั้งเดียว
-                    if(minusVoltTome<1 && wireDiodeSlot.getVoltage()<0){
+                    isDiodeOutputWay = true;
+                    if(Mathf.Abs(wireDiodeSlot.getVoltage())>distance){
+                        distance = wireDiodeSlot.getVoltage();
                         volt = wireDiodeSlot.getVoltage();
-                        minusVoltTome++;
-                    }else{
-                        volt = Mathf.Max(volt,wireDiodeSlot.getVoltage());
+    
                     }
                 }
             }else if(voltInputObj.CompareTag("wire")){
                 wire wireObj = voltInputObj.GetComponent<wire>();
-                    //สามารถมี volt ติดลบ ได้ครั้งเดียว
-                if(minusVoltTome<1 && wireObj.getVoltage()<0){
-                    volt = wireObj.getVoltage();
-                    minusVoltTome++;
-                }else{
-                    volt = Mathf.Max(volt,wireObj.getVoltage());
+                if(!isDiodeOutputWay || wireObj.m_isNearGenerator){
+                    if(this.gameObject.name == "wire.y.001"){
+                        Debug.Log("here");
+                    }
+                    if(Mathf.Abs(wireObj.getVoltage())>distance){
+                        distance = wireObj.getVoltage();
+                        volt = wireObj.getVoltage();
+                    }
                 }
+
             }else if(voltInputObj.CompareTag("wire2way")){
                 float voltTemp = 0;
                 wire2way wireObj = voltInputObj.GetComponent<wire2way>();
@@ -101,12 +72,10 @@ public class wireY : MonoBehaviour
                         break;
                     }
                 }
-                    //สามารถมี volt ติดลบได้ครั้งเดียว
-                if(minusVoltTome<1 && voltTemp<0){
+                   
+                if(Mathf.Abs(voltTemp)>distance){
+                    distance = voltTemp;
                     volt = voltTemp;
-                    minusVoltTome++;
-                }else{
-                    volt = Mathf.Max(volt,voltTemp);
                 }
             }
             /*if(ctrlFlowRay.Count > 1){
@@ -116,6 +85,10 @@ public class wireY : MonoBehaviour
                 volt = voltInput;
             }*/
         }
+        /*if(this.gameObject.name == "wire.y.001"){
+            Debug.Log(isDiodeOutputWay);
+        }*/
+        diodeVolt = isDiodeOutputWay;
         return volt; 
     }
     void Awake(){
@@ -132,18 +105,12 @@ public class wireY : MonoBehaviour
                     new Ray(transform.position,transform.TransformDirection(new Vector3(1,0,-1)))
                 },Vector2.Distance(Vector2.zero,new Vector2(meshFilter.mesh.bounds.size.x,meshFilter.mesh.bounds.size.z))
         );
-        if(!(this.gameObject.name == "wire.y" || this.gameObject.name == "wire.y.004")){
-            List<Ray> raysOut = controlRay.output;
-            List<Ray> raysIn = controlRay.input;
-            controlRay.input = raysOut;
-            controlRay.output = raysIn;
-        }
-        Count = controlRay.input.Count;
+        
     }
 
     void FixedUpdate(){
         cosValue = waveGenerator.getCosValue();
-        voltage = calVoltage(controlRay.input.Concat(controlRay.output).ToList());
+        voltage = calVoltage(controlRay.output.Concat(controlRay.input).ToList());
         wireQueryGroup.SetColor(voltage,childRenderer);
     }
     void Update()

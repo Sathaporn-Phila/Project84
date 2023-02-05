@@ -7,27 +7,31 @@ public class wire2way : MonoBehaviour
 {
     public float cosValue;
     public class ToggleRay : toggleRay {
-        float voltage,scale;
-        public float volt;
+
+        public float volt,scale;
+        public bool m_isNearGenerator = false;
         public List<GameObject> allGameObject = new List<GameObject>();
         public ToggleRay(Ray ray,float val,float length):base(ray,val){
             scale = length;
-            RaycastHit hit;
-            if(Physics.Raycast(ray,out hit,scale)){
-                allGameObject.Add(hit.collider.gameObject.transform.parent.gameObject);
-            }
+            Ray inverseRay = new Ray(ray.origin,-ray.direction);
+            setBoolNearGenerator(new List<Ray>{ray,inverseRay});
         }
-        public override void toggle(float val){
-            if(prevCosValue*val<0){
-                m_ray.direction = -m_ray.direction;
+        
+        private void setBoolNearGenerator(List<Ray> item){
+            foreach(Ray ray in item){
                 RaycastHit hit;
-                if(Physics.Raycast(m_ray,out hit,scale)){
-                    if(!allGameObject.Contains(hit.collider.gameObject.transform.parent.gameObject)){
-                        allGameObject.Add(hit.collider.gameObject.transform.parent.gameObject);
+                if(Physics.Raycast(ray,out hit,scale)){
+                    GameObject hitObj = hit.collider.gameObject.transform.parent.gameObject;
+                    //Debug.Log(hitObj.name);
+                    allGameObject.Add(hitObj);
+                    if(!m_isNearGenerator && hitObj.CompareTag("wire")){
+                        bool isFromGenerator = hitObj.GetComponent<wire>().m_isNearGenerator;
+                        if(isFromGenerator){
+                            m_isNearGenerator = true;
+                        }
                     }
                 }
             }
-            prevCosValue = val;
         }
 
     }
@@ -47,23 +51,43 @@ public class wire2way : MonoBehaviour
         });
         
         toggleRays.AddRange(new List<ToggleRay>(){
-            new ToggleRay(new Ray(transform.position,transform.TransformDirection(Vector3.back)),0,transform.localScale.z+(float)0.01),
-            new ToggleRay(new Ray(transform.position,transform.TransformDirection(Vector3.left)),0,transform.localScale.z+(float)0.01),
+            new ToggleRay(new Ray(transform.position,transform.TransformDirection(Vector3.back)),0,transform.localScale.z+(float)1),
+            new ToggleRay(new Ray(transform.position+Vector3.down,transform.TransformDirection(Vector3.left)),0,transform.localScale.z+(float)1),
         });
         lines = toggleRays.Zip(renderers,(ray,renderMesh)=>new {ray,renderMesh}).ToDictionary(val=>val.ray,val=>val.renderMesh);
         waveGenerator = this.gameObject.transform.parent.Find("wire.straight.hole").gameObject.GetComponent<WaveGenerator>();
         wireQueryGroup = this.gameObject.AddComponent<wireQuery>();
     }
     void FixedUpdate(){
-        cosValue = waveGenerator.getCosValue();
+        float nextCosValue = waveGenerator.getCosValue();
         foreach(ToggleRay toggleRay in lines.Keys){
-            float voltage = wireQueryGroup.findWireHit(toggleRay.getRay(),transform.localScale.z+(float)0.01);
-            toggleRay.toggle(cosValue);
-            toggleRay.volt = voltage;
-            wireQueryGroup.SetColor(voltage,lines[toggleRay]);
-        }
+            float voltTemp = 0;
 
-    }
+            //Debug.Log(toggleRay.m_isNearGenerator);
+            if(toggleRay.m_isNearGenerator){
+                if(wireQueryGroup.findParentObjectHit(toggleRay.getRay(),toggleRay.scale,0)){
+                    voltTemp  = wireQueryGroup.findWireHit(toggleRay.getRay(),toggleRay.scale,0);
+                }else if(wireQueryGroup.findParentObjectHit(toggleRay.getRay(),toggleRay.scale,7)){
+                    voltTemp  = wireQueryGroup.findWireHit(toggleRay.getRay(),toggleRay.scale,7);
+                }
+                toggleRay.toggle(cosValue);
+                toggleRay.volt = voltTemp;
+            }else{
+                if(wireQueryGroup.findParentObjectHit(toggleRay.getRay(),toggleRay.scale,0)){
+                    voltTemp  = wireQueryGroup.findWireHit(toggleRay.getRay(),toggleRay.scale,0);
+                    /*if(cosValue*nextCosValue<0){
+                        if(Mathf.Abs(voltTemp)==0){
+                            toggleRay.setDirection(-toggleRay.getRay().direction);
+                        }
+                    }*/
+                    toggleRay.volt = voltTemp;
+                }
+                
+            }
+            wireQueryGroup.SetColor(toggleRay.volt,lines[toggleRay]);
+            cosValue = nextCosValue;
+        }
     // Update is called once per frame
     
+    }
 }

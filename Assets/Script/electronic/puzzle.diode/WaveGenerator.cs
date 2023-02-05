@@ -7,7 +7,7 @@ public class WaveGenerator : MonoBehaviour
 {
     public bool m_IsVoltageGenerator;
     public float phaseStart;
-    public float voltage=0,baseVoltage = 5,cosValue;
+    public float voltage=0,baseVoltage = 5,cosValue,nextCosValue;
     MeshRenderer childRenderer;
     Ray ray;
     private string getLedObjectName(){
@@ -38,16 +38,25 @@ public class WaveGenerator : MonoBehaviour
     {
         float m_currentTime = Time.time;
         cosValue = Mathf.Cos(m_currentTime+(Mathf.Deg2Rad*phaseStart));
+
         //Debug.Log(this.gameObject.transform.parent.Find("wire.straight.hole").gameObject.GetComponent<wire>().getCosValue()>=0);
         //ใช่จุดสัญญาณไหม
         if(m_IsVoltageGenerator){
             if(cosValue >= 0){
-                voltage = baseVoltage*cosValue;
+                nextCosValue = Mathf.Cos(Time.deltaTime+m_currentTime+(Mathf.Deg2Rad*(phaseStart)));
+                if(cosValue*nextCosValue >= 0){
+                    voltage = baseVoltage*cosValue;    
+                }else{
+                    voltage = 0;
+                }
+                
+
             }else{
                 RaycastHit hit;
                 if(Physics.Raycast(ray,out hit,1)){
                     voltage = hit.collider.gameObject.transform.parent.gameObject.GetComponent<wire>().getVoltage();
                 }
+                nextCosValue = 0;
             }
         }
         //ดูว่าสัญญาณมาจากทางไหน

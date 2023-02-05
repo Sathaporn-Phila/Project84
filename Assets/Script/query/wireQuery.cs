@@ -9,24 +9,7 @@ public class wireQuery : MonoBehaviour
     public float findWireHit(Ray ray,float length,int layer=0){
         float volt = 0;
         GameObject hitParentObj = findParentObjectHit(ray,length,layer);
-        if(hitParentObj!=null){
-            if(hitParentObj.CompareTag("wire")){
-                volt = hitParentObj.GetComponent<wire>().getVoltage();
-            }else if(hitParentObj.CompareTag("WaveGenerator")){
-                volt = hitParentObj.GetComponent<WaveGenerator>().getVoltage();
-            }else if(hitParentObj.CompareTag("wire2way")){
-                foreach(var item in hitParentObj.GetComponent<wire2way>().toggleRays){
-                    if(item.allGameObject.Contains(this.gameObject)){
-                        volt = item.volt;
-                        break;
-                    }
-                }
-            }else if(hitParentObj.CompareTag("wireY")){
-                volt = hitParentObj.GetComponent<wireY>().getVoltage();
-            }else if(hitParentObj.CompareTag("diodeSlot")){
-                volt = hitParentObj.GetComponent<wireDiodeSlot>().getVoltage();
-            }
-        }
+        volt = getVoltFromHitObj(hitParentObj);
         return volt;
     }
     public GameObject findParentObjectHit(Ray ray,float length,int layer){
@@ -38,6 +21,30 @@ public class wireQuery : MonoBehaviour
         }else{
             return null;
         }
+    }
+    public float getVoltFromHitObj(GameObject hitObj){
+        float volt = 0;
+
+        if(hitObj!=null){
+            if(hitObj.CompareTag("wire")){
+                volt = hitObj.GetComponent<wire>().getVoltage();
+            }else if(hitObj.CompareTag("WaveGenerator")){
+                volt = hitObj.GetComponent<WaveGenerator>().getVoltage();
+            }else if(hitObj.CompareTag("wire2way")){
+
+                foreach(var item in hitObj.GetComponent<wire2way>().toggleRays){
+                    if(item.allGameObject.Contains(this.gameObject)){
+                        volt = item.volt;
+                        break;
+                    }
+                }
+            }else if(hitObj.CompareTag("wireY")){
+                volt = hitObj.GetComponent<wireY>().getVoltage();
+            }else if(hitObj.CompareTag("diodeSlot")){
+                volt = hitObj.GetComponent<wireDiodeSlot>().getVoltage();
+            }
+        }
+        return volt;
     }
     public void SetColor(float voltageInput,MeshRenderer childRenderer){
         float colorRange = Mathf.InverseLerp(baseVoltage*Mathf.Cos(Mathf.PI),baseVoltage*Mathf.Cos(0),voltageInput);

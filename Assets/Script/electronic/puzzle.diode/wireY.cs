@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 using System.Linq;
 public class wireY : MonoBehaviour
 {
-    public float voltage,baseVoltage=5,cosValue;
+    public float voltage,prevVolt,baseVoltage=5,cosValue;
     MeshRenderer childRenderer;
     public FlowControlRay controlRay;
     WaveGenerator waveGenerator;
@@ -30,6 +30,7 @@ public class wireY : MonoBehaviour
         
     }
     private float calVoltage(List<Ray> ctrlFlowRay){
+        prevVolt = voltage;
         float volt = 0;
         float distance = 0;
         bool isDiodeOutputWay = false;
@@ -46,7 +47,7 @@ public class wireY : MonoBehaviour
                 if(Mathf.Abs(angle)<90){
                     isDiodeOutputWay = true;
                     if(Mathf.Abs(wireDiodeSlot.getVoltage())>distance){
-                        distance = wireDiodeSlot.getVoltage();
+                        distance = Mathf.Abs(wireDiodeSlot.getVoltage());
                         volt = wireDiodeSlot.getVoltage();
     
                     }
@@ -54,11 +55,11 @@ public class wireY : MonoBehaviour
             }else if(voltInputObj.CompareTag("wire")){
                 wire wireObj = voltInputObj.GetComponent<wire>();
                 if(!isDiodeOutputWay || wireObj.m_isNearGenerator){
-                    if(this.gameObject.name == "wire.y.001"){
-                        Debug.Log("here");
-                    }
+                    /*if(this.gameObject.name == "wire.y"){
+                        Debug.Log(wireObj.getVoltage());
+                    }*/
                     if(Mathf.Abs(wireObj.getVoltage())>distance){
-                        distance = wireObj.getVoltage();
+                        distance = Mathf.Abs(wireObj.getVoltage());
                         volt = wireObj.getVoltage();
                     }
                 }
@@ -66,28 +67,25 @@ public class wireY : MonoBehaviour
             }else if(voltInputObj.CompareTag("wire2way")){
                 float voltTemp = 0;
                 wire2way wireObj = voltInputObj.GetComponent<wire2way>();
+                /*if(this.gameObject.name == "wire.y.002"){
+                    Debug.Log(!isDiodeOutputWay);
+                }*/
                 foreach(var item in wireObj.toggleRays){
-                    if(item.allGameObject.Contains(this.gameObject)){
+                    if(item.allGameObject.Contains(this.gameObject) && (!isDiodeOutputWay || item.m_isNearGenerator)){
                         voltTemp = item.volt;
                         break;
                     }
                 }
+                
+
                    
                 if(Mathf.Abs(voltTemp)>distance){
-                    distance = voltTemp;
+                    distance = Mathf.Abs(voltTemp);
                     volt = voltTemp;
                 }
             }
-            /*if(ctrlFlowRay.Count > 1){
-                volt = Mathf.Max(volt,voltInput);
-                    //voltage = inputVoltage;
-            }else if(Mathf.Abs(voltInput)>0){
-                volt = voltInput;
-            }*/
         }
-        /*if(this.gameObject.name == "wire.y.001"){
-            Debug.Log(isDiodeOutputWay);
-        }*/
+        
         diodeVolt = isDiodeOutputWay;
         return volt; 
     }

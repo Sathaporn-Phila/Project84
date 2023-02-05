@@ -7,6 +7,7 @@ public class wireDiodeSlot : MonoBehaviour
 {
     // Start is called before the first frames update
     public float voltage,baseVoltage=5,scale;
+    public float waitCounter;
     public toggleRay toggleRay;
     WaveGenerator waveGenerator;
     diodeSlot diodeSlot;
@@ -33,8 +34,36 @@ public class wireDiodeSlot : MonoBehaviour
 
     void FixedUpdate(){
         float cosValue = waveGenerator.getCosValue();
-        if(diodeSlot.gameObject.name!=null){
-            voltage = wireQueryGroup.findWireHit(toggleRay.getRay(),scale,7);
+        
+        if(diodeSlot.collideGameObject){
+            Ray nextHitRay = toggleRay.getRay();
+            nextHitRay.direction = -nextHitRay.direction;
+            GameObject hitLeftObj = wireQueryGroup.findParentObjectHit(toggleRay.getRay(),scale,7);
+            GameObject hitRightObj = wireQueryGroup.findParentObjectHit(nextHitRay,scale,7);
+
+            if(hitLeftObj && hitRightObj){
+                wireY wireYLeft = hitLeftObj.GetComponent<wireY>();
+                wireY wireYright = hitRightObj.GetComponent<wireY>();
+                if(wireYLeft.voltage < 0 && wireYright.prevVolt > 0 && wireYright.voltage == 0){
+                    waitCounter = 17;//num n object to wait;
+                }else{
+                    waitCounter--;
+                }
+                //ป้องกันการเกิดวนลูป
+                if(waitCounter<=0){
+                    voltage = wireYLeft.voltage*wireYright.voltage<0?0:wireYLeft.voltage;
+                }else{
+                    voltage = 0;
+                }
+            }
+            /*Ray nextHitRay = toggleRay.getRay();
+            nextHitRay.direction = -nextHitRay.direction;*/
+            /*if(this.gameObject.name == "wire.slot.diode.005"){
+                Debug.Log(string.Join(',',wireQueryGroup.findParentObjectHit(toggleRay.getRay(),scale,7).name,wireQueryGroup.findWireHit(toggleRay.getRay(),scale,7)));
+                Debug.Log(string.Join(',',wireQueryGroup.findParentObjectHit(nextHitRay,scale,7).name,wireQueryGroup.findWireHit(nextHitRay,scale,7)));
+            }*/
+            //voltage = voltTemp*wireQueryGroup.findWireHit(nextHitRay,scale,7)<0?0:voltTemp;
+            
             //Debug.Log(voltage);
             //Debug.Log(wireQueryGroup.findParentObjectHit(toggleRay.getRay(),scale,7).name);
         }

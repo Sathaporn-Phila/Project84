@@ -9,6 +9,7 @@ public class WaveGenerator : MonoBehaviour
     public float phaseStart;
     public float voltage=0,baseVoltage = 5,cosValue,nextCosValue;
     MeshRenderer childRenderer;
+    wireQuery wireQueryGroup;
     Ray ray;
     private string getLedObjectName(){
         name = this.gameObject.transform.Find("wire.straight.hole").name;
@@ -30,17 +31,15 @@ public class WaveGenerator : MonoBehaviour
     void Awake()
     {
         childRenderer = this.gameObject.transform.Find(getLedObjectName()).gameObject.GetComponent<MeshRenderer>();
-        Vector3 origin = transform.position + new Vector3((float)0,(float)-0.5,(float)0);
-        Ray ray = new Ray(origin,transform.TransformDirection(Vector3.forward));
+        ray = new Ray(transform.position+Vector3.down/2,transform.TransformDirection(Vector3.back));
+        
+        wireQueryGroup = this.gameObject.AddComponent<wireQuery>();
     }
     // Update is called once per frame
     void FixedUpdate()
     {
         float m_currentTime = Time.time;
         cosValue = Mathf.Cos(m_currentTime+(Mathf.Deg2Rad*phaseStart));
-
-        //Debug.Log(this.gameObject.transform.parent.Find("wire.straight.hole").gameObject.GetComponent<wire>().getCosValue()>=0);
-        //ใช่จุดสัญญาณไหม
         if(m_IsVoltageGenerator){
             if(cosValue >= 0){
                 nextCosValue = Mathf.Cos(Time.deltaTime+m_currentTime+(Mathf.Deg2Rad*(phaseStart)));
@@ -52,35 +51,16 @@ public class WaveGenerator : MonoBehaviour
                 
 
             }else{
-                RaycastHit hit;
-                if(Physics.Raycast(ray,out hit,1)){
-                    voltage = hit.collider.gameObject.transform.parent.gameObject.GetComponent<wire>().getVoltage();
-                }
+                /*GameObject testObj = wireQueryGroup.findParentObjectHit(ray,transform.localScale.z,0);
+                Debug.Log(testObj.name);*/
+                voltage = wireQueryGroup.findWireHit(ray,transform.localScale.z);
                 nextCosValue = 0;
             }
+        }else{
+            voltage = wireQueryGroup.findWireHit(ray,transform.localScale.z,0);
         }
-        //ดูว่าสัญญาณมาจากทางไหน
-        /*else{
-            if(this.gameObject.transform.parent.Find("wire.straight.hole").gameObject.GetComponent<WaveGenerator>().getCosValue()>=0){
-            //ใช้สัญญาณทิศทางจากสายไฟก่อนหน้า   
-                if(!Regex.IsMatch(prevGameObject.name,@"\bwire.y")){
-                    voltage = prevGameObject.GetComponent<wire>().getVoltage();
-                }
-                else if(Regex.IsMatch(prevGameObject.name,@"\bwire.y")){
-                    voltage = prevGameObject.GetComponent<wireY>().getVoltage();
-                }
-                //voltage = prevGameObject.GetComponent<wire>().getVoltage();
-            }
-            else{
-            //ใช้สัญญาณทิศทางจากสายไฟถัดไป
-                if(!Regex.IsMatch(nextGameObject.name,@"\bwire.y")){
-                    voltage = nextGameObject.GetComponent<wire>().getVoltage();
-                }
-                else if(Regex.IsMatch(nextGameObject.name,@"\bwire.y")){
-                    voltage = nextGameObject.GetComponent<wireY>().getVoltage();
-                }
-            }
-        }*/
+
+        
         SetColor(voltage);
     }
 }

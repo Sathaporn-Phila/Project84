@@ -1,35 +1,41 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-
+using System.Linq;
 public class wire : MonoBehaviour
 {   
     public bool m_isNearGenerator;
     public float voltage=0,cosValue;
     float scale;
     public int current;
-    MeshRenderer childRenderer;
+    List<MeshRenderer> childRenderer = new List<MeshRenderer>();
     public List<toggleRay> toggleRay = new List<toggleRay>();
     WaveGenerator waveGen;
     wireQuery wireQueryGroup;
     MeshFilter meshFilter;
     private void Awake() {
+
         //Debug.Log(this.gameObject.transform.position);
-        childRenderer = this.gameObject.transform.Find(getLedObjectName()).gameObject.GetComponent<MeshRenderer>();
+        //childRenderer = this.gameObject.transform.Find(getLedObjectName()).gameObject.GetComponent<MeshRenderer>();
+        if(Regex.IsMatch(this.gameObject.name,@"\bwire.resistor.slot")){
+            meshFilter = this.gameObject.transform.Find("wire.resistor.slot").gameObject.GetComponent<MeshFilter>(); 
+            scale = meshFilter.mesh.bounds.size.z;
+            childRenderer.AddRange(this.gameObject.GetComponentsInChildren<MeshRenderer>().Where(obj => obj.gameObject.name != this.gameObject.name && Regex.IsMatch(obj.gameObject.name,@"\bwire.straight")));
+        }else if(Regex.IsMatch(this.gameObject.name,@"\bwire.curve")){
+            meshFilter = this.gameObject.transform.Find("cover").gameObject.GetComponent<MeshFilter>(); 
+            scale = meshFilter.mesh.bounds.size.x;
+            childRenderer.Add(this.gameObject.transform.Find(getLedObjectName()).gameObject.GetComponent<MeshRenderer>());
+            
+            
+        }else{
+            scale = transform.localScale.z;
+            childRenderer.Add(this.gameObject.transform.Find(getLedObjectName()).gameObject.GetComponent<MeshRenderer>());
+        }
         waveGen = this.gameObject.transform.parent.Find("wire.straight.hole").gameObject.GetComponent<WaveGenerator>();
         wireQueryGroup = this.gameObject.AddComponent<wireQuery>();
         InitialRay();
 
-        if(Regex.IsMatch(this.gameObject.name,@"\bwire.resistor.slot")){
-            meshFilter = this.gameObject.transform.Find("wire.resistor.slot").gameObject.GetComponent<MeshFilter>(); 
-            scale = meshFilter.mesh.bounds.size.z;
-        }else if(Regex.IsMatch(this.gameObject.name,@"\bwire.curve")){
-            meshFilter = this.gameObject.transform.Find("cover").gameObject.GetComponent<MeshFilter>(); 
-            scale = meshFilter.mesh.bounds.size.x;
-            
-        }else{
-            scale = transform.localScale.z;
-        }
+        
     }
     public float getVoltage(){
         return voltage;
@@ -141,8 +147,18 @@ public class wire : MonoBehaviour
 
                 
             }*/
-        
-        wireQueryGroup.SetColor(voltage,childRenderer);
+        foreach(MeshRenderer renderer in childRenderer){
+            if(childRenderer.Count <= 1){
+                wireQueryGroup.SetColor(voltage,renderer);
+            }else{
+                Debug.Log(toggleRay[current].getRay().direction.z);
+                if((toggleRay[current].getRay().origin-renderer.transform.position).normalized.z*toggleRay[current].getRay().direction.z>=0){
+                    wireQueryGroup.SetColor(voltage,renderer);
+                }else{
+                    wireQueryGroup.SetColor(-voltage,renderer);
+                }
+            }
+        }
         cosValue = nextCosValue;
     }
     

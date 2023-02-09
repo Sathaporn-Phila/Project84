@@ -14,7 +14,6 @@ public class wireQuery : MonoBehaviour
     }
     public GameObject findParentObjectHit(Ray ray,float length,int layer){
         RaycastHit hit;
-        Debug.DrawRay(ray.origin,ray.direction,Color.magenta);
         if(Physics.Raycast(ray,out hit,length+(float)0.01,1<<layer)){
             GameObject hitParentObj = hit.collider.gameObject.transform.parent.gameObject;
             return hitParentObj;

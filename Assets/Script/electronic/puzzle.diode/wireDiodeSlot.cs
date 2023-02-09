@@ -56,16 +56,7 @@ public class wireDiodeSlot : MonoBehaviour
                     voltage = 0;
                 }
             }
-            /*Ray nextHitRay = toggleRay.getRay();
-            nextHitRay.direction = -nextHitRay.direction;*/
-            /*if(this.gameObject.name == "wire.slot.diode.005"){
-                Debug.Log(string.Join(',',wireQueryGroup.findParentObjectHit(toggleRay.getRay(),scale,7).name,wireQueryGroup.findWireHit(toggleRay.getRay(),scale,7)));
-                Debug.Log(string.Join(',',wireQueryGroup.findParentObjectHit(nextHitRay,scale,7).name,wireQueryGroup.findWireHit(nextHitRay,scale,7)));
-            }*/
-            //voltage = voltTemp*wireQueryGroup.findWireHit(nextHitRay,scale,7)<0?0:voltTemp;
-            
-            //Debug.Log(voltage);
-            //Debug.Log(wireQueryGroup.findParentObjectHit(toggleRay.getRay(),scale,7).name);
+        
         }
     }
 }

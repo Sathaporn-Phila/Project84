@@ -49,6 +49,7 @@ MonoBehaviour:
   m_isNearGenerator: 0
   voltage: 0
   cosValue: 0
+  current: 0
 --- !u!1 &1633543857105192661
 GameObject:
   m_ObjectHideFlags: 0

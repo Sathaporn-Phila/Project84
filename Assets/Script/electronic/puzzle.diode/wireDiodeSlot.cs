@@ -57,6 +57,8 @@ public class wireDiodeSlot : MonoBehaviour
                 }
             }
         
+        }else{
+            voltage = 0;
         }
     }
 }

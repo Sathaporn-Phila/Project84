@@ -923,6 +923,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7195702771264885861}
     m_Modifications:
+    - target: {fileID: 6150029237831859064, guid: f43d2b90a7cf19f4593c36deb27cc8f5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.38268343
+      objectReference: {fileID: 0}
+    - target: {fileID: 6150029237831859064, guid: f43d2b90a7cf19f4593c36deb27cc8f5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.92387956
+      objectReference: {fileID: 0}
+    - target: {fileID: 6150029237831859064, guid: f43d2b90a7cf19f4593c36deb27cc8f5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -135
+      objectReference: {fileID: 0}
     - target: {fileID: 8314743851580970364, guid: f43d2b90a7cf19f4593c36deb27cc8f5, type: 3}
       propertyPath: m_Name
       value: wire.slot.diode.001
@@ -1999,6 +2011,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7195702771264885861}
     m_Modifications:
+    - target: {fileID: 6150029237831859064, guid: f43d2b90a7cf19f4593c36deb27cc8f5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.38268343
+      objectReference: {fileID: 0}
+    - target: {fileID: 6150029237831859064, guid: f43d2b90a7cf19f4593c36deb27cc8f5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.92387956
+      objectReference: {fileID: 0}
+    - target: {fileID: 6150029237831859064, guid: f43d2b90a7cf19f4593c36deb27cc8f5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -135
+      objectReference: {fileID: 0}
     - target: {fileID: 8314743851580970364, guid: f43d2b90a7cf19f4593c36deb27cc8f5, type: 3}
       propertyPath: m_Name
       value: wire.slot.diode
@@ -2687,6 +2711,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7195702771264885861}
     m_Modifications:
+    - target: {fileID: 6150029237831859064, guid: f43d2b90a7cf19f4593c36deb27cc8f5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.38268343
+      objectReference: {fileID: 0}
+    - target: {fileID: 6150029237831859064, guid: f43d2b90a7cf19f4593c36deb27cc8f5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.92387956
+      objectReference: {fileID: 0}
+    - target: {fileID: 6150029237831859064, guid: f43d2b90a7cf19f4593c36deb27cc8f5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -135
+      objectReference: {fileID: 0}
     - target: {fileID: 8314743851580970364, guid: f43d2b90a7cf19f4593c36deb27cc8f5, type: 3}
       propertyPath: m_Name
       value: wire.slot.diode.004
@@ -4205,6 +4241,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7195702771264885861}
     m_Modifications:
+    - target: {fileID: 6150029237831859064, guid: f43d2b90a7cf19f4593c36deb27cc8f5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.38268343
+      objectReference: {fileID: 0}
+    - target: {fileID: 6150029237831859064, guid: f43d2b90a7cf19f4593c36deb27cc8f5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.92387956
+      objectReference: {fileID: 0}
+    - target: {fileID: 6150029237831859064, guid: f43d2b90a7cf19f4593c36deb27cc8f5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -135
+      objectReference: {fileID: 0}
     - target: {fileID: 8314743851580970364, guid: f43d2b90a7cf19f4593c36deb27cc8f5, type: 3}
       propertyPath: m_Name
       value: wire.slot.diode.005

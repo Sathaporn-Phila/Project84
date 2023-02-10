@@ -37,4 +37,9 @@ public class diodeSlot : MonoBehaviour
 
         }     
     }
+    void OnTriggerExit(Collider other) {
+        if(Regex.IsMatch(other.gameObject.name,@"\bdiode")){
+            collideGameObject = null;
+        }
+    }
 }

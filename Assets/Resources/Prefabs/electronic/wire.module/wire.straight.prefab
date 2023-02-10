@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 460a34cfaabffdf41aaf41a83ef741c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_isNearGenerator: 0
   voltage: 0
-  baseVoltage: 5
   cosValue: 0
   current: 0
 --- !u!1 &8551343683115071621

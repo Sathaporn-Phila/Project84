@@ -25,11 +25,8 @@ public class wireQuery : MonoBehaviour
         float volt = 0;
 
         if(hitObj!=null){
-            if(hitObj.CompareTag("wire")){
-                volt = hitObj.GetComponent<wire>().getVoltage();
-            }else if(hitObj.CompareTag("WaveGenerator")){
-                volt = hitObj.GetComponent<WaveGenerator>().getVoltage();
-            }else if(hitObj.CompareTag("wire2way")){
+            
+            if(hitObj.CompareTag("wire2way")){
 
                 foreach(var item in hitObj.GetComponent<wire2way>().toggleRays){
                     if(item.allGameObject.Contains(this.gameObject)){
@@ -37,10 +34,10 @@ public class wireQuery : MonoBehaviour
                         break;
                     }
                 }
-            }else if(hitObj.CompareTag("wireY")){
-                volt = hitObj.GetComponent<wireY>().getVoltage();
-            }else if(hitObj.CompareTag("diodeSlot")){
-                volt = hitObj.GetComponent<wireDiodeSlot>().getVoltage();
+            }else{
+                if(hitObj.TryGetComponent<wireProp>(out wireProp prop)){
+                    volt = prop.getVoltage();
+                }
             }
         }
         return volt;

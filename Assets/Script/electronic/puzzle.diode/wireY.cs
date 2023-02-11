@@ -3,18 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Text.RegularExpressions;
 using System.Linq;
-public class wireY : MonoBehaviour
+public class wireY : wireProp
 {
-    public float voltage,prevVolt,baseVoltage=5,cosValue;
+    public float prevVolt,baseVoltage=5,cosValue;
     MeshRenderer childRenderer;
     public FlowControlRay controlRay;
     WaveGenerator waveGenerator;
     wireQuery wireQueryGroup;
     MeshFilter meshFilter;
     public bool diodeVolt;
-    public float getVoltage(){
-        return voltage;
-    }
+    
 
     public class FlowControlRay {
         public List<Ray> input;
@@ -111,8 +109,5 @@ public class wireY : MonoBehaviour
         voltage = calVoltage(controlRay.output.Concat(controlRay.input).ToList());
         wireQueryGroup.SetColor(voltage,childRenderer);
     }
-    void Update()
-    {
-        
-    }
+    
 }

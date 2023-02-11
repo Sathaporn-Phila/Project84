@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Text.RegularExpressions;
 
-public class WaveGenerator : MonoBehaviour
+public class WaveGenerator : wireProp
 {
     public bool m_IsVoltageGenerator;
     public float phaseStart;
-    public float voltage=0,baseVoltage = 5,cosValue,nextCosValue;
+    public float baseVoltage=5,cosValue,nextCosValue;
     MeshRenderer childRenderer;
     wireQuery wireQueryGroup;
     Ray ray;
@@ -18,16 +18,7 @@ public class WaveGenerator : MonoBehaviour
     public float getCosValue(){
         return cosValue;
     }
-    private void SetColor(float voltageInput){
-        float colorRange = Mathf.InverseLerp(baseVoltage*Mathf.Cos(Mathf.PI),baseVoltage*Mathf.Cos(0),voltageInput);
-        Color color = new Color(1-colorRange,colorRange,0,1);
-        childRenderer.material.SetColor("_BaseColor",color);
-        childRenderer.material.EnableKeyword("_EMISSION");
-        childRenderer.material.SetColor("_EmissionColor",color);
-    }
-    public float getVoltage(){
-        return voltage;
-    }
+
     void Awake()
     {
         childRenderer = this.gameObject.transform.Find(getLedObjectName()).gameObject.GetComponent<MeshRenderer>();
@@ -61,6 +52,6 @@ public class WaveGenerator : MonoBehaviour
         }
 
         
-        SetColor(voltage);
+        wireQueryGroup.SetColor(voltage,childRenderer);
     }
 }

@@ -100,7 +100,6 @@ public class wire : wireProp
         }
     }
     private void FixedUpdate() {
-
         if(wireQueryGroup.findParentObjectHit(toggleRay[current].getRay(),scale,0)){
             voltage = wireQueryGroup.findWireHit(toggleRay[current].getRay(),scale,0);
         }else if(wireQueryGroup.findParentObjectHit(toggleRay[current].getRay(),scale,7)){
@@ -123,7 +122,7 @@ public class wire : wireProp
                     voltTemp = wireQueryGroup.findWireHit(toggleRay[current].getRay(),scale,7);
                     //Debug.Log(voltTemp);
                     if(cosValue*nextCosValue<0){
-                        Debug.Log(this.gameObject.name);
+                        //Debug.Log(this.gameObject.name);
                         if(Mathf.Abs(voltTemp)>0){
                             voltage = 0;
                             this.transform.parent.BroadcastMessage("setDirectionVoltRead",current,SendMessageOptions.DontRequireReceiver);
@@ -147,19 +146,21 @@ public class wire : wireProp
                 voltage = -voltage;
             }
             
-            foreach(MeshRenderer renderer in childRenderer){
-                if(childRenderer.Count <= 1){
-                    wireQueryGroup.SetColor(voltage,renderer);
-                }else{
-                    if((toggleRay[current].getRay().origin-renderer.transform.position).normalized.z*toggleRay[current].getRay().direction.z>=0){
-                        wireQueryGroup.SetColor(voltage,renderer);
-                    }else{
-                        wireQueryGroup.SetColor(-voltage,renderer);
-                    }
-                }
-            }
+            
 
             cosValue = nextCosValue;
+        }
+        foreach(MeshRenderer renderer in childRenderer){
+            if(childRenderer.Count <= 1){
+                wireQueryGroup.SetColor(voltage,renderer);
+            }else{
+                //เมื่อตำแหน่งสายไฟมีทิศเดียวกับทิศทางที่ถูก raycast ไป
+                if((toggleRay[current].getRay().origin-renderer.transform.position).normalized.z*toggleRay[current].getRay().direction.z>=0){
+                    wireQueryGroup.SetColor(voltage,renderer);
+                }else{
+                    wireQueryGroup.SetColor(-voltage,renderer);
+                }
+            }
         }
         
     }

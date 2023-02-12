@@ -46,8 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 460a34cfaabffdf41aaf41a83ef741c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_isNearGenerator: 0
   voltage: 0
+  m_isNearGenerator: 0
+  needWaveGen: 0
   cosValue: 0
   current: 0
 --- !u!1 &8551343683115071621
@@ -112,7 +113,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: f227d5bd4047dae4a8638e1abcb88b2a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

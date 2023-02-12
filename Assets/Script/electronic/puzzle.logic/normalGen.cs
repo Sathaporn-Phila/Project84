@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-public class normalGen : MonoBehaviour
+public class normalGen : wireProp
 {
-    public float voltage;
+    
     List<MeshRenderer> childRenderer = new List<MeshRenderer>();
     wireQuery wireQueryGroup;
     private void Awake() {

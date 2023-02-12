@@ -43,7 +43,6 @@ public class wire2way : MonoBehaviour
 
     public void setDirectionVoltRead(int i){
         foreach(ToggleRay item in toggleRays){
-            Debug.Log(i);
             if(!item.m_isNearGenerator){
                 item.setDirection(i==0?transform.TransformDirection(Vector3.left):transform.TransformDirection(Vector3.right));
             }

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Text.RegularExpressions;
 public class wireQuery : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -14,12 +14,23 @@ public class wireQuery : MonoBehaviour
     }
     public GameObject findParentObjectHit(Ray ray,float length,int layer){
         RaycastHit hit;
+        GameObject hitParentObj = null;
         if(Physics.Raycast(ray,out hit,length+(float)0.01,1<<layer)){
-            GameObject hitParentObj = hit.collider.gameObject.transform.parent.gameObject;
+            //if(Regex.IsMatch(this.gameObject.name,@"\bgate")){Debug.Log(hit.collider.gameObject.name);}
+            if(hit.transform.parent!=null){
+                //if(Regex.IsMatch(this.gameObject.name,@"\bwire.curve")&&Regex.IsMatch(hit.collider.gameObject.transform.parent.gameObject.name,@"\bpuzzle.slot")){Debug.Log("hit");}
+                hitParentObj = hit.collider.gameObject.transform.parent.gameObject;
+            }else{
+                if(Regex.IsMatch(hit.collider.name,@"\bgate")){
+                    hitParentObj = hit.collider.gameObject;
+                }
+            }
+            
             return hitParentObj;
         }else{
             return null;
         }
+        
     }
     public float getVoltFromHitObj(GameObject hitObj){
         float volt = 0;
@@ -35,9 +46,16 @@ public class wireQuery : MonoBehaviour
                     }
                 }
             }else{
+                
                 if(hitObj.TryGetComponent<wireProp>(out wireProp prop)){
+                    //if(Regex.IsMatch(this.gameObject.name,@"\bgate")){Debug.Log(prop.name);}
+                    
                     volt = prop.getVoltage();
                 }
+                else if(hitObj.TryGetComponent<Gate>(out Gate prop1)){
+                    volt = prop1.getVoltage();
+                }
+                
             }
         }
         return volt;

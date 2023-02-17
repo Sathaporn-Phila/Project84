@@ -32,8 +32,11 @@ public class slot : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if(rgx.IsMatch(other.gameObject.name)){
             GameObject led = resistorMachine.getLedFrom(this.gameObject.name);
-            if(other.gameObject.GetComponent<resistor>().Prop.val.ToString() == resistorMachine.getSlotGroup().Find(x=>x.slotObj==this.gameObject).textObj.GetComponent<TextMeshPro>().text){
-                setLight(led);
+            //if insert correct slot and correct value
+            if(other.TryGetComponent<resistor>(out resistor r)){
+                if(r.Prop.val.ToString() == resistorMachine.getSlotGroup().Find(x=>x.slotObj==this.gameObject).textObj.GetComponent<TextMeshPro>().text){
+                    setLight(led);
+                }
             }
         }
     }

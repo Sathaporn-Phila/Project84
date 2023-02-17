@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Collections;
-using Unity.Jobs;
+
 using System.Linq;
 using TMPro;
 public class resistor : MonoBehaviour

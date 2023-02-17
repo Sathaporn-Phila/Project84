@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using System.Text.RegularExpressions;
-
+using System.Linq;
 
 public class Box: MonoBehaviour
 {
@@ -24,9 +24,6 @@ public class Box: MonoBehaviour
                 Prefab.transform.localScale = new Vector3((float)0.7,(float)0.7,(float)0.7);
                 Prefab.transform.rotation = Quaternion.Euler(0,0,0);
                 break;
-            case SpawnType.gate:
-                Prefab = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                break;
             case SpawnType.diode:
                 Prefab = (GameObject)Resources.Load("Prefabs/electronic/diode");
                 //Prefab.transform.Rotate(Quaternion.Euler(0,90,0).eulerAngles);
@@ -41,17 +38,37 @@ public class Box: MonoBehaviour
     private void Awake() {
         query = this.gameObject.AddComponent<Query>();
         Regex regex = new Regex(pattern);
-        GameObject obj2Clone = prefab2Spawn(spawnType);
         List<GameObject> slots = query.queryByName(this.gameObject,regex);
-        foreach(GameObject slot in slots){
-            GameObject cloneObj = Instantiate(obj2Clone,slot.transform.position+Vector3.up,obj2Clone.transform.rotation);
-            cloneObj.transform.parent = slot.transform;
-            cloneObj.AddComponent<resistor>();
-            itemSpawn.Add(cloneObj);
-        }
-    } 
-    private void Start(){
         
-    }
+        if(spawnType == SpawnType.resistor || spawnType == SpawnType.diode){
+            GameObject obj2Clone = prefab2Spawn(spawnType);
+            foreach(GameObject slot in slots){
+                int numSpawn = Random.Range(1,5);
+                GameObject cloneObjPrototype = Instantiate(obj2Clone,slot.transform.position+Vector3.up,slot.transform.rotation);
+                cloneObjPrototype.transform.parent = slot.transform;
 
+                if(spawnType == SpawnType.resistor){
+                    resistor rProp = cloneObjPrototype.AddComponent<resistor>();
+                    for(int i=0;i<numSpawn;i++){
+                        GameObject cloneObj= Instantiate(obj2Clone,slot.transform.position+2*i*Vector3.up,slot.transform.rotation);
+                        cloneObj.transform.parent = slot.transform;
+                        resistor rDup = cloneObj.AddComponent<resistor>();
+                        rDup.Prop = rProp.Prop;
+                        rDup.SetColor();
+                    }
+                }
+            }
+        }else{
+            List<GameObject> GatePrefab = Resources.LoadAll<GameObject>("Prefabs/electronic/gate.machine.module").Where(obj=>Regex.IsMatch(obj.name,@"\bgate")).ToList();
+            Debug.Log(GatePrefab.Count);
+            for(int i=0;i<GatePrefab.Count;i++){
+                GameObject cloneObjPrototype = Instantiate(GatePrefab[i],slots[i].transform.position+Vector3.up,slots[i].transform.rotation);
+                cloneObjPrototype.transform.parent = slots[i].transform;
+            }
+
+        }
+            
+            
+    }
+    
 }

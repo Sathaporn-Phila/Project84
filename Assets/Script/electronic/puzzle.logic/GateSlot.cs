@@ -9,7 +9,7 @@ public class GateSlot : MonoBehaviour
     wireQuery wireQueryGroup;
 
     private void Awake() {
-        orGate = (GameObject)Resources.Load("Prefabs/electronic/gate.machine/gate.or");
+        orGate = (GameObject)Resources.Load("Prefabs/electronic/gate.machine.module/gate.or");
         Instantiate(orGate,this.transform.position,Quaternion.Euler(0,180,0));
         
     }

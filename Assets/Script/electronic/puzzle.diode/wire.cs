@@ -104,6 +104,8 @@ public class wire : wireProp
             voltage = wireQueryGroup.findWireHit(toggleRay[current].getRay(),scale,0);
         }else if(wireQueryGroup.findParentObjectHit(toggleRay[current].getRay(),scale,7)){
             voltage = wireQueryGroup.findWireHit(toggleRay[current].getRay(),scale,7);
+        }else{
+            voltage = 0;
         }
         
         if(needWaveGen){
@@ -163,6 +165,16 @@ public class wire : wireProp
             }
         }
         
+        /*if(this.transform.root.name=="puzzle.gate"){
+            GameObject hitObj = wireQueryGroup.findParentObjectHit(toggleRay[current].getRay(),scale,0);
+            if(hitObj){
+                if(!Regex.IsMatch(hitObj.name,@"\bwire.curve")){
+                Debug.Log(wireQueryGroup.getVoltFromHitObj(hitObj));
+                }
+            }else{
+                Debug.Log(wireQueryGroup.getVoltFromHitObj(hitObj));
+            }
+        }*/
     }
     
 }

@@ -53713,6 +53713,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: puzzle.gate
       objectReference: {fileID: 0}
+    - target: {fileID: 5434825744088051363, guid: 3d8c73e57723dea40b1b573f1d939fbd, type: 3}
+      propertyPath: m_BlendShapeWeights.Array.data[0]
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d8c73e57723dea40b1b573f1d939fbd, type: 3}
 --- !u!1001 &1921280708

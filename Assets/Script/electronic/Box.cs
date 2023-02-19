@@ -43,8 +43,8 @@ public class Box: MonoBehaviour
         if(spawnType == SpawnType.resistor || spawnType == SpawnType.diode){
             GameObject obj2Clone = prefab2Spawn(spawnType);
             foreach(GameObject slot in slots){
-                int numSpawn = Random.Range(1,5);
-                GameObject cloneObjPrototype = Instantiate(obj2Clone,slot.transform.position+Vector3.up,slot.transform.rotation);
+                int numSpawn = Random.Range(1,2);
+                GameObject cloneObjPrototype = Instantiate(obj2Clone,slot.transform.position+Vector3.up+(float)0.1*Vector3.left,slot.transform.rotation);
                 cloneObjPrototype.transform.parent = slot.transform;
 
                 if(spawnType == SpawnType.resistor){
@@ -57,6 +57,7 @@ public class Box: MonoBehaviour
                         rDup.SetColor();
                     }
                 }
+                itemSpawn.Add(cloneObjPrototype);
             }
         }else{
             List<GameObject> GatePrefab = Resources.LoadAll<GameObject>("Prefabs/electronic/gate.machine.module").Where(obj=>Regex.IsMatch(obj.name,@"\bgate")).ToList();

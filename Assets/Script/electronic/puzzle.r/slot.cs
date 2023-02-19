@@ -32,9 +32,11 @@ public class slot : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if(rgx.IsMatch(other.gameObject.name)){
             GameObject led = resistorMachine.getLedFrom(this.gameObject.name);
+
             //if insert correct slot and correct value
             if(other.TryGetComponent<resistor>(out resistor r)){
-                if(r.Prop.val.ToString() == resistorMachine.getSlotGroup().Find(x=>x.slotObj==this.gameObject).textObj.GetComponent<TextMeshPro>().text){
+                float nearDivider = (r.Prop.val.ToString().Length-1) - ((r.Prop.val.ToString().Length-1) % 3);
+                if(string.Join(" ",r.Prop.val/Mathf.Pow(10,nearDivider),string.Join("",r.Prop.findPrefixSymbol((int)nearDivider),"\u2126")) == resistorMachine.getSlotGroup().Find(x=>x.slotObj==this.gameObject).textObj.GetComponent<TextMeshPro>().text){
                     setLight(led);
                 }
             }

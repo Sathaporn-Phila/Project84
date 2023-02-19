@@ -32,13 +32,22 @@ public class rMachine : MonoBehaviour
     }
     
     private void matchSlotGroup(){
-        List<resistor.Attribute> resistor2match = new List<resistor.Attribute>();
+        List<GameObject> resistor2match = this.transform.parent.Find("box").GetComponent<Box>().getSpawnObject().OrderBy(item=>Guid.NewGuid()).ToList();
+        List<resistor.Attribute> attributes = new List<resistor.Attribute>();
+
+        //property in resistor such as ohm value
+        foreach(GameObject r in resistor2match){
+            attributes.Add(r.GetComponent<resistor>().Prop);
+        }
         
         List<GameObject> slots = query.queryByName(this.gameObject,new Regex(patterns["slot"]));
         List<GameObject> led = query.queryByName(this.gameObject,new Regex(patterns["led"]));
         List<GameObject> text = (this.gameObject.transform.Find("ohm.sticker/Canvas").GetComponentsInChildren<Transform>()).Skip(1).Select(t=>t.gameObject).ToList();
+        //set property for rMachine
         for(int i=0;i<slots.Count;i++){
-
+            float nearDivider = (attributes[i].val.ToString().Length-1) - ((attributes[i].val.ToString().Length-1) % 3);
+            Debug.Log(string.Join(" ",attributes[i].val,attributes[i].val.ToString().Length,nearDivider));
+            text[i].GetComponent<TextMeshPro>().text = string.Join(" ",attributes[i].val/Math.Pow(10,nearDivider),string.Join("",attributes[i].findPrefixSymbol((int)nearDivider),"\u2126"));
             SlotGroup slotGroup = new SlotGroup(slots[i],led[i],text[i]);
             slotGroups.Add(slotGroup);
         }
@@ -62,8 +71,8 @@ public class rMachine : MonoBehaviour
     public List<SlotGroup> getSlotGroup(){
         return slotGroups;
     }
-    private void Awake() {
-        matchSlotGroup();    
+    private void Start() {
+        matchSlotGroup(); 
     }
     
 }

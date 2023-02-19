@@ -27,7 +27,7 @@ public class resistor : MonoBehaviour
     }
     public class Attribute {
         public List<Sticker> allSticker;
-        public float val = 0;
+        public double val = 0;
         private int width=1024,height=1024;
         private Dictionary<string,Sticker> oneOfthreeBar,fourthBar;
         public Attribute(Dictionary<string,Sticker> stickers){//ค่า r
@@ -52,6 +52,17 @@ public class resistor : MonoBehaviour
         public List<Vector4> getAllColor(){
             return allSticker.Select(obj=>new Vector4(obj.color.r,obj.color.g,obj.color.b,obj.color.a)).ToList();
         }
+        public string findPrefixSymbol(int val){
+            if(val==3){
+                return "K";
+            }else if(val==6){
+                return "M";
+            }else if(val==9){
+                return "G";
+            }else{
+                return "";
+            }
+        }
     }
     private Attribute prop;
     public Attribute Prop{
@@ -60,7 +71,7 @@ public class resistor : MonoBehaviour
     }
     private Dictionary<string,Sticker> stickerData = new Dictionary<string, Sticker>(){
         {"black",new Sticker("black",Color.black,0)},
-        {"brown",new Sticker("brown",new Color((float)210/255,(float)105/255,(float)30/255),1)},
+        {"brown",new Sticker("brown",new Color((float)220/255,(float)105/255,(float)30/255),1)},
         {"red",new Sticker("red",Color.red,2)},
         {"orange",new Sticker("orange",new Color((float)255/255,(float)165/255,0),3)},
         {"yellow",new Sticker("yellow",Color.yellow,4)},

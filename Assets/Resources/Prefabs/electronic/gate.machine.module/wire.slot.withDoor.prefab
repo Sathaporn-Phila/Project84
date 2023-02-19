@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2110565804420388300}
   - component: {fileID: 3829274473834480687}
   - component: {fileID: 5822438343884253749}
+  - component: {fileID: 4746014310938068033}
   m_Layer: 0
   m_Name: wire.slot.withDoor
   m_TagString: Untagged
@@ -101,3 +102,15 @@ SkinnedMeshRenderer:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 1.5, y: 1, z: 2}
   m_DirtyAABB: 0
+--- !u!114 &4746014310938068033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1585808879715880822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 237e5905b659a62459a9e355c6ea77e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

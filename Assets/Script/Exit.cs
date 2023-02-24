@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Exit : MonoBehaviour
 {
-    public GameObject confirmation_panel;
+    public GameObject Exit_Confirm_Panel;
     public void button_exit()
     {
     
@@ -13,10 +13,10 @@ public class Exit : MonoBehaviour
     }
     public void enable_confirmation()
     {
-        confirmation_panel.SetActive(true);
+        Exit_Confirm_Panel.SetActive(true);
     }
     public void disable_confirmation()
     {
-        confirmation_panel.SetActive(false);
+        Exit_Confirm_Panel.SetActive(false);
     }
 }

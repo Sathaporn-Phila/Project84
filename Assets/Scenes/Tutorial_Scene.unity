@@ -6512,6 +6512,7 @@ GameObject:
   - component: {fileID: 549167550}
   - component: {fileID: 549167549}
   - component: {fileID: 549167548}
+  - component: {fileID: 549167555}
   m_Layer: 0
   m_Name: Velocity Tracking
   m_TagString: Untagged
@@ -6742,6 +6743,20 @@ Transform:
   m_Father: {fileID: 136330250}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &549167555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 549167547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65a6eab9627849d42889a4addd04b670, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderers: []
+  color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &580783484
 GameObject:
   m_ObjectHideFlags: 0
@@ -9634,6 +9649,7 @@ GameObject:
   - component: {fileID: 1239981742}
   - component: {fileID: 1239981741}
   - component: {fileID: 1239981740}
+  - component: {fileID: 1239981747}
   m_Layer: 0
   m_Name: Kinematic
   m_TagString: Untagged
@@ -9864,6 +9880,20 @@ Transform:
   m_Father: {fileID: 136330250}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1239981747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1239981739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65a6eab9627849d42889a4addd04b670, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderers: []
+  color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1264972972
 GameObject:
   m_ObjectHideFlags: 0
@@ -10851,6 +10881,7 @@ GameObject:
   - component: {fileID: 1496105031}
   - component: {fileID: 1496105030}
   - component: {fileID: 1496105029}
+  - component: {fileID: 1496105036}
   m_Layer: 0
   m_Name: Instantaneous
   m_TagString: Untagged
@@ -11081,6 +11112,20 @@ Transform:
   m_Father: {fileID: 136330250}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1496105036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1496105028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65a6eab9627849d42889a4addd04b670, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderers: []
+  color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1502959676
 GameObject:
   m_ObjectHideFlags: 0
@@ -11373,6 +11418,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 41a31415733d5ef4eaf72ef04cad395c, type: 3}
       propertyPath: m_Name
       value: stair.002
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 41a31415733d5ef4eaf72ef04cad395c, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41a31415733d5ef4eaf72ef04cad395c, type: 3}
@@ -14862,6 +14911,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 136330250}
     m_Modifications:
+    - target: {fileID: 191008713, guid: 5fc353d28f6f0854ba032f3c7b56237d, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1045919883, guid: 5fc353d28f6f0854ba032f3c7b56237d, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1277708128017508644, guid: 5fc353d28f6f0854ba032f3c7b56237d, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1565896574988103342, guid: 5fc353d28f6f0854ba032f3c7b56237d, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -14870,6 +14931,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: fbf8faf7879b15147a27350e53fdf8aa, type: 2}
+    - target: {fileID: 3674089355101911833, guid: 5fc353d28f6f0854ba032f3c7b56237d, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4132524313984676923, guid: 5fc353d28f6f0854ba032f3c7b56237d, type: 3}
       propertyPath: m_InteractionLayers.m_Bits
       value: 2
@@ -14901,6 +14966,10 @@ PrefabInstance:
     - target: {fileID: 4132524313984676923, guid: 5fc353d28f6f0854ba032f3c7b56237d, type: 3}
       propertyPath: m_Activated.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4769976949281355113, guid: 5fc353d28f6f0854ba032f3c7b56237d, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5954021414908580271, guid: 5fc353d28f6f0854ba032f3c7b56237d, type: 3}
       propertyPath: m_RootOrder
@@ -14961,6 +15030,10 @@ PrefabInstance:
     - target: {fileID: 6479340945413344021, guid: 5fc353d28f6f0854ba032f3c7b56237d, type: 3}
       propertyPath: m_Name
       value: pistolSilencer
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479340945413344021, guid: 5fc353d28f6f0854ba032f3c7b56237d, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6519750619977749454, guid: 5fc353d28f6f0854ba032f3c7b56237d, type: 3}
       propertyPath: m_LocalPosition.y

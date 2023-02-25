@@ -13,8 +13,8 @@ public class DoorSlot : MonoBehaviour {
     wireQuery wireQuery;
     SkinnedMeshRenderer skinnedMesh;
     private void Awake() {
-        doorOpen = new doorAnimOpen();
-        doorClose = new doorAnimClose();
+        doorOpen = this.gameObject.AddComponent<doorAnimOpen>();
+        doorClose = this.gameObject.AddComponent<doorAnimClose>();
         query = this.gameObject.AddComponent<Query>();
         wireQuery = this.gameObject.AddComponent<wireQuery>();
         skinnedMesh = this.gameObject.GetComponent<SkinnedMeshRenderer>();

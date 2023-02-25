@@ -9,6 +9,7 @@ TagManager:
   - wire2way
   - wire
   - diodeSlot
+  - player1
   layers:
   - Default
   - TransparentFX

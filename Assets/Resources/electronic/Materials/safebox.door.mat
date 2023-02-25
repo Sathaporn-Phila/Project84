@@ -21,15 +21,15 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: safebox.door
-  m_Shader: {fileID: -6465566751694194690, guid: d2d67fe2a7fa22a40b1b40a43abc4a4e, type: 3}
+  m_Shader: {fileID: 4800000, guid: 2fc455d5f4187224eaffc2bb09a9e40b, type: 3}
   m_ValidKeywords: []
-  m_InvalidKeywords: []
+  m_InvalidKeywords:
+  - _SHOULDDOFLICKER_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap:
-    RenderType: Opaque
+  stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -78,6 +78,30 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _doorLedOutTexture:
+        m_Texture: {fileID: 2800000, guid: a43bb2c2753af5d4e875cc38c7b50857, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ledInEmissionTexture:
+        m_Texture: {fileID: 2800000, guid: 167f48d5d620da749afcbad82939dda4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ledInEmitTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ledInTexture:
+        m_Texture: {fileID: 2800000, guid: a43bb2c2753af5d4e875cc38c7b50857, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ledOutEmissionTexture:
+        m_Texture: {fileID: 2800000, guid: a43bb2c2753af5d4e875cc38c7b50857, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ledOutTexture:
+        m_Texture: {fileID: 2800000, guid: a43bb2c2753af5d4e875cc38c7b50857, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _roofTexture:
         m_Texture: {fileID: 2800000, guid: a43bb2c2753af5d4e875cc38c7b50857, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -97,6 +121,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaClip: 0
+    - _BaseColorRGBIntensity: 1
     - _Blend: 0
     - _BumpScale: 1
     - _CastShadows: 1
@@ -104,32 +129,49 @@ Material:
     - _ClearCoatSmoothness: 0
     - _Cull: 2
     - _Cutoff: 0.5
+    - _DepthOcclusionTestZBias: -0.001
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _EndFadeinDistanceWorldUnit: 0.5
     - _EnvironmentReflections: 1
+    - _FlickResultIntensityLowestPoint: 0.5
+    - _FlickerAnimSpeed: 5
+    - _FlickerTimeDelay: 0
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _LightSourceViewSpaceRadius: 0.05
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
+    - _RemoveTextureArtifact: 0
+    - _ShouldDoFlicker: 1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _StartFadeinDistanceWorldUnit: 0.05
     - _Surface: 0
+    - _UsePreMultiplyAlpha: 0
     - _WorkflowMode: 1
     - _ZTest: 4
     - _ZWrite: 1
     - _ZWriteControl: 0
+    - _ledInEmissionIntensity: 1.33
+    - _ledOutEmissionIntensity: 0.52
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 9.082411, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
-    - _baseColor: {r: 0.6698113, g: 0.6698113, b: 0.6698113, a: 0}
+    - _baseColor: {r: 1, g: 1, b: 1, a: 0}
+    - _ledInColor: {r: 3.2111173, g: 0, b: 0, a: 1}
+    - _ledInEmissionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _ledOutColor: {r: 1, g: 0, b: 0, a: 1}
+    - _ledOutEmissionColor: {r: 0, g: 1, b: 0.60924816, a: 1}
+    - _ledOutEmitColor: {r: 1, g: 0.8934478, b: 0, a: 0}
   m_BuildTextureStacks: []

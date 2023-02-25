@@ -23,7 +23,6 @@ public class WaveGenerator : wireProp
     {
         childRenderer = this.gameObject.transform.Find(getLedObjectName()).gameObject.GetComponent<MeshRenderer>();
         ray = new Ray(transform.position+Vector3.down/2,transform.TransformDirection(Vector3.back));
-        
         wireQueryGroup = this.gameObject.AddComponent<wireQuery>();
     }
     // Update is called once per frame

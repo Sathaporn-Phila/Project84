@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Linq;
 public class doorAnimClose : doorState
 {
 
@@ -20,5 +20,24 @@ public class doorAnimClose : doorState
             doorSlot.changeState(doorSlot.doorOpen);
         }
     }
-    
+    public override void UpdateState(safeBoxDoor safeBoxDoor)
+    {
+        //Debug.Log(safeBoxDoor.Mpb.GetFloatArray("_IntArray"));
+    }
+    public override void UpdateState(safeBoxDoor safeBoxDoor,string input)
+    {
+        if(input == "OK"){
+            if(safeBoxDoor.safeboxPassword.get() == safeBoxDoor.safeboxPassword.current){
+                safeBoxDoor.changeState(safeBoxDoor.doorOpen);
+            }
+        }else{
+            safeBoxDoor.safeboxPassword.append(input);
+        }
+        float n;
+        List<float> binaryInput = safeBoxDoor.safeboxPassword.current.Select(c => float.TryParse(c.ToString(), out n) ? n : 0).ToList();
+        List<float> emptyInput = Enumerable.Repeat(0.0f,8-binaryInput.Count).ToList();
+        binaryInput.AddRange(emptyInput);
+        safeBoxDoor.Mpb.SetFloatArray("_IntArray",binaryInput);
+        safeBoxDoor.meshRenderer.SetPropertyBlock(safeBoxDoor.Mpb);
+    }
 }

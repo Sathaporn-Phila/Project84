@@ -74,83 +74,13 @@ Shader "Custom/resistor_sticker"
             Cull[_Cull]
 
             HLSLPROGRAM
-            // Required to compile gles 2.0 with standard SRP library
-            // All shaders must be compiled with HLSLcc and currently only gles is not using HLSLcc by default
-            #pragma prefer_hlslcc gles
-            #pragma exclude_renderers d3d11_9x
-            #pragma target 2.0
-
-            // -------------------------------------
-            // Material Keywords
-            // unused shader_feature variants are stripped from build automatically
-            #pragma shader_feature _NORMALMAP
-            #pragma shader_feature _ALPHATEST_ON
-            #pragma shader_feature _ALPHAPREMULTIPLY_ON
-            #pragma shader_feature _EMISSION
-            #pragma shader_feature _METALLICSPECGLOSSMAP
-            #pragma shader_feature _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
-            #pragma shader_feature _OCCLUSIONMAP
-
-            #pragma shader_feature _SPECULARHIGHLIGHTS_OFF
-            #pragma shader_feature _GLOSSYREFLECTIONS_OFF
-            #pragma shader_feature _SPECULAR_SETUP
-            #pragma shader_feature _RECEIVE_SHADOWS_OFF
-
-            // -------------------------------------
-            // Universal Render Pipeline keywords
-            // When doing custom shaders you most often want to copy and past these #pragmas
-            // These multi_compile variants are stripped from the build depending on:
-            // 1) Settings in the LWRP Asset assigned in the GraphicsSettings at build time
-            // e.g If you disable AdditionalLights in the asset then all _ADDITIONA_LIGHTS variants
-            // will be stripped from build
-            // 2) Invalid combinations are stripped. e.g variants with _MAIN_LIGHT_SHADOWS_CASCADE
-            // but not _MAIN_LIGHT_SHADOWS are invalid and therefore stripped.
-            #pragma multi_compile _ _MAIN_LIGHT_SHADOWS
-            #pragma multi_compile _ _MAIN_LIGHT_SHADOWS_CASCADE
-            #pragma multi_compile _ _ADDITIONAL_LIGHTS_VERTEX _ADDITIONAL_LIGHTS
-            #pragma multi_compile _ _ADDITIONAL_LIGHT_SHADOWS
-            #pragma multi_compile _ _SHADOWS_SOFT
-            #pragma multi_compile _ _MIXED_LIGHTING_SUBTRACTIVE
-
-            // -------------------------------------
-            // Unity defined keywords
-            #pragma multi_compile _ DIRLIGHTMAP_COMBINED
-            #pragma multi_compile _ LIGHTMAP_ON
-            #pragma multi_compile_fog
-
-            //--------------------------------------
-            // GPU Instancing
-            #pragma multi_compile_instancing
+    
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
+            #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
 
             #pragma vertex LitPassVertex
             #pragma fragment LitPassFragment
-
-            // Including the following two function is enought for shading with Universal Pipeline. Everything is included in them.
-            // Core.hlsl will include SRP shader library, all constant buffers not related to materials (perobject, percamera, perframe).
-            // It also includes matrix/space conversion functions and fog.
-            // Lighting.hlsl will include the light functions/data to abstract light constants. You should use GetMainLight and GetLight functions
-            // that initialize Light struct. Lighting.hlsl also include GI, Light BDRF functions. It also includes Shadows.
-
-            // Required by all Universal Render Pipeline shaders.
-            // It will include Unity built-in shader variables (except the lighting variables)
-            // (https://docs.unity3d.com/Manual/SL-UnityShaderVariables.html
-            // It will also include many utilitary functions. 
-            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
-
-            // Include this if you are doing a lit shader. This includes lighting shader variables,
-            // lighting and shadow functions
-            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
-
-            // Material shader variables are not defined in SRP or LWRP shader library.
-            // This means _BaseColor, _BaseMap, _BaseMap_ST, and all variables in the Properties section of a shader
-            // must be defined by the shader itself. If you define all those properties in CBUFFER named
-            // UnityPerMaterial, SRP can cache the material properties between frames and reduce significantly the cost
-            // of each drawcall.
-            // In this case, for sinmplicity LitInput.hlsl is included. This contains the CBUFFER for the material
-            // properties defined above. As one can see this is not part of the ShaderLibrary, it specific to the
-            // LWRP Lit shader.
-            #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
-            
             const static int colorSize = 4;
             half4 _ColorArray[4] = {half4(0,0,0,1),half4(0,0,0,1),half4(0,0,0,1),half4(0,0,0,1)};
             struct Attributes
@@ -170,14 +100,14 @@ Shader "Custom/resistor_sticker"
                 float4 positionWSAndFogFactor   : TEXCOORD2; // xyz: positionWS, w: vertex fog factor
                 half3  normalWS                 : TEXCOORD3;
 
-#if _NORMALMAP
+            #if _NORMALMAP
                 half3 tangentWS                 : TEXCOORD4;
                 half3 bitangentWS               : TEXCOORD5;
-#endif
+            #endif
 
-#ifdef _MAIN_LIGHT_SHADOWS
+            #ifdef _MAIN_LIGHT_SHADOWS
                 float4 shadowCoord              : TEXCOORD6; // compute shadow coord per-vertex for the main light
-#endif
+            #endif
                 float4 positionCS               : SV_POSITION;
             };
 
@@ -209,19 +139,19 @@ Shader "Custom/resistor_sticker"
                 // tangentWS and bitangentWS will not be referenced and
                 // GetVertexNormalInputs is only converting normal
                 // from object to world space
-#ifdef _NORMALMAP
-                output.tangentWS = vertexNormalInput.tangentWS;
-                output.bitangentWS = vertexNormalInput.bitangentWS;
-#endif
+                #ifdef _NORMALMAP
+                    output.tangentWS = vertexNormalInput.tangentWS;
+                    output.bitangentWS = vertexNormalInput.bitangentWS;
+                #endif
 
-#ifdef _MAIN_LIGHT_SHADOWS
+                #ifdef _MAIN_LIGHT_SHADOWS
                 // shadow coord for the main light is computed in vertex.
                 // If cascades are enabled, LWRP will resolve shadows in screen space
                 // and this coord will be the uv coord of the screen space shadow texture.
                 // Otherwise LWRP will resolve shadows in light space (no depth pre-pass and shadow collect pass)
                 // In this case shadowCoord will be the position in light space.
-                output.shadowCoord = GetShadowCoord(vertexInput);
-#endif
+                    output.shadowCoord = GetShadowCoord(vertexInput);
+                #endif
                 // We just use the homogeneous clip position from the vertex input
                 output.positionCS = vertexInput.positionCS;
                 return output;
@@ -243,22 +173,22 @@ Shader "Custom/resistor_sticker"
                 SurfaceData surfaceData;
                 InitializeStandardLitSurfaceData(input.uv, surfaceData);
 
-#if _NORMALMAP
+                #if _NORMALMAP
                 half3 normalWS = TransformTangentToWorld(surfaceData.normalTS,
                     half3x3(input.tangentWS, input.bitangentWS, input.normalWS));
-#else
+                #else
                 half3 normalWS = input.normalWS;
-#endif
+                #endif
                 normalWS = normalize(normalWS);
 
-#ifdef LIGHTMAP_ON
+                #ifdef LIGHTMAP_ON
                 // Normal is required in case Directional lightmaps are baked
                 half3 bakedGI = SampleLightmap(input.uvLM, normalWS);
-#else
+                #else
                 // Samples SH fully per-pixel. SampleSHVertex and SampleSHPixel functions
                 // are also defined in case you want to sample some terms per-vertex.
                 half3 bakedGI = SampleSH(normalWS);
-#endif
+                #endif
 
                 float3 positionWS = input.positionWSAndFogFactor.xyz;
                 half3 viewDirectionWS = SafeNormalize(GetCameraPositionWS() - positionWS);
@@ -275,16 +205,16 @@ Shader "Custom/resistor_sticker"
                 // LWRP take different shading approaches depending on light and platform.
                 // You should never reference light shader variables in your shader, instead use the GetLight
                 // funcitons to fill this Light struct.
-#ifdef _MAIN_LIGHT_SHADOWS
+                #ifdef _MAIN_LIGHT_SHADOWS
                 // Main light is the brightest directional light.
                 // It is shaded outside the light loop and it has a specific set of variables and shading path
                 // so we can be as fast as possible in the case when there's only a single directional light
                 // You can pass optionally a shadowCoord (computed per-vertex). If so, shadowAttenuation will be
                 // computed.
                 Light mainLight = GetMainLight(input.shadowCoord);
-#else
+                #else
                 Light mainLight = GetMainLight();
-#endif
+                #endif
 
                 // Mix diffuse GI with environment reflections.
                 half3 color = GlobalIllumination(brdfData, bakedGI, surfaceData.occlusion, normalWS, viewDirectionWS);
@@ -293,7 +223,7 @@ Shader "Custom/resistor_sticker"
                 color += LightingPhysicallyBased(brdfData, mainLight, normalWS, viewDirectionWS);
 
                 // Additional lights loop
-#ifdef _ADDITIONAL_LIGHTS
+                #ifdef _ADDITIONAL_LIGHTS
 
                 // Returns the amount of lights affecting the object being renderer.
                 // These lights are culled per-object in the forward renderer
@@ -308,7 +238,7 @@ Shader "Custom/resistor_sticker"
                     // Same functions used to shade the main light.
                     color += LightingPhysicallyBased(brdfData, light, normalWS, viewDirectionWS);
                 }
-#endif
+                #endif
                 // Emission
                 color += surfaceData.emission;
 
@@ -337,5 +267,4 @@ Shader "Custom/resistor_sticker"
 
     // Uses a custom shader GUI to display settings. Re-use the same from Lit shader as they have the
     // same properties.
-    CustomEditor "UnityEditor.Rendering.Universal.ShaderGUI.LitShader"
 }

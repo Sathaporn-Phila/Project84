@@ -46,7 +46,7 @@ public class rMachine : MonoBehaviour
         //set property for rMachine
         for(int i=0;i<slots.Count;i++){
             float nearDivider = (attributes[i].val.ToString().Length-1) - ((attributes[i].val.ToString().Length-1) % 3);
-            Debug.Log(string.Join(" ",attributes[i].val,attributes[i].val.ToString().Length,nearDivider));
+            //Debug.Log(string.Join(" ",attributes[i].val,attributes[i].val.ToString().Length,nearDivider));
             text[i].GetComponent<TextMeshPro>().text = string.Join(" ",attributes[i].val/Math.Pow(10,nearDivider),string.Join("",attributes[i].findPrefixSymbol((int)nearDivider),"\u2126"));
             SlotGroup slotGroup = new SlotGroup(slots[i],led[i],text[i]);
             slotGroups.Add(slotGroup);

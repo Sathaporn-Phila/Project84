@@ -61,10 +61,10 @@ public class Box: MonoBehaviour
             }
         }else{
             List<GameObject> GatePrefab = Resources.LoadAll<GameObject>("Prefabs/electronic/gate.machine.module").Where(obj=>Regex.IsMatch(obj.name,@"\bgate")).ToList();
-            Debug.Log(GatePrefab.Count);
             for(int i=0;i<GatePrefab.Count;i++){
                 GameObject cloneObjPrototype = Instantiate(GatePrefab[i],slots[i].transform.position+Vector3.up,slots[i].transform.rotation);
                 cloneObjPrototype.transform.parent = slots[i].transform;
+                cloneObjPrototype.transform.localScale = Vector3.one*0.95f;
             }
 
         }

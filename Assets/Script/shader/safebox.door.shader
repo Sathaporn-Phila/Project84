@@ -10,37 +10,19 @@ Shader "Custom/safebox.door"
         [MainTexture] _BaseMap("Base Texture", 2D) = "white" {}
 
         [Header(ledIn)]
-        [HDR]_ledInEmissionColor("Led in Color", Color) = (0.5,0.5,0.5,1)
+        [HDR]_ledZeroBitEmissionColor("Led Zero Bit Color", Color) = (0.5,0.5,0.5,1)
+        [HDR]_ledOneBitEmissionColor("Led One Bit Color", Color) = (0.5,0.5,0.5,1)
         _ledInEmissionTexture("Led in texture", 2D) = "white" {}
         _ledInEmissionIntensity("Led in strength",float) = 1
 
         [Header(ledOut)]
-        [HDR]_ledOutEmissionColor("Led out Color", Color) = (0.5,0.5,0.5,1)
+        [HDR]_ledOutEmissionCloseColor("Led Close Color", Color) = (0.5,0.5,0.5,1)
+        [HDR]_ledOutEmissionOpenColor("Led Open Color", Color) = (0.5,0.5,0.5,1)
         _ledOutEmissionTexture("Led out texture", 2D) = "white" {}
         _ledOutEmissionIntensity("Led Out strength",float) = 1
+        _ledOutCutoff("Led Out Animation", Range(-1.5,1.5)) = 0
 
-
-        _Smoothness("Smoothness", Range(0.0, 1.0)) = 0.5
-        _GlossMapScale("Smoothness Scale", Range(0.0, 1.0)) = 1.0
-        _SmoothnessTextureChannel("Smoothness texture channel", Float) = 0
-
-        [Gamma] _Metallic("Metallic", Range(0.0, 1.0)) = 0.0
-        _MetallicGlossMap("Metallic", 2D) = "white" {}
-
-        _SpecColor("Specular", Color) = (0.2, 0.2, 0.2)
-        _SpecGlossMap("Specular", 2D) = "white" {}
-
-        [ToggleOff] _SpecularHighlights("Specular Highlights", Float) = 1.0
-        [ToggleOff] _EnvironmentReflections("Environment Reflections", Float) = 1.0
-
-        _BumpScale("Scale", Float) = 1.0
-        _BumpMap("Normal Map", 2D) = "bump" {}
-
-        _OcclusionStrength("Strength", Range(0.0, 1.0)) = 1.0
-        _OcclusionMap("Occlusion", 2D) = "white" {}
-
-        _EmissionColor("Color", Color) = (0,0,0)
-        _EmissionMap("Emission", 2D) = "white" {}
+        
 
         // Blending state
         [HideInInspector] _Surface("__surface", Float) = 0.0
@@ -72,11 +54,13 @@ Shader "Custom/safebox.door"
             SAMPLER(sampler_ledInEmissionTexture);
             SAMPLER(sampler_ledOutEmissionTexture);
 
-            half4 _ledInEmissionColor;
-            half4 _ledOutEmissionColor;
+            half4 _ledZeroBitEmissionColor;
+            half4 _ledOneBitEmissionColor;
+            half4 _ledOutEmissionCloseColor;
+            half4 _ledOutEmissionOpenColor;
             float _ledInEmissionIntensity;
             float _ledOutEmissionIntensity;
-            
+            float _ledOutCutoff;
 
 
             CBUFFER_START(UnityPerMaterial)
@@ -108,7 +92,7 @@ Shader "Custom/safebox.door"
             #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
             
             const static int colorSize = 8;
-            float _IntArray[8] = {0,0,0,0,0,0,0,0};
+            uniform float _IntArray[8];
             
             struct Attributes
             {
@@ -187,13 +171,21 @@ Shader "Custom/safebox.door"
                 return color;
             }
             half4 setFinalEmission(Varyings input){
-                half4 colorLedIn = SAMPLE_TEXTURE2D(_ledInEmissionTexture,sampler_ledInEmissionTexture, input.uv)*_ledInEmissionColor;
+                half4 colorLedIn = SAMPLE_TEXTURE2D(_ledInEmissionTexture,sampler_ledInEmissionTexture, input.uv);
                 for (int j = 0; j <colorSize; j++)
                 {
-                    if (input.uv.x > j * (1.0 / colorSize) && input.uv.x <= (j + 1) * (1.0 / colorSize))
-                        colorLedIn = colorLedIn*_IntArray[j];
+                    if (input.uv.x > j * (1.0 / colorSize) && input.uv.x <= (j + 1) * (1.0 / colorSize)){
+                        if(_IntArray[j] == 0){
+                            colorLedIn = colorLedIn*_ledZeroBitEmissionColor;
+                        }else if(_IntArray[j] == 1){
+                            colorLedIn = colorLedIn*_ledOneBitEmissionColor;
+                        }else{
+                            colorLedIn = colorLedIn*-1;
+                        }
+                    }
+
                 }
-                half4 colorLedOut = SAMPLE_TEXTURE2D(_ledOutEmissionTexture,sampler_ledOutEmissionTexture, input.uv)*_ledOutEmissionColor;
+                half4 colorLedOut = SAMPLE_TEXTURE2D(_ledOutEmissionTexture,sampler_ledOutEmissionTexture, input.uv)*lerp(_ledOutEmissionCloseColor,_ledOutEmissionOpenColor,input.uv.x+_ledOutCutoff);
                 half4 color = colorLedIn*_ledInEmissionIntensity + colorLedOut*_ledOutEmissionIntensity;
                 return color;
             }

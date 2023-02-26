@@ -162,7 +162,8 @@ Material:
     - _ZWrite: 1
     - _ZWriteControl: 0
     - _ledInEmissionIntensity: 1.33
-    - _ledOutEmissionIntensity: 0.52
+    - _ledOutCutoff: -1.37
+    - _ledOutEmissionIntensity: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
@@ -171,7 +172,11 @@ Material:
     - _baseColor: {r: 1, g: 1, b: 1, a: 0}
     - _ledInColor: {r: 3.2111173, g: 0, b: 0, a: 1}
     - _ledInEmissionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _ledOneBitEmissionColor: {r: 0.032075405, g: 1, b: 0.5339622, a: 1}
     - _ledOutColor: {r: 1, g: 0, b: 0, a: 1}
+    - _ledOutEmissionCloseColor: {r: 1, g: 0, b: 0, a: 1}
     - _ledOutEmissionColor: {r: 0, g: 1, b: 0.60924816, a: 1}
+    - _ledOutEmissionOpenColor: {r: 0, g: 1, b: 0.19605851, a: 1}
     - _ledOutEmitColor: {r: 1, g: 0.8934478, b: 0, a: 0}
+    - _ledZeroBitEmissionColor: {r: 0.754717, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []

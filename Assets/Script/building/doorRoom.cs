@@ -10,7 +10,7 @@ public class doorRoom : MonoBehaviour {
         doorOpen = this.gameObject.AddComponent<doorAnimOpen>();
         doorClose = this.gameObject.AddComponent<doorAnimClose>();
         m_animator = this.gameObject.GetComponent<Animator>();
-        currentState = doorClose;
+        currentState = doorOpen;
         currentState.Enter(m_animator);
     }
     // Update is called once per frame

@@ -61516,16 +61516,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2136485196778700992, guid: 4c96c29db16b4014faab94427077ae67, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2136485196778700992, guid: 4c96c29db16b4014faab94427077ae67, type: 3}
       propertyPath: m_Color.g
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2136485196778700992, guid: 4c96c29db16b4014faab94427077ae67, type: 3}
       propertyPath: m_Color.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2136485196778700992, guid: 4c96c29db16b4014faab94427077ae67, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2136485196778700992, guid: 4c96c29db16b4014faab94427077ae67, type: 3}
+      propertyPath: m_Maskable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2136485196778700992, guid: 4c96c29db16b4014faab94427077ae67, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: c75589f5e84324142a3e4d9d4d983919, type: 2}
     - target: {fileID: 3962276685668597589, guid: 4c96c29db16b4014faab94427077ae67, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -61606,6 +61618,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: puzzle.wave
       objectReference: {fileID: 0}
+    - target: {fileID: 6714469090247060424, guid: 4c96c29db16b4014faab94427077ae67, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: e5dd7ab19e0507f4494588fcc8bb397d, type: 2}
     - target: {fileID: 7117715397053670151, guid: 4c96c29db16b4014faab94427077ae67, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

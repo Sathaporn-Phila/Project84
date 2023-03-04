@@ -14,12 +14,13 @@ public class Exit : MonoBehaviour
     }
     public void enable_confirmation()
     {   
-        
+        Main_Menu_UI.SetActive(false);
         Exit_Confirm_Panel.SetActive(true);
     }
     public void disable_confirmation()
     {
         Exit_Confirm_Panel.SetActive(false);
+        Main_Menu_UI.SetActive(true);
         
     }
 }

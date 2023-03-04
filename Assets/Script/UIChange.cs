@@ -9,12 +9,13 @@ public class UIChange : MonoBehaviour
 
     public void open_option()
     {
-        
+        Main_Menu_UI.SetActive(false);
         Option_UI.SetActive(true);
     }
     public void close_option()
     {
-        Option_UI.SetActive(false);
+        Main_Menu_UI.SetActive(false);
+        Option_UI.SetActive(true);
         
     }
 }

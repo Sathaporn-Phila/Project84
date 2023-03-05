@@ -9,6 +9,7 @@ Shader "Custom/graph"
         [MainTexture] _BaseMap("Albedo", 2D) = "white" {}
         //[Header("Resistor Color")]
         _Amplitude("Amplitude",float) = 0
+        _MaxAmplitude("Max Amplitude",float) =5
         _Frequency("Frequency",float) = 2
         _Position("Position",Range(0,360)) = 0
     }
@@ -35,6 +36,7 @@ Shader "Custom/graph"
             
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
             float _Amplitude;
+            float _MaxAmplitude;
             float _Frequency;
             float _Position;
             struct Attributes
@@ -68,7 +70,7 @@ Shader "Custom/graph"
                 half4 color = half4(0, 0, 0, 1);
                 float threshold = 0.05; // adjust this to control the thickness of the line
                 float pi = 3.14;
-                float y = _Amplitude*sin(input.uv.x*2*pi*_Frequency+_Position/(2*pi))+0.5;
+                float y = (_Amplitude/_MaxAmplitude)*sin(input.uv.x*2*pi*_Frequency+_Position/(2*pi))+0.5;
                 if (abs(input.uv.y - y) < threshold) {
                     color = half4(1, 1, 1, 1);
                 }

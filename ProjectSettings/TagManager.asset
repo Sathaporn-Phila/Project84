@@ -3,23 +3,17 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - wireY
-  - WaveGenerator
-  - wire2way
-  - wire
-  - diodeSlot
-  - player1
+  tags: []
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Interacable
   - Water
   - UI
-  - PostProcessingVolume
-  - wireY
-  - slot
+  - Highlight
+  - 
+  - 
   - 
   - 
   - 

@@ -17,13 +17,18 @@ public class slot : MonoBehaviour
             return mpb;
         }
     }
-    void setLight(GameObject led){
+    void TurnLight(GameObject led,bool on){
         MeshRenderer renderer = led.GetComponent<MeshRenderer>();
         renderer.material.EnableKeyword("_EMISSION");
-        Mpb.SetColor("_BaseColor",Color.green);
-        Mpb.SetColor("_EmissionColor",Color.green*Mathf.Pow(2,lightIntensity));
+        if(on){
+            Mpb.SetColor("_BaseColor",Color.green);
+            Mpb.SetColor("_EmissionColor",Color.green*Mathf.Pow(2,lightIntensity));
+        }else{
+            Mpb.SetColor("_BaseColor",Color.red);
+            Mpb.SetColor("_EmissionColor",Color.red*Mathf.Pow(2,lightIntensity));
+        }
         renderer.SetPropertyBlock(Mpb);
-        //Debug.Log(renderer.material.GetColor("_Color"));
+    
     }
     private void Awake() {
         resistorMachine = this.gameObject.transform.parent.gameObject.GetComponent<rMachine>();
@@ -31,15 +36,24 @@ public class slot : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other) {
         if(rgx.IsMatch(other.gameObject.name)){
-            GameObject led = resistorMachine.getLedFrom(this.gameObject.name);
-
+            rMachine.SlotGroup ledGroup = resistorMachine.getSlotFrom(this.gameObject.name);
             //if insert correct slot and correct value
             if(other.TryGetComponent<resistor>(out resistor r)){
                 float nearDivider = (r.Prop.val.ToString().Length-1) - ((r.Prop.val.ToString().Length-1) % 3);
                 if(string.Join(" ",r.Prop.val/Mathf.Pow(10,nearDivider),string.Join("",r.Prop.findPrefixSymbol((int)nearDivider),"\u2126")) == resistorMachine.getSlotGroup().Find(x=>x.slotObj==this.gameObject).textObj.GetComponent<TextMeshPro>().text){
-                    setLight(led);
+                    TurnLight(ledGroup.led,true);
+                    ledGroup.setLedActive(true);
+                    if(resistorMachine.checkAllLed()){
+                        resistorMachine.unlockCard();
+                    }
                 }
             }
+        }
+    }
+    private void OnTriggerExit(Collider other) {
+        if(rgx.IsMatch(other.gameObject.name)){
+            rMachine.SlotGroup ledGroup = resistorMachine.getSlotFrom(this.gameObject.name);
+            TurnLight(ledGroup.led,false);
         }
     }
 

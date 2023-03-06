@@ -20,7 +20,7 @@ Shader "Custom/safebox.door"
         [HDR]_ledOutEmissionOpenColor("Led Open Color", Color) = (0.5,0.5,0.5,1)
         _ledOutEmissionTexture("Led out texture", 2D) = "white" {}
         _ledOutEmissionIntensity("Led Out strength",float) = 1
-        _ledOutCutoff("Led Out Animation", Range(-1.5,1.5)) = 0
+        _ledOutAnim("Led Out Animation", Range(-1.5,1.5)) = 0
 
         
 
@@ -60,7 +60,7 @@ Shader "Custom/safebox.door"
             half4 _ledOutEmissionOpenColor;
             float _ledInEmissionIntensity;
             float _ledOutEmissionIntensity;
-            float _ledOutCutoff;
+            float _ledOutAnim;
 
 
             CBUFFER_START(UnityPerMaterial)
@@ -185,7 +185,7 @@ Shader "Custom/safebox.door"
                     }
 
                 }
-                half4 colorLedOut = SAMPLE_TEXTURE2D(_ledOutEmissionTexture,sampler_ledOutEmissionTexture, input.uv)*lerp(_ledOutEmissionCloseColor,_ledOutEmissionOpenColor,input.uv.x+_ledOutCutoff);
+                half4 colorLedOut = SAMPLE_TEXTURE2D(_ledOutEmissionTexture,sampler_ledOutEmissionTexture, input.uv)*lerp(_ledOutEmissionCloseColor,_ledOutEmissionOpenColor,input.uv.x+_ledOutAnim);
                 half4 color = colorLedIn*_ledInEmissionIntensity + colorLedOut*_ledOutEmissionIntensity;
                 return color;
             }

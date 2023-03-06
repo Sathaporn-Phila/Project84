@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using System.Linq;
 using System.Text.RegularExpressions;
+
 public class safeBoxDoor : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -58,7 +59,8 @@ public class safeBoxDoor : MonoBehaviour
     }
     
     private void SetAnim(){
-        m_animator = this.transform.root.Find("safeBox").GetComponent<Animator>();
+       
+        m_animator = GameObject.Find("safeBox").GetComponent<Animator>();
         List<AnimationClip> animList = Resources.LoadAll<AnimationClip>("Animation/door/safebox").ToList();
         AnimatorOverrideController controller = new AnimatorOverrideController(m_animator.runtimeAnimatorController);
         m_animator.runtimeAnimatorController = controller;

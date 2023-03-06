@@ -26,4 +26,5 @@ public class doorAnimOpen : doorState
             doorSlot.changeState(doorSlot.doorClose);
         }
     }
+    
 }

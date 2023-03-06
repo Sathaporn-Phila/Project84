@@ -34,8 +34,8 @@ public class wireY : wireProp
         bool isDiodeOutputWay = false;
         //int minusVoltTome = 0;
         foreach(Ray ray in ctrlFlowRay){
-
             GameObject voltInputObj = wireQueryGroup.findParentObjectHit(ray,controlRay.scale,0);
+            
             if(voltInputObj.CompareTag("diodeSlot")){
 
                 wireDiodeSlot wireDiodeSlot = voltInputObj.GetComponent<wireDiodeSlot>();

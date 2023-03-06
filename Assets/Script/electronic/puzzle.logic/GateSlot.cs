@@ -11,10 +11,10 @@ public class GateSlot : MonoBehaviour
     DoorSlot slot;
     
     private void Awake() {
-        orGate = (GameObject)Resources.Load("Prefabs/electronic/gate.machine.module/gate.nand");
+        /*orGate = (GameObject)Resources.Load("Prefabs/electronic/gate.machine.module/gate.nand");
         orGate.transform.localScale = Vector3.one*0.95f;
-        Instantiate(orGate,this.transform.position+3*Vector3.up,Quaternion.Euler(0,180,0));
-        slot = this.transform.root.Find("puzzle.gate.machine/puzzle.unlock/wire.slot.withDoor").GetComponent<DoorSlot>();     
+        Instantiate(orGate,this.transform.position+3*Vector3.up,Quaternion.Euler(0,180,0));*/
+        slot = GameObject.Find("puzzle.gate.machine/puzzle.unlock/wire.slot.withDoor").GetComponent<DoorSlot>();     
     }
     private void hitObject(){}
     private void OnTriggerEnter(Collider other) {

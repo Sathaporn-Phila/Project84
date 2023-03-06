@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Collections;
-
+using UnityEngine.XR.Interaction.Toolkit;
 using System.Linq;
-using TMPro;
+
 public class resistor : MonoBehaviour
 {
     Query query;
@@ -96,20 +96,12 @@ public class resistor : MonoBehaviour
     }
     void Awake(){
         prop = new Attribute(stickerData);
+        this.gameObject.GetComponent<XRGrabInteractable>().interactionManager = GameObject.Find("XR Interaction Manager").GetComponent<XRInteractionManager>();
         SetColor();
         /*foreach(Sticker attr in prop.allSticker){
             Debug.Log(attr.colorName+new Vector4(attr.color.r,attr.color.g,attr.color.b));
         }*/
         
 
-    }
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
     }
 }

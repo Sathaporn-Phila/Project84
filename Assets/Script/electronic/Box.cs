@@ -44,7 +44,7 @@ public class Box: MonoBehaviour
             GameObject obj2Clone = prefab2Spawn(spawnType);
             foreach(GameObject slot in slots){
                 int numSpawn = Random.Range(1,2);
-                GameObject cloneObjPrototype = Instantiate(obj2Clone,slot.transform.position+Vector3.up+(float)0.1*Vector3.left,slot.transform.rotation);
+                GameObject cloneObjPrototype = Instantiate(obj2Clone,slot.transform.position+Vector3.up+transform.TransformDirection(Vector3.right),slot.transform.rotation);
                 cloneObjPrototype.transform.parent = slot.transform;
 
                 if(spawnType == SpawnType.resistor){
@@ -62,7 +62,7 @@ public class Box: MonoBehaviour
         }else{
             List<GameObject> GatePrefab = Resources.LoadAll<GameObject>("Prefabs/electronic/gate.machine.module").Where(obj=>Regex.IsMatch(obj.name,@"\bgate")).ToList();
             for(int i=0;i<GatePrefab.Count;i++){
-                GameObject cloneObjPrototype = Instantiate(GatePrefab[i],slots[i].transform.position+Vector3.up,slots[i].transform.rotation);
+                GameObject cloneObjPrototype = Instantiate(GatePrefab[i],slots[i].transform.position+Vector3.up*0.1f,slots[i].transform.rotation);
                 cloneObjPrototype.transform.parent = slots[i].transform;
                 cloneObjPrototype.transform.localScale = Vector3.one*0.95f;
             }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public abstract class Gate : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public abstract class Gate : MonoBehaviour
 
    private void Awake() {
       wireQueryGroup = this.gameObject.AddComponent<wireQuery>();
+      this.gameObject.GetComponent<XRGrabInteractable>().interactionManager = GameObject.Find("XR Interaction Manager").GetComponent<XRInteractionManager>();
    }
 
    private void FixedUpdate() {

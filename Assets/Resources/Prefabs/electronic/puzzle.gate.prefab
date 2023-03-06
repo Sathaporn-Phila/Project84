@@ -148,6 +148,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: puzzle.gate.machine
       objectReference: {fileID: 0}
+    - target: {fileID: 1474445113625245381, guid: b2ed7ef039108894b9e972ec43b41727, type: 3}
+      propertyPath: m_BlendShapeWeights.Array.data[0]
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 5385091382934240165, guid: b2ed7ef039108894b9e972ec43b41727, type: 3}
       propertyPath: m_RootOrder
       value: 0

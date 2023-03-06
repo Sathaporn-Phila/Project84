@@ -9,15 +9,20 @@ using TMPro;
 public class rMachine : MonoBehaviour
 {
     List<SlotGroup> slotGroups = new List<SlotGroup>();
-    
+    card card;
     public class SlotGroup {
         public GameObject slotObj;
         public GameObject led;
         public GameObject textObj;
+        public bool ledActive;
         public SlotGroup(GameObject eachSlot,GameObject eachLed,GameObject eachText){
             slotObj = eachSlot;
             led = eachLed;
             textObj = eachText;
+            ledActive = false;
+        }
+        public void setLedActive(bool val){
+            ledActive = val;
         }
     }
     //private Dictionary<GameObject,GameObject> rSlotLed =  new Dictionary<GameObject,GameObject>();
@@ -26,11 +31,23 @@ public class rMachine : MonoBehaviour
     private Dictionary<string,string> patterns = new Dictionary<string,string>(){
         {"pair",@"\d*$"},{"slot",@"\b.slot\.\d*$"},{"led",@"\b.led\.\d*$"}
     };
-    public GameObject getLedFrom(string key){
-        GameObject led = slotGroups.Find(x => x.slotObj.name == key).led;
+    public SlotGroup getSlotFrom(string key){
+        SlotGroup led = slotGroups.Find(x => x.slotObj.name == key);
         return led;
     }
-    
+    public bool checkAllLed(){
+        bool val = true;
+        foreach(SlotGroup slot in slotGroups){
+            val = val && slot.ledActive;
+            if(!val){
+                break;
+            }
+        }
+        return val;
+    }
+    public void unlockCard(){
+        card.Animated();
+    }
     private void matchSlotGroup(){
         List<GameObject> resistor2match = this.transform.parent.Find("box").GetComponent<Box>().getSpawnObject().OrderBy(item=>Guid.NewGuid()).ToList();
         List<resistor.Attribute> attributes = new List<resistor.Attribute>();
@@ -53,26 +70,13 @@ public class rMachine : MonoBehaviour
         }
 
     }
-    /*private void spawnResistor(List<GameObject> resistorList){
-        int i=0;
-        foreach(SlotGroup slotGroup in slotGroups){
-            GameObject cloneObj = Instantiate(resistorList[i],slotGroup.slotObj.transform.position+7*Vector3.up,resistorList[i].transform.rotation);
-            if(i>1){
-                cloneObj.GetComponent<resistor>().Prop = resistorList[i].GetComponent<resistor>().Prop; 
-                cloneObj.GetComponent<resistor>().SetColor();
-            }
-            slotGroup.textObj.GetComponent<TextMeshPro>().text = resistorList[i].GetComponent<resistor>().Prop.val.ToString();
-            /*resistorList[i].transform.position = slotGroup.slotObj.transform.position + Vector3.up*5;
-            resistorList[i].transform.rotation = Quaternion.Euler(0,0,0);
-            i++;
-        }
-        
-    }*/
+    
     public List<SlotGroup> getSlotGroup(){
         return slotGroups;
     }
     private void Start() {
-        matchSlotGroup(); 
+        matchSlotGroup();
+        card = this.transform.Find("card").GetComponent<card>(); 
     }
     
 }

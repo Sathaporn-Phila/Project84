@@ -6,7 +6,7 @@ public class wire : wireProp
 {   
     public bool m_isNearGenerator,needWaveGen;
     public float cosValue;
-    float scale,waitTime;
+    float scale,waitTime=-1;
     public int current;
     List<MeshRenderer> childRenderer = new List<MeshRenderer>();
     public List<toggleRay> toggleRay = new List<toggleRay>();
@@ -108,6 +108,8 @@ public class wire : wireProp
             voltage = 0;
         }
         
+
+        //โค้ดส่วนนี้ทำงานเมื่อเป็น diode machine 
         if(needWaveGen){
             float nextCosValue = waveGen.getCosValue();   
             if(m_isNearGenerator){
@@ -124,7 +126,7 @@ public class wire : wireProp
                     voltTemp = wireQueryGroup.findWireHit(toggleRay[current].getRay(),scale,7);
                     //Debug.Log(voltTemp);
                     if(cosValue*nextCosValue<0){
-                        //Debug.Log(this.gameObject.name);
+                        
                         if(Mathf.Abs(voltTemp)>0){
                             voltage = 0;
                             this.transform.parent.BroadcastMessage("setDirectionVoltRead",current,SendMessageOptions.DontRequireReceiver);

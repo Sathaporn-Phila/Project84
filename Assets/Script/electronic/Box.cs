@@ -44,7 +44,7 @@ public class Box: MonoBehaviour
             GameObject obj2Clone = prefab2Spawn(spawnType);
             foreach(GameObject slot in slots){
                 int numSpawn = Random.Range(1,2);
-                GameObject cloneObjPrototype = Instantiate(obj2Clone,slot.transform.position+Vector3.up+transform.TransformDirection(Vector3.right),slot.transform.rotation);
+                GameObject cloneObjPrototype = Instantiate(obj2Clone,slot.transform.position+Vector3.up+0.1f*transform.TransformDirection(Vector3.right),slot.transform.rotation);
                 cloneObjPrototype.transform.parent = slot.transform;
 
                 if(spawnType == SpawnType.resistor){

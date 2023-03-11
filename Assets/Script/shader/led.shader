@@ -7,7 +7,7 @@ Shader "Custom/led"
 
         [MainColor] _BaseColor("Color", Color) = (0.5,0.5,0.5,1)
         [MainTexture] _BaseMap("Albedo", 2D) = "white" {}
-        //[Header("Resistor Color")]
+        _NoiseScale("Noise Scale",float) = 1
 
         _Cutoff("Alpha Cutoff", Range(0.0, 1.0)) = 0.5
 
@@ -152,7 +152,7 @@ Shader "Custom/led"
             // LWRP Lit shader.
             #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
             
-            
+            float _NoiseScale;
             struct Attributes
             {
                 float4 positionOS   : POSITION;
@@ -257,11 +257,11 @@ Shader "Custom/led"
                 float t = noise_interpolate(bottomOfGrid, topOfGrid, f.y);
                 return t;
             }
-            float noise(float2 uv,float2 Scale){
-                float t = 0
+            float noise(float2 uv,float Scale){
+                float t = 0;
                 float freq = pow(2.0, float(0));
                 float amp = pow(0.5, float(3-0));
-                t += valueNoise(float2(UV.x*Scale/freq, UV.y*Scale/freq))*amp;
+                t += valueNoise(float2(uv.x*Scale/freq, uv.y*Scale/freq))*amp;
                 return t;
 
             }
@@ -353,17 +353,6 @@ Shader "Custom/led"
             ENDHLSL
         }
 
-        // Used for rendering shadowmaps
-        UsePass "Universal Render Pipeline/Lit/ShadowCaster"
-
-        // Used for depth prepass
-        // If shadows cascade are enabled we need to perform a depth prepass. 
-        // We also need to use a depth prepass in some cases camera require depth texture
-        // (e.g, MSAA is enabled and we can't resolve with Texture2DMS
-        UsePass "Universal Render Pipeline/Lit/DepthOnly"
-
-        // Used for Baking GI. This pass is stripped from build.
-        UsePass "Universal Render Pipeline/Lit/Meta"
     }
 
     // Uses a custom shader GUI to display settings. Re-use the same from Lit shader as they have the

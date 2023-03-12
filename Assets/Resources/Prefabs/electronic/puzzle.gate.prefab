@@ -217,6 +217,22 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7969899120410998053, guid: 087d97e6a78ea10459d2daf50743857d, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 1190422088593730033, guid: c013966f95cb7d148b88b3a8015b3d6c, type: 3}
+    - target: {fileID: 8186422716843396921, guid: 087d97e6a78ea10459d2daf50743857d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8186422716843396921, guid: 087d97e6a78ea10459d2daf50743857d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8186422716843396921, guid: 087d97e6a78ea10459d2daf50743857d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 087d97e6a78ea10459d2daf50743857d, type: 3}
 --- !u!4 &58537010604455013 stripped
@@ -257,7 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7de4c38e85657424f8c1cf5f2fc87c61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectMesh: 1
+  selectMesh: 2
 --- !u!1001 &6852835124748572774
 PrefabInstance:
   m_ObjectHideFlags: 0

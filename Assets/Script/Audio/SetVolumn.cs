@@ -5,9 +5,19 @@ using UnityEngine.Audio;
 
 public class SetVolumn : MonoBehaviour
 {
-    public AudioMixer mixer;
-    public void SetLevel (float sliderValue)
+    public AudioMixer music_mixer;
+    public AudioMixer sound_mixer;
+    public void SetMasterLevel (float sliderValue)
     {
-        mixer.SetFloat("MusicVolumn", Mathf.Log10(sliderValue) * 20);
+        music_mixer.SetFloat("MusicVolumn", Mathf.Log10(sliderValue) * 20);
+        sound_mixer.SetFloat("SoundVolumn", Mathf.Log10(sliderValue) * 20);
+    }
+    public void SetMusicLevel (float sliderValue)
+    {
+        music_mixer.SetFloat("MusicVolumn", Mathf.Log10(sliderValue) * 20);
+    }
+    public void SetSoundLevel (float sliderValue)
+    {
+        sound_mixer.SetFloat("SoundVolumn", Mathf.Log10(sliderValue) * 20);
     }
 }

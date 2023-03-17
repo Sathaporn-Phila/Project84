@@ -150,6 +150,10 @@ PrefabInstance:
       value: Floor_01.018
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 1
       objectReference: {fileID: 0}
@@ -235,6 +239,10 @@ PrefabInstance:
       value: Roof_Angle_01
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: a335669a69f934699847642d88414623, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: a335669a69f934699847642d88414623, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 1
       objectReference: {fileID: 0}
@@ -310,6 +318,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
       propertyPath: m_Name
       value: Floor_01.014
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -427,6 +439,10 @@ PrefabInstance:
       value: Floor_01.009
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 1
       objectReference: {fileID: 0}
@@ -512,6 +528,10 @@ PrefabInstance:
       value: Floor_01.010
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 1
       objectReference: {fileID: 0}
@@ -593,6 +613,10 @@ PrefabInstance:
       value: Light
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 45d2e8119c39748209c49281be62d9a7, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 45d2e8119c39748209c49281be62d9a7, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 1
       objectReference: {fileID: 0}
@@ -667,7 +691,7 @@ GameObject:
   - component: {fileID: 109586089}
   - component: {fileID: 109586088}
   - component: {fileID: 109586087}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -998,6 +1022,10 @@ PrefabInstance:
       value: Floor_01.003
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 1
       objectReference: {fileID: 0}
@@ -1076,7 +1104,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 146533964}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Structure
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1111,7 +1139,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 177807606}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1231,6 +1259,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
       propertyPath: m_Name
       value: Floor_01.004
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -1511,6 +1543,10 @@ PrefabInstance:
       value: Wall_Simple_01.003
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 8386fa60b76534bc0856f1d023537484, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 8386fa60b76534bc0856f1d023537484, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 1
       objectReference: {fileID: 0}
@@ -1585,7 +1621,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 216211116}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Roof
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1677,6 +1713,10 @@ PrefabInstance:
       value: Floor_01.017
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 1
       objectReference: {fileID: 0}
@@ -1760,6 +1800,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 76e15ece664ee41ada45b8500a673f22, type: 3}
       propertyPath: m_Name
       value: Roof_01.004
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 76e15ece664ee41ada45b8500a673f22, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 76e15ece664ee41ada45b8500a673f22, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -1860,6 +1904,10 @@ PrefabInstance:
       value: Wall_Simple_01.004
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 8386fa60b76534bc0856f1d023537484, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 8386fa60b76534bc0856f1d023537484, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 1
       objectReference: {fileID: 0}
@@ -1935,7 +1983,7 @@ GameObject:
   m_Component:
   - component: {fileID: 271206884}
   - component: {fileID: 271206883}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Audio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2067,7 +2115,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 315955458}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Camera Offset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2241,6 +2289,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 8386fa60b76534bc0856f1d023537484, type: 3}
       propertyPath: m_Name
       value: Wall_Simple_01.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 8386fa60b76534bc0856f1d023537484, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 8386fa60b76534bc0856f1d023537484, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -2549,6 +2601,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
       propertyPath: m_Name
       value: Floor_01.006
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -2977,7 +3033,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 538354757}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3363,6 +3419,10 @@ PrefabInstance:
       value: Floor_01.008
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 1
       objectReference: {fileID: 0}
@@ -3549,6 +3609,10 @@ PrefabInstance:
       value: Roof_01.001
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 76e15ece664ee41ada45b8500a673f22, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 76e15ece664ee41ada45b8500a673f22, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 1
       objectReference: {fileID: 0}
@@ -3620,6 +3684,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
       propertyPath: m_Name
       value: Floor_01.012
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -3992,6 +4060,10 @@ PrefabInstance:
       value: Floor_01.011
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 1
       objectReference: {fileID: 0}
@@ -4071,7 +4143,7 @@ GameObject:
   m_Component:
   - component: {fileID: 747509686}
   - component: {fileID: 747509685}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Input Action Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4148,6 +4220,10 @@ PrefabInstance:
       value: Wall_Simple_01.002
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 8386fa60b76534bc0856f1d023537484, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 8386fa60b76534bc0856f1d023537484, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 1
       objectReference: {fileID: 0}
@@ -4222,7 +4298,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 816334855}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: VR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4401,6 +4477,10 @@ PrefabInstance:
       value: Wall_Simple_01.005
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 8386fa60b76534bc0856f1d023537484, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 8386fa60b76534bc0856f1d023537484, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 1
       objectReference: {fileID: 0}
@@ -4476,6 +4556,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
       propertyPath: m_Name
       value: Floor_01.016
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -4771,7 +4855,7 @@ GameObject:
   m_Component:
   - component: {fileID: 922425033}
   - component: {fileID: 922425032}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ChangeScene Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4975,6 +5059,10 @@ PrefabInstance:
       value: Wall_Simple_01.006
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 8386fa60b76534bc0856f1d023537484, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 8386fa60b76534bc0856f1d023537484, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 1
       objectReference: {fileID: 0}
@@ -5052,6 +5140,10 @@ PrefabInstance:
       value: Roof_01.006
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 76e15ece664ee41ada45b8500a673f22, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 76e15ece664ee41ada45b8500a673f22, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 1
       objectReference: {fileID: 0}
@@ -5123,6 +5215,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 76e15ece664ee41ada45b8500a673f22, type: 3}
       propertyPath: m_Name
       value: Roof_01.002
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 76e15ece664ee41ada45b8500a673f22, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 76e15ece664ee41ada45b8500a673f22, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -5233,7 +5329,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1008966438}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5269,7 +5365,7 @@ GameObject:
   - component: {fileID: 1011652566}
   - component: {fileID: 1011652565}
   - component: {fileID: 1011652564}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5530,6 +5626,10 @@ PrefabInstance:
       value: Roof_Angle_01.002
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: a335669a69f934699847642d88414623, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: a335669a69f934699847642d88414623, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 1
       objectReference: {fileID: 0}
@@ -5620,6 +5720,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 76e15ece664ee41ada45b8500a673f22, type: 3}
       propertyPath: m_Name
       value: Roof_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 76e15ece664ee41ada45b8500a673f22, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 76e15ece664ee41ada45b8500a673f22, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -5863,6 +5967,10 @@ PrefabInstance:
       value: Floor_01.002
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 1
       objectReference: {fileID: 0}
@@ -5966,7 +6074,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1160234427}
   - component: {fileID: 1160234426}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Global Volume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6171,6 +6279,10 @@ PrefabInstance:
       value: Floor_01.019
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 1
       objectReference: {fileID: 0}
@@ -6273,6 +6385,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 76e15ece664ee41ada45b8500a673f22, type: 3}
       propertyPath: m_Name
       value: Roof_01.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 76e15ece664ee41ada45b8500a673f22, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 76e15ece664ee41ada45b8500a673f22, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -6393,7 +6509,7 @@ GameObject:
   - component: {fileID: 1235197507}
   - component: {fileID: 1235197506}
   - component: {fileID: 1235197505}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LeftHand Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6459,7 +6575,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 4294967295
+    m_Bits: 0
   m_AttachTransform: {fileID: 0}
   m_KeepSelectedTargetValid: 1
   m_StartingSelectedInteractable: {fileID: 0}
@@ -6794,6 +6910,10 @@ PrefabInstance:
       value: Wall_Arc_90_02.003
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 638f44b41e0a6471486ec2c4e9ca96fd, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 638f44b41e0a6471486ec2c4e9ca96fd, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 1
       objectReference: {fileID: 0}
@@ -6869,6 +6989,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: a335669a69f934699847642d88414623, type: 3}
       propertyPath: m_Name
       value: Roof_Angle_01.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: a335669a69f934699847642d88414623, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: a335669a69f934699847642d88414623, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -7190,7 +7314,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1410226810}
   - component: {fileID: 1410226809}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: XR Interaction Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7234,6 +7358,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
       propertyPath: m_Name
       value: Floor_01.013
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -7320,6 +7448,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 638f44b41e0a6471486ec2c4e9ca96fd, type: 3}
       propertyPath: m_Name
       value: Wall_Arc_90_02.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 638f44b41e0a6471486ec2c4e9ca96fd, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 638f44b41e0a6471486ec2c4e9ca96fd, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -7981,6 +8113,10 @@ PrefabInstance:
       value: Floor_01.001
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 1
       objectReference: {fileID: 0}
@@ -8065,6 +8201,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
       propertyPath: m_Name
       value: Floor_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -8594,7 +8734,7 @@ GameObject:
   - component: {fileID: 1679194160}
   - component: {fileID: 1679194159}
   - component: {fileID: 1679194158}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: XR Origin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8705,7 +8845,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1685551390}
   - component: {fileID: 1685551389}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Exit Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8980,7 +9120,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1733531148}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9153,6 +9293,10 @@ PrefabInstance:
       value: Roof_01.003
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 76e15ece664ee41ada45b8500a673f22, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 76e15ece664ee41ada45b8500a673f22, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 1
       objectReference: {fileID: 0}
@@ -9242,7 +9386,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1779827357}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Scipt Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9277,6 +9421,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
       propertyPath: m_Name
       value: Floor_01.015
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -9360,6 +9508,10 @@ PrefabInstance:
       value: Roof_Angle_01.003
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: a335669a69f934699847642d88414623, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: a335669a69f934699847642d88414623, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 1
       objectReference: {fileID: 0}
@@ -9431,6 +9583,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 8386fa60b76534bc0856f1d023537484, type: 3}
       propertyPath: m_Name
       value: Wall_Simple_01.007
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 8386fa60b76534bc0856f1d023537484, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 8386fa60b76534bc0856f1d023537484, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -9508,7 +9664,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1810104557}
   - component: {fileID: 1810104558}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ChangeUI Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9554,6 +9710,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 638f44b41e0a6471486ec2c4e9ca96fd, type: 3}
       propertyPath: m_Name
       value: Wall_Arc_90_02.002
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 638f44b41e0a6471486ec2c4e9ca96fd, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 638f44b41e0a6471486ec2c4e9ca96fd, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -10269,7 +10429,7 @@ GameObject:
   - component: {fileID: 1899952128}
   - component: {fileID: 1899952127}
   - component: {fileID: 1899952126}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Locomotion System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10470,6 +10630,10 @@ PrefabInstance:
       value: Wall_Simple_01
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 8386fa60b76534bc0856f1d023537484, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 8386fa60b76534bc0856f1d023537484, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 1
       objectReference: {fileID: 0}
@@ -10545,6 +10709,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 638f44b41e0a6471486ec2c4e9ca96fd, type: 3}
       propertyPath: m_Name
       value: Wall_Arc_90_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 638f44b41e0a6471486ec2c4e9ca96fd, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 638f44b41e0a6471486ec2c4e9ca96fd, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -10645,7 +10813,7 @@ GameObject:
   - component: {fileID: 1941474396}
   - component: {fileID: 1941474395}
   - component: {fileID: 1941474394}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RightHand Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10996,7 +11164,7 @@ GameObject:
   - component: {fileID: 1967066145}
   - component: {fileID: 1967066144}
   - component: {fileID: 1967066143}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Left Ray Interactor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11505,7 +11673,7 @@ GameObject:
   - component: {fileID: 2014771668}
   - component: {fileID: 2014771667}
   - component: {fileID: 2014771666}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Right Ray Interactor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11824,7 +11992,7 @@ MonoBehaviour:
   m_SphereCastRadius: 0.1
   m_RaycastMask:
     serializedVersion: 2
-    m_Bits: 87
+    m_Bits: 328
   m_RaycastTriggerInteraction: 1
   m_HitClosestOnly: 0
   m_HoverToSelect: 0
@@ -12284,6 +12452,10 @@ PrefabInstance:
       value: Roof_01.007
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 76e15ece664ee41ada45b8500a673f22, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 76e15ece664ee41ada45b8500a673f22, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 1
       objectReference: {fileID: 0}
@@ -12393,6 +12565,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
       propertyPath: m_Name
       value: Floor_01.007
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -12532,6 +12708,10 @@ PrefabInstance:
       value: Floor_01.005
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 318fc5659f68549feb9d55d15a12de2a, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 1
       objectReference: {fileID: 0}
@@ -12611,7 +12791,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2144892708}
   - component: {fileID: 2144892707}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: InputReader
   m_TagString: Untagged
   m_Icon: {fileID: 0}

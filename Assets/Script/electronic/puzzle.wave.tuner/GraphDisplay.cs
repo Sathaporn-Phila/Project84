@@ -25,9 +25,9 @@ public class GraphDisplay : MonoBehaviour
         }else{
             float pos = yourGraph.material.GetFloat("_Position");
             if(dir == DirectionButton.Direction.Left){
-                yourGraph.material.SetFloat("_Amplitude",pos-15f);
+                yourGraph.material.SetFloat("_Position",pos-15f);
             }else{
-                yourGraph.material.SetFloat("_Amplitude",pos+15f);
+                yourGraph.material.SetFloat("_Position",pos+15f);
             }
         }
     }    

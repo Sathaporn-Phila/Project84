@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2993584466397551029}
+  - component: {fileID: 1930494256360315339}
   - component: {fileID: 7209156412319278668}
   m_Layer: 0
   m_Name: wire.slot.withdoor.t2
@@ -32,6 +33,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &1930494256360315339
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2504152690531009295}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -4201350773297674180, guid: 592b645e511682c488aadaa21267f294, type: 3}
 --- !u!137 &7209156412319278668
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0

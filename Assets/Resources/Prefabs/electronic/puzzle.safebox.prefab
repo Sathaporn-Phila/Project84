@@ -823,6 +823,25 @@ PrefabInstance:
       objectReference: {fileID: 9000000, guid: baeb1c3d074ff2e47a67caac0badb2a0, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 776023135198d8346bf4962e7ab240d8, type: 3}
+--- !u!1 &4847239009883208998 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8872977816338549914, guid: 776023135198d8346bf4962e7ab240d8, type: 3}
+  m_PrefabInstance: {fileID: 4064494688831730108}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &2534026632822195267
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4847239009883208998}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8050329749647061598, guid: 52e49ab3bae4bd346951c2eaed346ca5, type: 3}
 --- !u!4 &7179068403904391183 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6613202693935946163, guid: 776023135198d8346bf4962e7ab240d8, type: 3}
@@ -890,6 +909,42 @@ PrefabInstance:
     - target: {fileID: 6715260190794834830, guid: 087d97e6a78ea10459d2daf50743857d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6852105471540556067, guid: 087d97e6a78ea10459d2daf50743857d, type: 3}
+      propertyPath: subcolor.b
+      value: 1.4920478
+      objectReference: {fileID: 0}
+    - target: {fileID: 6852105471540556067, guid: 087d97e6a78ea10459d2daf50743857d, type: 3}
+      propertyPath: subcolor.g
+      value: 0.7806081
+      objectReference: {fileID: 0}
+    - target: {fileID: 6852105471540556067, guid: 087d97e6a78ea10459d2daf50743857d, type: 3}
+      propertyPath: subcolor.r
+      value: 0.18861733
+      objectReference: {fileID: 0}
+    - target: {fileID: 6852105471540556067, guid: 087d97e6a78ea10459d2daf50743857d, type: 3}
+      propertyPath: fresnelColor.b
+      value: 0.6415094
+      objectReference: {fileID: 0}
+    - target: {fileID: 6852105471540556067, guid: 087d97e6a78ea10459d2daf50743857d, type: 3}
+      propertyPath: fresnelColor.g
+      value: 0.05688854
+      objectReference: {fileID: 0}
+    - target: {fileID: 6852105471540556067, guid: 087d97e6a78ea10459d2daf50743857d, type: 3}
+      propertyPath: fresnelColor.r
+      value: 0.07599536
+      objectReference: {fileID: 0}
+    - target: {fileID: 8186422716843396921, guid: 087d97e6a78ea10459d2daf50743857d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8186422716843396921, guid: 087d97e6a78ea10459d2daf50743857d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8186422716843396921, guid: 087d97e6a78ea10459d2daf50743857d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 087d97e6a78ea10459d2daf50743857d, type: 3}

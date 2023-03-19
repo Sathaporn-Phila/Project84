@@ -213,25 +213,49 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6852105471540556067, guid: 087d97e6a78ea10459d2daf50743857d, type: 3}
+      propertyPath: subcolor.b
+      value: 1.6470588
+      objectReference: {fileID: 0}
+    - target: {fileID: 6852105471540556067, guid: 087d97e6a78ea10459d2daf50743857d, type: 3}
+      propertyPath: subcolor.g
+      value: 0.24313726
+      objectReference: {fileID: 0}
+    - target: {fileID: 6852105471540556067, guid: 087d97e6a78ea10459d2daf50743857d, type: 3}
+      propertyPath: subcolor.r
+      value: 1.6470588
+      objectReference: {fileID: 0}
+    - target: {fileID: 6852105471540556067, guid: 087d97e6a78ea10459d2daf50743857d, type: 3}
+      propertyPath: fresnelColor.b
+      value: 0.84313726
+      objectReference: {fileID: 0}
+    - target: {fileID: 6852105471540556067, guid: 087d97e6a78ea10459d2daf50743857d, type: 3}
+      propertyPath: fresnelColor.g
+      value: 0.20392157
+      objectReference: {fileID: 0}
+    - target: {fileID: 6852105471540556067, guid: 087d97e6a78ea10459d2daf50743857d, type: 3}
+      propertyPath: fresnelColor.r
+      value: 0.4509804
+      objectReference: {fileID: 0}
     - target: {fileID: 7682786946257185835, guid: 087d97e6a78ea10459d2daf50743857d, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2329743697637410639, guid: 6ec8733a7766ce343b5155f5165d5ad6, type: 3}
     - target: {fileID: 7969899120410998053, guid: 087d97e6a78ea10459d2daf50743857d, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 1190422088593730033, guid: c013966f95cb7d148b88b3a8015b3d6c, type: 3}
+      objectReference: {fileID: -7390268667576311758, guid: b035bb23e4e728e4c8416afc68d0abf7, type: 3}
     - target: {fileID: 8186422716843396921, guid: 087d97e6a78ea10459d2daf50743857d, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 8186422716843396921, guid: 087d97e6a78ea10459d2daf50743857d, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 8186422716843396921, guid: 087d97e6a78ea10459d2daf50743857d, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 087d97e6a78ea10459d2daf50743857d, type: 3}
@@ -261,19 +285,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &5536916666893573994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 829831890792541919}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7de4c38e85657424f8c1cf5f2fc87c61, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectMesh: 2
 --- !u!1001 &6852835124748572774
 PrefabInstance:
   m_ObjectHideFlags: 0

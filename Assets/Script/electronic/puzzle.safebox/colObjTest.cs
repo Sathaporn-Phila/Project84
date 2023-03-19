@@ -9,6 +9,6 @@ public class colObjTest : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
     private void Update() {
-        rb.velocity = Vector3.left;
+        rb.velocity = Vector3.forward;
     }
 }

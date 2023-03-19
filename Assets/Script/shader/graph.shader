@@ -23,9 +23,9 @@ Shader "Custom/graph"
         Tags { "RenderType"="Opaque" "RenderPipeline"="UniversalRenderPipeline"}
         Cull Off
         Lighting Off
-        ZWrite Off
-        ZTest [unity_GUIZTestMode]
-        Blend SrcAlpha OneMinusSrcAlpha
+        
+        
+        
         Pass
         {
             Tags { "LightMode"="UniversalForward" }

@@ -55,21 +55,25 @@ PrefabInstance:
       propertyPath: fresnelColor.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3277754283330749163, guid: 3a802dc5030d8d645a7843f49be0fc05, type: 3}
+      propertyPath: m_InitialEventName
+      value: PlayBezier
+      objectReference: {fileID: 0}
     - target: {fileID: 5012338045186275959, guid: 3a802dc5030d8d645a7843f49be0fc05, type: 3}
       propertyPath: m_Name
       value: memory.storage
       objectReference: {fileID: 0}
     - target: {fileID: 5349984811702264589, guid: 3a802dc5030d8d645a7843f49be0fc05, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 5349984811702264589, guid: 3a802dc5030d8d645a7843f49be0fc05, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 5349984811702264589, guid: 3a802dc5030d8d645a7843f49be0fc05, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 5390295969071149070, guid: 3a802dc5030d8d645a7843f49be0fc05, type: 3}
       propertyPath: m_RootOrder
@@ -118,8 +122,38 @@ PrefabInstance:
     - target: {fileID: 6140719421139163409, guid: 3a802dc5030d8d645a7843f49be0fc05, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 1190422088593730033, guid: c013966f95cb7d148b88b3a8015b3d6c, type: 3}
-    m_RemovedComponents: []
+      objectReference: {fileID: -7390268667576311758, guid: b035bb23e4e728e4c8416afc68d0abf7, type: 3}
+    - target: {fileID: 7256815630210522391, guid: 3a802dc5030d8d645a7843f49be0fc05, type: 3}
+      propertyPath: subcolor.b
+      value: 0.40784314
+      objectReference: {fileID: 0}
+    - target: {fileID: 7256815630210522391, guid: 3a802dc5030d8d645a7843f49be0fc05, type: 3}
+      propertyPath: subcolor.g
+      value: 0.9882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 7256815630210522391, guid: 3a802dc5030d8d645a7843f49be0fc05, type: 3}
+      propertyPath: subcolor.r
+      value: 1.5843138
+      objectReference: {fileID: 0}
+    - target: {fileID: 7256815630210522391, guid: 3a802dc5030d8d645a7843f49be0fc05, type: 3}
+      propertyPath: formerParent
+      value: 
+      objectReference: {fileID: 6254733165733996104}
+    - target: {fileID: 7256815630210522391, guid: 3a802dc5030d8d645a7843f49be0fc05, type: 3}
+      propertyPath: fresnelColor.b
+      value: 0.50980395
+      objectReference: {fileID: 0}
+    - target: {fileID: 7256815630210522391, guid: 3a802dc5030d8d645a7843f49be0fc05, type: 3}
+      propertyPath: fresnelColor.g
+      value: 0.7921569
+      objectReference: {fileID: 0}
+    - target: {fileID: 7256815630210522391, guid: 3a802dc5030d8d645a7843f49be0fc05, type: 3}
+      propertyPath: fresnelColor.r
+      value: 1.827451
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 222546335046430040, guid: 3a802dc5030d8d645a7843f49be0fc05, type: 3}
+    - {fileID: 2896511047303565478, guid: 3a802dc5030d8d645a7843f49be0fc05, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3a802dc5030d8d645a7843f49be0fc05, type: 3}
 --- !u!4 &6254733165733996104 stripped
 Transform:

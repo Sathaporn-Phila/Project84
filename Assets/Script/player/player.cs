@@ -6,7 +6,7 @@ using System.IO;
 public class player : MonoBehaviour
 {
     bool spawnFromSave;
-    string playerPath = Directory.GetCurrentDirectory()+"/Assets/Script/player/player.json";
+    string playerPath = Directory.GetCurrentDirectory();
     public class PlayerData {
         public Vector3 position;
         public Quaternion rotation;

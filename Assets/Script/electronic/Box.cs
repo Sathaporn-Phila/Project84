@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+using System.IO;
 using UnityEngine;
 using System.Text.RegularExpressions;
 using System.Linq;
+using Newtonsoft.Json;
 
 public class Box: MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class Box: MonoBehaviour
         return itemSpawn;
     }
 
+    string dataPath = Directory.GetCurrentDirectory()+"/Assets/data.json";
     GameObject prefab2Spawn(SpawnType type){
         GameObject Prefab;
         switch(type){
@@ -68,8 +70,25 @@ public class Box: MonoBehaviour
             }
 
         }
-            
-            
+                   
     }
     
+    private void OnApplicationQuit() {
+        if(spawnType==SpawnType.resistor){
+            BoxSpawn item = new(){items=itemSpawn.ToDictionary(i=>i.transform.parent,v=>v.GetComponent<resistor>().Prop)};
+            string pathname = FindPath(this.transform);            
+            /*string jsonInputData = JsonConvert.SerializeObject(new Dictionary<string,BoxSpawn>(){{pathname,item}});*/
+            
+        }
+    }
+    
+    string FindPath(Transform t){
+        string path = t.name;
+
+        while (t.parent != null) {
+            t = t.parent;
+            path = t.name + "/" + path;
+        }
+        return path;
+    }
 }

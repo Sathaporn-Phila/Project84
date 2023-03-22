@@ -3,42 +3,56 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using System.IO;
+using Realms;
 
 public class playerMovement : MonoBehaviour
 {
     // Start is called before the first frame update
+    private Realm _realm;
+    private PlayerData playerInfo;
     Vector3 nextMovement;
     Quaternion rotation,desiredforward = Quaternion.identity;
     public bool spawnFromSave;
     private Rigidbody rb;
-    private BoxCollider hitbox;
+    private CapsuleCollider hitbox;
     [SerializeField]
     private float speed = 2f,turnSpeed = 2f;
     [SerializeField]
     private InputManager inputManager;
-    string playerPath = Directory.GetCurrentDirectory()+"/Assets/Script/player/player.json";
-    //[Serializable]
-    public class PlayerData {
-        public Vector3 position;
-        public Quaternion rotation;
-        public PlayerData(Vector3 pos,Quaternion rot){
-            position = pos;
-            rotation = rot;
-        } 
+    bool WanttoQuit(){
+        this.savePlayerPosition();
+        return true;
     }
     void Start()
     {
+        Application.wantsToQuit += WanttoQuit;
+        _realm = Realm.GetInstance();
+        Debug.Log($"Realm is located at: {_realm.Config.DatabasePath}");
+        playerInfo = _realm.Find<PlayerData>("player");
+
+    
         rb = GetComponent<Rigidbody>();
-        hitbox = GetComponent<BoxCollider>();
+        hitbox = GetComponent<CapsuleCollider>();
         inputManager = InputManager.Instance;
         float distGround = hitbox.bounds.min.y;
-        if(File.Exists(playerPath) && spawnFromSave){
-            var jsonData = File.ReadAllText(playerPath);
-            Vector3 position = JsonUtility.FromJson<PlayerData>(jsonData).position;
-            Quaternion rotation = JsonUtility.FromJson<PlayerData>(jsonData).rotation;
-            rb.MovePosition(position);
-            rb.MoveRotation(rotation);
+
+        if(playerInfo is null){
+            _realm.Write(()=>{
+                playerInfo = _realm.Add(new PlayerData("player", this.transform));
+            });
+        }else{
+            rb.MovePosition(playerInfo.transformModel.Position);
+            rb.MoveRotation(playerInfo.transformModel.Rotation);
         }
+        
+            /*var jsonData = File.ReadAllText(playerPath);
+            Dictionary<string,PlayerData> playerData = JsonConvert.DeserializeObject<Dictionary<string,PlayerData>>(jsonData);
+            //Debug.Log(playerData["player"].position);
+            Vector3 position = playerData["player"].position;
+            Quaternion rotation = playerData["player"].rotation;
+            rb.MovePosition(position);
+            rb.MoveRotation(rotation);*/
+        
 
         /*if(PlayerPrefs.HasKey("Player Position X")){
             Vector3 position = new Vector3(
@@ -82,14 +96,24 @@ public class playerMovement : MonoBehaviour
         rotate(nextMovement);
         //Debug.Log(nextMovement);
     }
-    private void OnApplicationQuit() { //เก็บข้อมูล player เมื่อออก
-        savePlayerPosition();
-
-    }
+    
     private void savePlayerPosition(){
-        PlayerData data = new PlayerData(rb.position,rb.rotation);
-        string jsonData = JsonUtility.ToJson(data);
-        File.WriteAllText(playerPath,jsonData);
+        _realm.Write(()=>{
+            playerInfo.transformModel.Position = this.transform.position;
+            playerInfo.transformModel.Rotation = this.transform.rotation;
+            playerInfo.transformModel.Scale = this.transform.localScale;
+        });
+        
+        /*PlayerData data = new PlayerData(rb.position,rb.rotation);
+        string jsonData = JsonConvert.SerializeObject(new Dictionary<string,PlayerData>(){{"player",data}},new JsonSerializerSettings()
+                        { 
+                            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                        });
+        if(File.Exists(playerPath)){
+            
+        }else{
+            File.WriteAllText(playerPath,jsonData);
+        }*/
         //string jsonData = JsonUtility.ToJson(data);
         
         

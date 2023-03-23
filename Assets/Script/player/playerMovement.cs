@@ -25,8 +25,11 @@ public class playerMovement : MonoBehaviour
     }
     void Start()
     {
+        
         Application.wantsToQuit += WanttoQuit;
         _realm = Realm.GetInstance();
+        
+        
         Debug.Log($"Realm is located at: {_realm.Config.DatabasePath}");
         playerInfo = _realm.Find<PlayerData>("player");
 
@@ -34,6 +37,7 @@ public class playerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         hitbox = GetComponent<CapsuleCollider>();
         inputManager = InputManager.Instance;
+        Debug.Log(inputManager is null);
         float distGround = hitbox.bounds.min.y;
 
         if(playerInfo is null){
@@ -101,7 +105,6 @@ public class playerMovement : MonoBehaviour
         _realm.Write(()=>{
             playerInfo.transformModel.Position = this.transform.position;
             playerInfo.transformModel.Rotation = this.transform.rotation;
-            playerInfo.transformModel.Scale = this.transform.localScale;
         });
         
         /*PlayerData data = new PlayerData(rb.position,rb.rotation);

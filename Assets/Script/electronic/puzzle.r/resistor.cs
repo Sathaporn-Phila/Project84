@@ -4,6 +4,7 @@ using UnityEngine;
 using Unity.Collections;
 using UnityEngine.XR.Interaction.Toolkit;
 using System.Linq;
+using Realms;
 
 public class resistor : MonoBehaviour
 {
@@ -15,23 +16,23 @@ public class resistor : MonoBehaviour
             return mpb;
         }
     }
-    public class Sticker {
-        public string colorName;
-        public Color color;
-        public float Value;
+    public class Sticker : EmbeddedObject  {
+        public string colorName{get;set;}
+        public Vector4Model color{get;set;}
+        public float Value{get;set;}
         public Sticker(string name,Color col,float val ){
             colorName = name;
-            color = col;
+            color = new Vector4Model(new Vector4(col.r,col.g,col.b,col.a));
             Value = val;
-        }    
+        }
+        public Sticker(){}    
     }
-    public class Attribute {
-        public List<Sticker> allSticker;
-        public double val = 0;
+    public class Attribute : EmbeddedObject {
+        public IList<Sticker> allSticker {get;}
+        public double val{get;set;}
         private int width=1024,height=1024;
         private Dictionary<string,Sticker> oneOfthreeBar,fourthBar;
         public Attribute(Dictionary<string,Sticker> stickers){//ค่า r
-            allSticker = new List<Sticker>();
             //allSticker = stickers;
             oneOfthreeBar = stickers.Where(x=>x.Key!="gold"&&x.Key!="silver").ToDictionary(c => c.Key, c => c.Value);
             fourthBar = stickers.Where(x=>!oneOfthreeBar.Contains(x)).ToDictionary(c => c.Key, c => c.Value);
@@ -49,8 +50,10 @@ public class resistor : MonoBehaviour
             }
             
         }
+
+        public Attribute(){}
         public List<Vector4> getAllColor(){
-            return allSticker.Select(obj=>new Vector4(obj.color.r,obj.color.g,obj.color.b,obj.color.a)).ToList();
+            return allSticker.Select(obj=>obj.color.ToVector4()).ToList();
         }
         public string findPrefixSymbol(int val){
             if(val==3){

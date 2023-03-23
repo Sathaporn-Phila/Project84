@@ -62,7 +62,7 @@ public class Vector4Model : EmbeddedObject
 
 }
 
-public class TransformModel : RealmObject
+public class TransformModel : EmbeddedObject
 {
     [MapTo("Position")]
     private Vector3Model _Position { get; set; }

@@ -17,7 +17,7 @@ class PlayerData : RealmObject
     
 }
 public class BoxSpawn{
-    public Dictionary<Transform,resistor.Attribute> items;   
+    public Dictionary<Transform,Attribute> items;   
 }
 
 public class Vector3Model : EmbeddedObject

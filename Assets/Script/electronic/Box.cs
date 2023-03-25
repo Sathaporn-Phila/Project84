@@ -15,7 +15,7 @@ public class Box: MonoBehaviour
     private GateBox gateBox;
 
     List<GameObject> itemSpawn = new List<GameObject>();
-    
+    List<GameObject> allObj = new List<GameObject>();
     public enum SpawnType {resistor,gate,diode}
     string pattern = @"\bmini-box\.\d*$",path;
     /*[SerializeField]*/public SpawnType spawnType = new SpawnType();
@@ -38,9 +38,6 @@ public class Box: MonoBehaviour
                 resistorBox = _realm.Find<resistorBox>(path);
                 if(resistorBox is null){
                     hasSpawned = false;
-                    _realm.Write(()=>{
-                        resistorBox = _realm.Add(new resistorBox(path));
-                    });
                 }else{
                     hasSpawned = true;
                 }
@@ -70,37 +67,51 @@ public class Box: MonoBehaviour
         if(spawnType == SpawnType.resistor || spawnType == SpawnType.diode){
             GameObject obj2Clone = prefab2Spawn(spawnType);
             
-
-            foreach(GameObject slot in slots){
-
-                int numSpawn = Random.Range(1,2);
+            _realm.Write(()=>{
+                if(!hasSpawned){
+                    resistorBox = new resistorBox(path);
+                }
                 
-                GameObject cloneObjPrototype = Instantiate(obj2Clone,slot.transform.position+Vector3.up+0.1f*transform.TransformDirection(Vector3.right),slot.transform.rotation);
-                cloneObjPrototype.transform.parent = slot.transform;
+                foreach(GameObject slot in slots){
 
-                string parentPath = this.FindPath(slot.transform);
+                    int numSpawn = Random.Range(1,3);
+                    GameObject cloneObjPrototype = Instantiate(obj2Clone,slot.transform.position+Vector3.up+0.1f*transform.TransformDirection(Vector3.right),slot.transform.rotation);
+                    
+                    cloneObjPrototype.transform.parent = slot.transform;
+
+                    string parentPath = this.FindPath(slot.transform);
 
                 
-                if(spawnType == SpawnType.resistor){
-                    resistor rProp = cloneObjPrototype.AddComponent<resistor>();
+                    if(spawnType == SpawnType.resistor){
+                        resistor rProp = cloneObjPrototype.AddComponent<resistor>();
 
-                    //เคย spawn ครั้งแรกไปแล้ว
-                    if(!hasSpawned){
-                        for(int i=0;i<numSpawn;i++){
+                    //ยังไม่เคย spawn ครั้งแรกไปจะทำการ gen ก่อนเข้า db
+                        if(!hasSpawned){
+                            for(int i=0;i<numSpawn;i++){
 
-                            GameObject cloneObj= Instantiate(obj2Clone,slot.transform.position+2*i*Vector3.up,slot.transform.rotation);
-                            cloneObj.transform.parent = slot.transform;
-                            resistor rDup = cloneObj.AddComponent<resistor>();
-                            rDup.Prop = rProp.Prop;
-                            rDup.SetColor();
-
-                            _realm.Write(()=>{    
-                                resistorBox.inside.Add(new resistorData(parentPath,cloneObj.transform,parentPath,rDup.Prop));
-                            });
+                                GameObject cloneObj= Instantiate(obj2Clone,slot.transform.position+2*i*Vector3.up,slot.transform.rotation);
+                                cloneObj.transform.parent = slot.transform;
+                                resistor rDup = cloneObj.AddComponent<resistor>();
+                                rDup.Prop = rProp.Prop;
+                                rDup.SetColor();
+                            
                               
-                        }
-                    }else{ 
-                        resistorBox.inside.Where(r=>r.BoxPath==parentPath).ToList().ForEach((r)=>{
+                                resistorData data = new resistorData(parentPath,cloneObj.transform,parentPath);
+                                data.attribute = new Attribute();   
+                                data.attribute.val = rDup.Prop.val;
+
+                                foreach(Sticker stk in rDup.Prop.allSticker){
+                                    data.attribute.allSticker.Add(new Sticker(stk.colorName,stk.color.ToVector4(),stk.Value));
+                                }
+
+                                resistorBox.inside.Add(data);
+                                allObj.Add(cloneObj);
+                              
+                            }
+                        }else{
+                            
+                            resistorBox.inside.Where(r=>r.BoxPath==parentPath).ToList().ForEach((r)=>{
+                            
                             GameObject parentObj = GameObject.Find(r.curPath);
                             GameObject cloneObj = Instantiate(obj2Clone,r.transformModel.Position,r.transformModel.Rotation);
                             cloneObj.transform.parent = parentObj.transform;
@@ -108,13 +119,20 @@ public class Box: MonoBehaviour
                             rDup.Prop = r.attribute;
                             rProp.Prop = r.attribute;
                             rDup.SetColor();
+                            allObj.Add(cloneObj);
+                            
                     });
                         
                     }
                 }
                 itemSpawn.Add(cloneObjPrototype);
                 cloneObjPrototype.SetActive(false);
+                //ยัดเข้า db เมื่อ gen ครั้งแรก
+                if(!hasSpawned){_realm.Add(resistorBox);}
+                
             }
+            });
+            
 
             
             
@@ -134,13 +152,18 @@ public class Box: MonoBehaviour
                 
             for(int i=0;i<GatePrefab.Count;i++){
                 GameObject cloneObjPrototype = Instantiate(GatePrefab[i],slots[i].transform.position+Vector3.up*0.1f,slots[i].transform.rotation);
-                if(gateBox.allGate.Filter($"GateData.name == {cloneObjPrototype.name}").ToList().Count == 0){
+                var gate = gateBox.allGate.Where(gate=>gate.name == cloneObjPrototype.name);
+                if(gate.ToList().Count == 0){
                     _realm.Write(()=>{
                         gateBox.allGate.Add(new GateData(cloneObjPrototype.name,cloneObjPrototype.transform));
                         });
+                }else{
+                   cloneObjPrototype.transform.position = gate.FirstOrDefault().transformModel.Position;
+                   cloneObjPrototype.transform.rotation = gate.FirstOrDefault().transformModel.Rotation;
                 }
                 cloneObjPrototype.transform.parent = slots[i].transform;
                 cloneObjPrototype.transform.localScale = Vector3.one*0.95f;
+                allObj.Add(cloneObjPrototype);
             }
 
         }
@@ -151,14 +174,21 @@ public class Box: MonoBehaviour
     private void saveObjectPosition(){
         if(spawnType == SpawnType.resistor){
             _realm.Write(()=>{
+                int i=0;
                 resistorBox.inside.ToList().ForEach((r)=>{
-                    r.transformModel.Position = this.transform.position;
-                    r.transformModel.Rotation = this.transform.rotation;
+                    r.transformModel.Position = allObj[i].transform.position;
+                    r.transformModel.Rotation = allObj[i].transform.rotation;
+                    i++;
                 });
             });
         }else if(spawnType == SpawnType.gate){
             _realm.Write(()=>{
-                
+                int i=0;
+                gateBox.allGate.ToList().ForEach((g)=>{
+                    g.transformModel.Position = allObj[i].transform.position;
+                    g.transformModel.Rotation = allObj[i].transform.rotation;
+                    i++;
+                });
             });
         }
         

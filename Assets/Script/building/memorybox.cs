@@ -76,7 +76,6 @@ public class memorybox : MonoBehaviour
     }
     public void SetBezierPoint(){
         Vector3 dist = transform.InverseTransformDirection(centerVFX.transform.position-this.transform.position)*(1/fresnelObj.transform.localScale.x);
-        Debug.Log(dist);
         effect.SetVector3("objFinalPos",dist);
         effect.SetVector4("ParticleColor",fresnelColor);
     }

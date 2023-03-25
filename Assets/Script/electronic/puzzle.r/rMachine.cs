@@ -50,7 +50,7 @@ public class rMachine : MonoBehaviour
     }
     private void matchSlotGroup(){
         List<GameObject> resistor2match = this.transform.parent.Find("box").GetComponent<Box>().getSpawnObject().OrderBy(item=>Guid.NewGuid()).ToList();
-        List<resistor.Attribute> attributes = new List<resistor.Attribute>();
+        List<Attribute> attributes = new List<Attribute>();
 
         //property in resistor such as ohm value
         foreach(GameObject r in resistor2match){
@@ -77,7 +77,9 @@ public class rMachine : MonoBehaviour
     }
     private void Start() {
         matchSlotGroup();
-        card = this.transform.Find("card").GetComponent<card>(); 
+        card = this.transform.Find("card").GetComponent<card>();
+        
+        unlockCard();
     }
     
 }

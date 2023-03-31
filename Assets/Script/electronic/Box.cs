@@ -68,7 +68,7 @@ public class Box: MonoBehaviour
             GameObject obj2Clone = prefab2Spawn(spawnType);
             
             _realm.Write(()=>{
-                if(!hasSpawned){
+                if(!hasSpawned && spawnType == SpawnType.resistor){
                     resistorBox = new resistorBox(path);
                 }
                 
@@ -128,7 +128,7 @@ public class Box: MonoBehaviour
                 itemSpawn.Add(cloneObjPrototype);
                 cloneObjPrototype.SetActive(false);
                 //ยัดเข้า db เมื่อ gen ครั้งแรก
-                if(!hasSpawned){_realm.Add(resistorBox);}
+                if(!hasSpawned && spawnType == SpawnType.resistor){_realm.Add(resistorBox);}
                 
             }
             });

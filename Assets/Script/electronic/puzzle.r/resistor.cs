@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Collections;
 using UnityEngine.XR.Interaction.Toolkit;
-using System.Linq;
-using Realms;
+
+
 
 public class resistor : MonoBehaviour
 {

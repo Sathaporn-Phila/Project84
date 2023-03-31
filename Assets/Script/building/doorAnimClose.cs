@@ -9,6 +9,13 @@ public class doorAnimClose : doorState
     {
         m_animator.SetInteger("doorState",0);
     }
+    public override void Enter(SkinnedMeshRenderer skinnedMesh){
+        float blendShape = skinnedMesh.GetBlendShapeWeight(0);
+        float blendShapeSpeed = 2f;
+        if(skinnedMesh.GetBlendShapeWeight(0)<100){
+            skinnedMesh.SetBlendShapeWeight(0,blendShape+blendShapeSpeed);
+        }
+    }
     public override void UpdateState(DoorSlot doorSlot,SkinnedMeshRenderer skinnedMesh,float voltage){
         if(voltage == 0){
             float blendShape = skinnedMesh.GetBlendShapeWeight(0);
@@ -40,6 +47,6 @@ public class doorAnimClose : doorState
         binaryInput.AddRange(emptyInput);
         safeBoxDoor.Mpb.SetFloatArray("_IntArray",binaryInput);
         safeBoxDoor.meshRenderer.SetPropertyBlock(safeBoxDoor.Mpb);
-        Debug.Log(string.Join(",",safeBoxDoor.Mpb.GetFloatArray("_IntArray")));
+        //Debug.Log(string.Join(",",safeBoxDoor.Mpb.GetFloatArray("_IntArray")));
     }
 }

@@ -100,6 +100,12 @@ public class wire : wireProp
         }
     }
     private void FixedUpdate() {
+        /*if(this.gameObject.name == "wire.curve"){
+            RaycastHit hit;
+            if(Physics.Raycast(toggleRay[current].getRay(),out hit,scale,1<<0)){
+                Debug.Log(hit.collider.gameObject.name);
+            }
+        }*/
         if(wireQueryGroup.findParentObjectHit(toggleRay[current].getRay(),scale,0)){
             voltage = wireQueryGroup.findWireHit(toggleRay[current].getRay(),scale,0);
         }else if(wireQueryGroup.findParentObjectHit(toggleRay[current].getRay(),scale,7)){

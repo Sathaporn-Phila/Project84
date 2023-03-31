@@ -2,27 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
+
 using System;
 
 public class DoorSlot : MonoBehaviour {
     public List<GateSlot> triggerSlots = new List<GateSlot>(),allSlot = new List<GateSlot>();
-    doorState currerntState;
+    public doorState currerntState;
     public doorAnimOpen doorOpen;
     public doorAnimClose doorClose;
-    Query query;
+    public Query query;
     wireQuery wireQuery;
     SkinnedMeshRenderer skinnedMesh;
-    private void Awake() {
+    public virtual void Awake() {
         doorOpen = this.gameObject.AddComponent<doorAnimOpen>();
         doorClose = this.gameObject.AddComponent<doorAnimClose>();
-        query = this.gameObject.AddComponent<Query>();
         wireQuery = this.gameObject.AddComponent<wireQuery>();
-        skinnedMesh = this.gameObject.GetComponent<SkinnedMeshRenderer>();
-        
-        foreach(GameObject collider in query.queryByName(this.transform.root.gameObject,new Regex(@"\bcollider"))){
-            allSlot.Add(collider.GetComponent<GateSlot>());
-        }
+        skinnedMesh = this.gameObject.GetComponent<SkinnedMeshRenderer>();    
         currerntState = doorClose;
+        currerntState.Enter(this.skinnedMesh);
     }
     private void Update() {
         Ray ray = new Ray(transform.position,transform.TransformDirection(Vector3.forward));

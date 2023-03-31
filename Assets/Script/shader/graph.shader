@@ -8,8 +8,8 @@ Shader "Custom/graph"
         [MainColor] _BaseColor("Color", Color) = (0.5,0.5,0.5,1)
         [MainTexture] _BaseMap("Albedo", 2D) = "white" {}
         //[Header("Resistor Color")]
-        _Amplitude("Amplitude",float) = 0
-        _MaxAmplitude("Max Amplitude",float) =5
+        _Amplitude("Amplitude",Range(-5,5)) = 0
+        _MaxAmplitude("Max Amplitude",Range(-5,5)) =5
         _Frequency("Frequency",float) = 2
         _Position("Position",Range(0,360)) = 0
     }

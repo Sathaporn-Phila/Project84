@@ -288,7 +288,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!114 &8924530525423628715
 MonoBehaviour:
@@ -387,17 +387,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   head:
-    VRTarget: {fileID: 0}
+    VRTarget: {fileID: 8672312867133591856}
     rigTarget: {fileID: 8924530525263997210}
     positionOffset: {x: 0, y: -0.15, z: -0.2}
     rotationOffset: {x: 0, y: -90, z: -90}
   rightHand:
-    VRTarget: {fileID: 0}
+    VRTarget: {fileID: 8924530526587114627}
     rigTarget: {fileID: 8924530526587114627}
     positionOffset: {x: 0, y: 0, z: 0}
     rotationOffset: {x: 90, y: 270, z: 0}
   leftHand:
-    VRTarget: {fileID: 0}
+    VRTarget: {fileID: 8924530526381620085}
     rigTarget: {fileID: 8924530526381620085}
     positionOffset: {x: 0, y: 0, z: 0}
     rotationOffset: {x: 270, y: 90, z: 0}

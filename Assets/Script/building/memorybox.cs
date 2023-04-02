@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
+using UnityEngine.XR.Interaction.Toolkit;
+
 [ExecuteAlways]
 public class memorybox : MonoBehaviour
 {
@@ -25,7 +27,7 @@ public class memorybox : MonoBehaviour
     public chooseMesh selectMesh = new();
     private void Start() {
         fresnelObj = this.transform.Find("memory").gameObject;
-
+        this.gameObject.GetComponent<XRGrabInteractable>().interactionManager = GameObject.Find("XR Interaction Manager").GetComponent<XRInteractionManager>();
         effect = this.transform.Find("memory").GetComponent<VisualEffect>();
     
         centerVFX = GameObject.Find("platform/Sphere").gameObject;

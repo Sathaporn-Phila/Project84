@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1536
     height: 772.8
   m_ShowMode: 4
-  m_Title: Animator
+  m_Title: Hierarchy
   m_RootView: {fileID: 3}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 21
+  controlID: 113
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 3227
+  controlID: 72
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 3228
+  controlID: 73
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -385,10 +385,10 @@ MonoBehaviour:
     m_SaveData: []
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 147}
-      m_SelectedIDs: 8a860200
-      m_LastClickedID: 165514
-      m_ExpandedIDs: a817fdff8a86020096860200a2860200b0860200ba860200c8860200e4860200e6860200e8860200ea860200f68602000287020010870200168702001a8702001c8702001e87020024870200368702003c8702003e870200428702004a8702004c870200508702005287020054870200568702005887020060870200648702006c87020076870200788702007c870200848702008687020094870200988702009a8702009c870200a2870200
+      scrollPos: {x: 0, y: 0}
+      m_SelectedIDs: 405c0100
+      m_LastClickedID: 89152
+      m_ExpandedIDs: 1cfbffffac170100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -697,7 +697,7 @@ MonoBehaviour:
       layout: 4
   m_WindowGUID: cc27987af1a868c49b0894db9c0f5429
   m_Gizmos: 1
-  m_OverrideSceneCullingMask: 4611686018427387905
+  m_OverrideSceneCullingMask: 6917529027641081856
   m_SceneIsLit: 1
   m_SceneLighting: 1
   m_2DMode: 0
@@ -705,9 +705,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 87.024956, y: 70.5941, z: -293.0459}
+    m_Target: {x: -3.5675569, y: 7.368511, z: -158.45201}
     speed: 2
-    m_Value: {x: 87.024956, y: 70.5941, z: -293.0459}
+    m_Value: {x: -3.5675569, y: 7.368511, z: -158.45201}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -754,13 +754,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 1
   m_Rotation:
-    m_Target: {x: 0.09189503, y: 0.85779023, z: -0.16488102, w: 0.4781048}
+    m_Target: {x: -0.0006008381, y: 0.9993757, z: -0.02129961, w: -0.0281891}
     speed: 2
-    m_Value: {x: 0.09236185, y: 0.85824996, z: -0.16630471, w: 0.47667512}
+    m_Value: {x: -0.0006008381, y: 0.9993757, z: -0.02129961, w: -0.0281891}
   m_Size:
-    m_Target: 6.706622
+    m_Target: 90.15535
     speed: 2
-    m_Value: 6.4178205
+    m_Value: 90.15535
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -980,14 +980,14 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
-    - e00: 0.1
+    - e00: 0.6109607
       e01: 0
       e02: 0
-      e03: 216.04521
+      e03: 261.23544
       e10: 0
-      e11: 0.1
+      e11: 0.6109607
       e12: 0
-      e13: 271.62598
+      e13: 292.57452
       e20: 0
       e21: 0
       e22: 1
@@ -1013,9 +1013,9 @@ MonoBehaviour:
       e32: 0
       e33: 1
   m_PreviewAnimator: {fileID: 0}
-  m_AnimatorController: {fileID: 9100000, guid: 17f9d154596c1314da33ba606a2b9fbc, type: 2}
+  m_AnimatorController: {fileID: 9100000, guid: 230c7c08cb137924a88b379c782a2ee5, type: 2}
   m_BreadCrumbs:
-  - m_Target: {fileID: -527036955990540690, guid: 17f9d154596c1314da33ba606a2b9fbc, type: 2}
+  - m_Target: {fileID: 5136847878041554226, guid: 230c7c08cb137924a88b379c782a2ee5, type: 2}
     m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
   stateMachineGraphGUI: {fileID: 0}
@@ -1492,22 +1492,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/UnityTechnologies/IdleAnimation
+    - Assets/Prefabs/audio
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 61
   m_LastFolders:
-  - Assets/UnityTechnologies/IdleAnimation
+  - Assets/Prefabs/audio
   m_LastFoldersGridSize: 61
   m_LastProjectPath: C:\Users\Nui\Project84
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 1350.2}
-    m_SelectedIDs: 72860200
-    m_LastClickedID: 165490
-    m_ExpandedIDs: 0000000036810200388102003a8102003c8102003e81020040810200428102004481020046810200488102004a8102004c8102004e81020050810200528102005481020056810200588102005a8102005c8102005e81020060810200628102006481020066810200688102006a8102006c8102007081020072810200a281020010820200ffffff7f
+    scrollPos: {x: 0, y: 374.19995}
+    m_SelectedIDs: 04c50100
+    m_LastClickedID: 115972
+    m_ExpandedIDs: 00000000a0b90100a2b90100a4b90100a6b90100a8b90100aab90100acb90100aeb90100b0b90100b2b90100b4b90100b6b90100b8b90100bab90100bcb90100beb90100c0b90100c2b90100c4b90100c6b90100c8b90100cab90100ccb90100ceb90100d0b90100d2b90100d4b90100d6b90100d8b90100dab90100ffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1535,7 +1535,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000036810200388102003a8102003c8102003e81020040810200428102004481020046810200488102004a8102004c8102004e81020050810200528102005481020056810200588102005a8102005c8102005e81020060810200628102006481020066810200688102006a8102006c8102006e8102007081020072810200
+    m_ExpandedIDs: 00000000a0b90100a2b90100a4b90100a6b90100a8b90100aab90100acb90100aeb90100b0b90100b2b90100b4b90100b6b90100b8b90100bab90100bcb90100beb90100c0b90100c2b90100c4b90100c6b90100c8b90100cab90100ccb90100ceb90100d0b90100d2b90100d4b90100d6b90100d8b90100dab90100
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

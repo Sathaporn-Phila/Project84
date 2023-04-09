@@ -11,3 +11,28 @@ void mapPlatformBase_float(UnityTexture2D base,float2 uv,out float4 colorBase,ou
         }
     }
 }
+Gradient Gradient_float()
+{
+    Gradient g;
+    g.type = 1;
+    g.colorsLength = 3;
+    g.alphasLength = 3;
+    g.colors[0] = float4(_ledplatform[0],1);
+    g.colors[1] = float4(_ledplatform[1],1);
+    g.colors[2] = float4(_ledplatform[2],1);
+    g.colors[3] = 0;
+    g.colors[4] = 0;
+    g.colors[5] = 0;
+    g.colors[6] = 0;
+    g.colors[7] = 0;
+    g.alphas[0] = 1;
+    g.alphas[1] = 1;
+    g.alphas[2] = 1;
+    g.alphas[3] = 0;
+    g.alphas[4] = 0;
+    g.alphas[5] = 0;
+    g.alphas[6] = 0;
+    g.alphas[7] = 0;
+    return g;
+}
+

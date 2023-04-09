@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 129371887480993849}
   - component: {fileID: 9065024452195092488}
   - component: {fileID: 7897862467162773883}
+  - component: {fileID: 5180216462929298673}
+  - component: {fileID: 4400526728822242124}
   m_Layer: 0
   m_Name: btn.002
   m_TagString: Untagged
@@ -83,6 +85,33 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5180216462929298673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 427553543329397663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2124e8898559f344db2cacd49a3dc72e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direction: 0
+  buttonBehaviour: 1
+--- !u!65 &4400526728822242124
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 427553543329397663}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5000011, y: 1.7320511, z: 1.0000006}
+  m_Center: {x: -0.24999246, y: -0.000000029802326, z: -0.000007659197}
 --- !u!1 &553887897706438436
 GameObject:
   m_ObjectHideFlags: 0
@@ -130,6 +159,8 @@ GameObject:
   - component: {fileID: 403841432415798160}
   - component: {fileID: 3999545108124617228}
   - component: {fileID: 6907370407351892401}
+  - component: {fileID: 7579116839164530883}
+  - component: {fileID: 5677382097435757502}
   m_Layer: 0
   m_Name: btn.003
   m_TagString: Untagged
@@ -202,6 +233,33 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7579116839164530883
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 819802808120739669}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5000004, y: 1.7320511, z: 1.0000002}
+  m_Center: {x: -0.24999997, y: -0.000000029802326, z: -0.000000014901161}
+--- !u!114 &5677382097435757502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 819802808120739669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2124e8898559f344db2cacd49a3dc72e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direction: 1
+  buttonBehaviour: 1
 --- !u!1 &1133084224771634102
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,6 +271,8 @@ GameObject:
   - component: {fileID: 7175385882973805199}
   - component: {fileID: 1000546111691283492}
   - component: {fileID: 5142378625075376004}
+  - component: {fileID: 4083674726974005191}
+  - component: {fileID: 3979996176950915104}
   m_Layer: 0
   m_Name: btn.001
   m_TagString: Untagged
@@ -285,6 +345,33 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4083674726974005191
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1133084224771634102}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5000004, y: 1.7320511, z: 1.0000002}
+  m_Center: {x: -0.24999997, y: -0.000000029802326, z: -0.000000014901161}
+--- !u!114 &3979996176950915104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1133084224771634102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2124e8898559f344db2cacd49a3dc72e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direction: 1
+  buttonBehaviour: 0
 --- !u!1 &5317393639164614644
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,6 +383,7 @@ GameObject:
   - component: {fileID: 7559250775030250863}
   - component: {fileID: 8461421924566870603}
   - component: {fileID: 4518766134551954932}
+  - component: {fileID: 1806761391904173888}
   m_Layer: 0
   m_Name: wave.tuner.machine
   m_TagString: Untagged
@@ -368,6 +456,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1806761391904173888
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5317393639164614644}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 5312855344954638733, guid: ffdc767dfd4ea644a96eff155de17d6e, type: 3}
 --- !u!1 &8559336855254286771
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,6 +481,8 @@ GameObject:
   - component: {fileID: 2060256742661826740}
   - component: {fileID: 6449577000376395118}
   - component: {fileID: 1865067478526129594}
+  - component: {fileID: 881491496029609288}
+  - component: {fileID: 1626018987319494423}
   m_Layer: 0
   m_Name: btn
   m_TagString: Untagged
@@ -451,3 +555,30 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &881491496029609288
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8559336855254286771}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5000011, y: 1.7320511, z: 1.0000006}
+  m_Center: {x: -0.24999246, y: -0.000000029802326, z: -0.000007659197}
+--- !u!114 &1626018987319494423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8559336855254286771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2124e8898559f344db2cacd49a3dc72e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direction: 0
+  buttonBehaviour: 0

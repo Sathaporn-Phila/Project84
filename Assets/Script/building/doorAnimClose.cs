@@ -10,11 +10,6 @@ public class doorAnimClose : doorState
         m_animator.SetInteger("doorState",0);
     }
     public override void Enter(SkinnedMeshRenderer skinnedMesh){
-        float blendShape = skinnedMesh.GetBlendShapeWeight(0);
-        float blendShapeSpeed = 2f;
-        if(skinnedMesh.GetBlendShapeWeight(0)<100){
-            skinnedMesh.SetBlendShapeWeight(0,blendShape+blendShapeSpeed);
-        }
     }
     public override void UpdateState(DoorSlot doorSlot,SkinnedMeshRenderer skinnedMesh,float voltage){
         if(voltage == 0){
@@ -24,12 +19,24 @@ public class doorAnimClose : doorState
                 skinnedMesh.SetBlendShapeWeight(0,blendShape+blendShapeSpeed);
             }
         }else{
-            doorSlot.changeState(doorSlot.doorOpen);
+            if(doorSlot.allSlot.Count == doorSlot.triggerSlots.Count){
+                doorSlot.changeState(doorSlot.doorOpen);
+            }
         }
     }
     public override void UpdateState(safeBoxDoor safeBoxDoor)
     {
         //Debug.Log(safeBoxDoor.Mpb.GetFloatArray("_IntArray"));
+    }
+    public override void UpdateState(SkinnedMeshRenderer skinnedMesh){
+        this.animateDoorClose(skinnedMesh);
+    }
+    private void animateDoorClose(SkinnedMeshRenderer skinnedMesh){
+        float blendShape = skinnedMesh.GetBlendShapeWeight(0);
+        float blendShapeSpeed = 2f;
+        if(skinnedMesh.GetBlendShapeWeight(0)<100){
+            skinnedMesh.SetBlendShapeWeight(0,blendShape+blendShapeSpeed);
+        }
     }
     public override void UpdateState(safeBoxDoor safeBoxDoor,string input)
     {

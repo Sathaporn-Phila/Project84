@@ -121,3 +121,16 @@ class CardData : RealmObject{
         
     }
 }
+
+class MemoryBoxData : RealmObject {
+    [PrimaryKey]
+    public string path{get;set;}
+    public TransformModel transformModel{get;set;}
+    public MemoryBoxData(string pathName,Transform transform){
+        path = pathName;
+        transformModel = new TransformModel(){
+            Position = transform.position,Rotation = transform.rotation,Scale = transform.localScale
+        };
+    }
+    public MemoryBoxData(){}
+}

@@ -44,6 +44,7 @@ public class Box: MonoBehaviour
                 break;
             case SpawnType.diode:
                 Prefab = (GameObject)Resources.Load("Prefabs/electronic/diode");
+                Prefab.transform.localScale = new Vector3((float)0.5,(float)0.5,(float)0.5);
                 //Prefab.transform.Rotate(Quaternion.Euler(0,90,0).eulerAngles);
                 break;
             default:
@@ -123,6 +124,14 @@ public class Box: MonoBehaviour
                             
                     });
                         
+                    }
+
+                //spawn diode 
+                }else{
+                    for(int i=0;i<numSpawn;i++){
+
+                        GameObject cloneObj= Instantiate(obj2Clone,slot.transform.position+2*i*Vector3.up,slot.transform.rotation);
+                        cloneObj.transform.parent = slot.transform;
                     }
                 }
                 itemSpawn.Add(cloneObjPrototype);

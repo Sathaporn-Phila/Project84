@@ -7,12 +7,13 @@ public class platformSlot : MonoBehaviour
     memoryPlatform platform;
     bool isAdd = false;
     memorybox memorybox;
-
+    
     private void Awake() {
         platform = this.transform.parent.GetComponent<memoryPlatform>();
-        GameObject obj = Resources.Load<GameObject>("Prefabs/electronic/gate.machine.module/memorybox");
+        /*GameObject obj = Resources.Load<GameObject>("Prefabs/electronic/gate.machine.module/memorybox");
         GameObject cloneObj = Instantiate(obj,transform.position + Vector3.up*10f,transform.rotation);
         cloneObj.GetComponent<memorybox>().fresnelColor = new Color(Random.value * 2f, Random.value * 2f, Random.value * 2f, 1f);
+        cloneObj.GetComponent<memorybox>().subcolor = new Color(Random.value * 2f, Random.value * 2f, Random.value * 2f, 1f);*/
     }
     private void OnTriggerEnter(Collider other) {
         if(other.TryGetComponent<memorybox>(out memorybox membox)&& !isAdd){

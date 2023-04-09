@@ -96,7 +96,7 @@ public class enemyAIPatrol : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        var player = other.GetComponent<playerMovement>();
+        var player = other.GetComponent<playerDataController>();
         if (player != null)
         {
             print("HIT");

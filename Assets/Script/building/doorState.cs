@@ -13,6 +13,8 @@ public class doorState : MonoBehaviour
     }
     public virtual void UpdateState(safeBoxDoor safeBoxDoor,string input){
     }
+    public virtual void UpdateState(SkinnedMeshRenderer skinnedMesh){
+    }
     public virtual void UpdateState(){}
     public virtual void Exit(){}
 }

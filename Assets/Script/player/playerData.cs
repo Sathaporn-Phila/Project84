@@ -7,6 +7,7 @@ class PlayerData : RealmObject
     [PrimaryKey]
     public string player{get;set;}
     public TransformModel transformModel{get;set;}
+    public string checkpointName{get;set;}
     public PlayerData(){}
     public PlayerData(string val,Transform t){
         player = val;

@@ -4,5 +4,7 @@ using UnityEngine;
 
 public class memoryDoorSlot : DoorSlot
 {
-    
+    private void Update() {
+        currerntState.UpdateState(skinnedMesh);
+    }
 }

@@ -11,9 +11,13 @@ public class DoorSlot : MonoBehaviour {
     public doorAnimOpen doorOpen;
     public doorAnimClose doorClose;
     public Query query;
-    wireQuery wireQuery;
-    SkinnedMeshRenderer skinnedMesh;
+    public wireQuery wireQuery;
+    public SkinnedMeshRenderer skinnedMesh;
     public virtual void Awake() {
+        this.setInitValue();
+        this.setSlot();
+    }
+    void setInitValue(){
         doorOpen = this.gameObject.AddComponent<doorAnimOpen>();
         doorClose = this.gameObject.AddComponent<doorAnimClose>();
         wireQuery = this.gameObject.AddComponent<wireQuery>();
@@ -21,14 +25,8 @@ public class DoorSlot : MonoBehaviour {
         currerntState = doorClose;
         currerntState.Enter(this.skinnedMesh);
     }
-    private void Update() {
-        Ray ray = new Ray(transform.position,transform.TransformDirection(Vector3.forward));
-        
-        if(allSlot.Count == triggerSlots.Count){
-            currerntState.UpdateState(this,skinnedMesh,wireQuery.findWireHit(ray,2,0));
-        }
-
-    }
+    public virtual void setSlot(){}
+    
     public void changeState(doorState state){
         currerntState = state;
     }

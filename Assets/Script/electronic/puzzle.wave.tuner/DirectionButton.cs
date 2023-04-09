@@ -13,6 +13,6 @@ public class DirectionButton : MonoBehaviour
     public Direction direction = new();
     public ButtonBehaviour buttonBehaviour = new();
     private void OnCollisionEnter(Collision other) {
-        this.transform.root.Find("graph").GetComponent<GraphDisplay>().ChangeVal(direction,buttonBehaviour);
+        this.transform.parent.parent.Find("graph").GetComponent<GraphDisplay>().ChangeVal(direction,buttonBehaviour);
     }
 }

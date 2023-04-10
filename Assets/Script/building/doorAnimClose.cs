@@ -7,7 +7,11 @@ public class doorAnimClose : doorState
 
     public override void Enter(Animator m_animator)
     {
-        m_animator.SetInteger("doorState",0);
+        if(m_animator.GetInteger(Animator.StringToHash("doorState"))!=0){
+            m_animator.SetInteger("doorState",2);
+        }else{
+            m_animator.SetInteger("doorState",0);
+        }
     }
     public override void Enter(SkinnedMeshRenderer skinnedMesh){
     }

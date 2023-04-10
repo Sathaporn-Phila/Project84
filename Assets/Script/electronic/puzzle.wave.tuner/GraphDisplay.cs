@@ -7,7 +7,7 @@ using System.Linq;
 public class GraphDisplay : MonoBehaviour
 {
     Image originGraph,yourGraph;
-    
+    public doorRoom doortrigger;
     private void Awake() {
         originGraph = this.transform.Find("wave.origin").GetComponent<Image>();
         yourGraph = this.transform.Find("wave.your").GetComponent<Image>();
@@ -36,6 +36,10 @@ public class GraphDisplay : MonoBehaviour
             }else{
                 yourGraph.material.SetFloat("_Position",pos+15f);
             }
+        }
+
+        if(originGraph.material.GetFloat("_Amplitude") == yourGraph.material.GetFloat("_Amplitude") && originGraph.material.GetFloat("_Position") == yourGraph.material.GetFloat("_Position")){
+            doortrigger.Open();
         }
     } 
 

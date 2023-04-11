@@ -60,10 +60,46 @@ public class Box: MonoBehaviour
 
         path = this.FindPath(this.transform);
         query = this.gameObject.AddComponent<Query>();
+        spawn();
+                   
+    }
+    
+    
+    private void saveObjectPosition(){
+        if(spawnType == SpawnType.resistor){
+            _realm.Write(()=>{
+                int i=0;
+                resistorBox.inside.ToList().ForEach((r)=>{
+                    r.transformModel.Position = allObj[i].transform.position;
+                    r.transformModel.Rotation = allObj[i].transform.rotation;
+                    i++;
+                });
+            });
+        }else if(spawnType == SpawnType.gate){
+            _realm.Write(()=>{
+                int i=0;
+                gateBox.allGate.ToList().ForEach((g)=>{
+                    g.transformModel.Position = allObj[i].transform.position;
+                    g.transformModel.Rotation = allObj[i].transform.rotation;
+                    i++;
+                });
+            });
+        }
         
+    }
+    string FindPath(Transform t){
+        string path = t.name;
+
+        while (t.parent != null) {
+            t = t.parent;
+            path = t.name + "/" + path;
+        }
+        return path;
+    }
+    void spawn(){
+
         Regex regex = new Regex(pattern);
         List<GameObject> slots = query.queryByName(this.gameObject,regex);
-        
 
         if(spawnType == SpawnType.resistor || spawnType == SpawnType.diode){
             GameObject obj2Clone = prefab2Spawn(spawnType);
@@ -106,7 +142,7 @@ public class Box: MonoBehaviour
                                 }
 
                                 resistorBox.inside.Add(data);
-                                allObj.Add(cloneObj);
+                                //allObj.Add(cloneObj);
                               
                             }
                         }else{
@@ -176,39 +212,22 @@ public class Box: MonoBehaviour
             }
 
         }
-                   
     }
-    
-    
-    private void saveObjectPosition(){
-        if(spawnType == SpawnType.resistor){
-            _realm.Write(()=>{
-                int i=0;
-                resistorBox.inside.ToList().ForEach((r)=>{
-                    r.transformModel.Position = allObj[i].transform.position;
-                    r.transformModel.Rotation = allObj[i].transform.rotation;
-                    i++;
+    void respawn(){
+        if(allObj.Count > 0){
+            foreach(GameObject item in allObj){
+                Destroy(item);            
+            }
+            if(resistorBox.inside.Count>0){
+                _realm.Write(()=>{
+                    _realm.Remove(resistorBox);
                 });
-            });
-        }else if(spawnType == SpawnType.gate){
-            _realm.Write(()=>{
-                int i=0;
-                gateBox.allGate.ToList().ForEach((g)=>{
-                    g.transformModel.Position = allObj[i].transform.position;
-                    g.transformModel.Rotation = allObj[i].transform.rotation;
-                    i++;
-                });
-            });
+                resistorBox = null;
+                itemSpawn.Clear();
+                hasSpawned = false;
+                spawn();
+                this.transform.parent.Find("r.machine").GetComponent<rMachine>().refresh();
+            }
         }
-        
-    }
-    string FindPath(Transform t){
-        string path = t.name;
-
-        while (t.parent != null) {
-            t = t.parent;
-            path = t.name + "/" + path;
-        }
-        return path;
     }
 }

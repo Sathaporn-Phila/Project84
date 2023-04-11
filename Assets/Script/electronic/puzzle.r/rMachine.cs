@@ -45,10 +45,13 @@ public class rMachine : MonoBehaviour
         }
         return val;
     }
+    public virtual void action(){
+        unlockCard();
+    }
     public void unlockCard(){
         card.Animated();
     }
-    private void matchSlotGroup(){
+    public void matchSlotGroup(){
         List<GameObject> resistor2match = this.transform.parent.Find("box").GetComponent<Box>().getSpawnObject().OrderBy(item=>Guid.NewGuid()).ToList();
         List<Attribute> attributes = new List<Attribute>();
 
@@ -60,7 +63,7 @@ public class rMachine : MonoBehaviour
         List<GameObject> slots = query.queryByName(this.gameObject,new Regex(patterns["slot"]));
         List<GameObject> led = query.queryByName(this.gameObject,new Regex(patterns["led"]));
         List<GameObject> text = (this.gameObject.transform.Find("ohm.sticker/Canvas").GetComponentsInChildren<Transform>()).Skip(1).Select(t=>t.gameObject).ToList();
-        Debug.Log(slots.Count);
+        //Debug.Log(slots.Count);
         //set property for rMachine
         for(int i=0;i<slots.Count;i++){
             float nearDivider = (attributes[i].val.ToString().Length-1) - ((attributes[i].val.ToString().Length-1) % 3);
@@ -75,11 +78,14 @@ public class rMachine : MonoBehaviour
     public List<SlotGroup> getSlotGroup(){
         return slotGroups;
     }
-    private void Start() {
+    public virtual void Start() {
         matchSlotGroup();
         card = this.transform.Find("card").GetComponent<card>();
         
-        unlockCard();
+        //unlockCard();
     }
-    
+    public void refresh(){
+        slotGroups.Clear();
+        matchSlotGroup();
+    }
 }

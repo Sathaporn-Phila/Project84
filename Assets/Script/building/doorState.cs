@@ -1,69 +1,20 @@
+using System.Collections;
+using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class doorState : MonoBehaviour
 {
-    public Vector3 endpos;
-    public float speed = 1.0f;
-
-    private bool moving = false;
-    private bool opening = true;
-    private Vector3 startPos;
-    private float delay = 0.0f;
-    
-    void Start()
-    {
-        startPos = transform.position;
+    public virtual void Enter(Animator m_animator){}
+    public virtual void Enter(SkinnedMeshRenderer skinnedMesh){}
+    public virtual void UpdateState(DoorSlot doorSlot,SkinnedMeshRenderer skinnedMesh,float voltage){
     }
-
-    void Update()
-    {
-        if(moving)
-        {
-            if(opening)
-            {
-                MoveDoor(endpos);
-            }
-            else
-            {
-                MoveDoor(startPos);
-            }
-        }
+    public virtual void UpdateState(safeBoxDoor safeBoxDoor){
     }
-    
-    public RuntimeAnimatorController getAnimController{
-        get {
-            return GetComponent<Animator>().runtimeAnimatorController;
-        }
+    public virtual void UpdateState(safeBoxDoor safeBoxDoor,string input){
     }
-
-    void MoveDoor(Vector3 goalPos)
-    {
-        float dist = Vector3.Distance(transform.position, goalPos);
-        if(dist > .1f)
-        {
-            transform.position = Vector3.Lerp(transform.position, goalPos, speed * Time.deltaTime);
-        }
-        else
-        {
-            if(opening)
-            {
-                delay += Time.deltaTime;
-                if(delay > 1.5f)
-                {
-                    opening = false;
-                }
-            }
-            else
-            {
-                moving = false;
-                opening = true;
-            }
-        }
+    public virtual void UpdateState(SkinnedMeshRenderer skinnedMesh){
     }
-
-    public bool Moving
-    {
-        get {return moving;}
-        set {moving = value;}
-    }
+    public virtual void UpdateState(){}
+    public virtual void Exit(){}
 }

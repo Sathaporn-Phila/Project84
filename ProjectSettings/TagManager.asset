@@ -4,7 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Door
+  - wire
+  - WaveGenerator
+  - wireY
+  - diodeSlot
+  - wire2way
+  - memorybox
   layers:
   - Default
   - TransparentFX
@@ -13,13 +18,13 @@ TagManager:
   - Water
   - UI
   - Highlight
-  - Nasmesh
-  - Player
-  - Enemy
-  - 
-  - 
-  - 
-  - 
+  - SceneObject
+  - Cant Move Interacable
+  - VR
+  - Audio
+  - Script
+  - Light & Fog
+  - Cant Interact UI
   - 
   - 
   - 

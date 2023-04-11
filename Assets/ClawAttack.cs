@@ -22,7 +22,7 @@ public class ClawAttack : MonoBehaviour
             player.HP -= damage;
             if (player.HP <= 0)
             {
-                Destroy(player.gameObject);
+                player.die();
             }
 
         }

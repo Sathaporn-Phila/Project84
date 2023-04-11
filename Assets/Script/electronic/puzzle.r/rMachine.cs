@@ -50,7 +50,7 @@ public class rMachine : MonoBehaviour
     }
     private void matchSlotGroup(){
         List<GameObject> resistor2match = this.transform.parent.Find("box").GetComponent<Box>().getSpawnObject().OrderBy(item=>Guid.NewGuid()).ToList();
-        List<resistor.Attribute> attributes = new List<resistor.Attribute>();
+        List<Attribute> attributes = new List<Attribute>();
 
         //property in resistor such as ohm value
         foreach(GameObject r in resistor2match){
@@ -60,6 +60,7 @@ public class rMachine : MonoBehaviour
         List<GameObject> slots = query.queryByName(this.gameObject,new Regex(patterns["slot"]));
         List<GameObject> led = query.queryByName(this.gameObject,new Regex(patterns["led"]));
         List<GameObject> text = (this.gameObject.transform.Find("ohm.sticker/Canvas").GetComponentsInChildren<Transform>()).Skip(1).Select(t=>t.gameObject).ToList();
+        Debug.Log(slots.Count);
         //set property for rMachine
         for(int i=0;i<slots.Count;i++){
             float nearDivider = (attributes[i].val.ToString().Length-1) - ((attributes[i].val.ToString().Length-1) % 3);
@@ -76,7 +77,9 @@ public class rMachine : MonoBehaviour
     }
     private void Start() {
         matchSlotGroup();
-        card = this.transform.Find("card").GetComponent<card>(); 
+        card = this.transform.Find("card").GetComponent<card>();
+        
+        unlockCard();
     }
     
 }

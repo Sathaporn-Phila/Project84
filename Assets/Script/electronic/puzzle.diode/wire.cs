@@ -6,8 +6,8 @@ public class wire : wireProp
 {   
     public bool m_isNearGenerator,needWaveGen;
     public float cosValue;
-    float scale,waitTime=-1;
-    public int current;
+    float scale;
+    public int current,waitTime=-1;
     List<MeshRenderer> childRenderer = new List<MeshRenderer>();
     public List<toggleRay> toggleRay = new List<toggleRay>();
 
@@ -41,7 +41,6 @@ public class wire : wireProp
         
         wireQueryGroup = this.gameObject.AddComponent<wireQuery>();
         InitialRay();
-
         
     }
     
@@ -65,7 +64,12 @@ public class wire : wireProp
     }
     
     private void InitialRay(){
-        Vector3 origin = transform.position + new Vector3((float)0,(float)-0.5,(float)0);
+        Vector3 origin;
+        if(transform.parent.name=="diode.machine"){
+            origin = transform.position + Vector3.down*0.1f;
+        }else{
+            origin = transform.position + Vector3.down*0.5f;
+        }
         if(Regex.IsMatch(this.gameObject.name,@"\bwire.straight") || Regex.IsMatch(this.gameObject.name,@"\bwire.resistor.slot")){
             Ray m_InputRay1 = new Ray(origin,transform.TransformDirection(Vector3.forward));
             Ray m_InputRay2 = new Ray(origin,transform.TransformDirection(Vector3.back));
@@ -100,17 +104,39 @@ public class wire : wireProp
         }
     }
     private void FixedUpdate() {
-        if(wireQueryGroup.findParentObjectHit(toggleRay[current].getRay(),scale,0)){
-            voltage = wireQueryGroup.findWireHit(toggleRay[current].getRay(),scale,0);
-        }else if(wireQueryGroup.findParentObjectHit(toggleRay[current].getRay(),scale,7)){
-            voltage = wireQueryGroup.findWireHit(toggleRay[current].getRay(),scale,7);
-        }else{
-            voltage = 0;
-        }
+        GameObject wireLineHit = wireQueryGroup.findParentObjectHit(toggleRay[current].getRay(),scale,0);
+        GameObject wireYHit = wireQueryGroup.findParentObjectHit(toggleRay[current].getRay(),scale,7);
+        /*if(this.gameObject.name == "wire.resistor.slot"){
+            RaycastHit hit;
+            if(Physics.Raycast(toggleRay[current].getRay(),out hit,Mathf.Infinity,1<<0)){
+                Debug.DrawLine(transform.position,transform.position+toggleRay[current].getRay().direction*hit.distance,Color.magenta);
+                Debug.Log(hit.transform.name);
+            }
+        }*/
         
+        if(!Regex.IsMatch(this.gameObject.name,@"\bwire.resistor.slot")){
+            if (wireLineHit)
+            {
+                voltage = wireQueryGroup.findWireHit(toggleRay[current].getRay(), scale, 0);
+            }
+            else if (wireYHit)
+            {
+                voltage = wireQueryGroup.findWireHit(toggleRay[current].getRay(), scale, 7);
+            }
+            else
+            {
+                voltage = 0;
+            }
+        }
+        else {
+            RaycastHit[] hits;
+            hits = Physics.RaycastAll(toggleRay[current].getRay(), scale);
+            RaycastHit hit = hits[1]; //skip first object
+            voltage = -wireQueryGroup.getVoltFromHitObj(hit.collider.transform.parent.gameObject);
+        }
 
         //โค้ดส่วนนี้ทำงานเมื่อเป็น diode machine 
-        if(needWaveGen){
+        if(needWaveGen && !Regex.IsMatch(this.gameObject.name,@"\bwire.resistor.slot")){
             float nextCosValue = waveGen.getCosValue();   
             if(m_isNearGenerator){
                 if(cosValue*nextCosValue<0){
@@ -121,15 +147,17 @@ public class wire : wireProp
                
             }else{
                 float voltTemp = 0;
-                GameObject hitObjLeft = wireQueryGroup.findParentObjectHit(toggleRay[current].getRay(),scale,7);
-                if(hitObjLeft){
-                    voltTemp = wireQueryGroup.findWireHit(toggleRay[current].getRay(),scale,7);
+                if(wireYHit){
+                    voltTemp = voltage;
                     //Debug.Log(voltTemp);
                     if(cosValue*nextCosValue<0){
                         
                         if(Mathf.Abs(voltTemp)>0){
                             voltage = 0;
-                            this.transform.parent.BroadcastMessage("setDirectionVoltRead",current,SendMessageOptions.DontRequireReceiver);
+
+                            if(this.gameObject.name=="wire.curve.001"){
+                                this.transform.parent.BroadcastMessage("setDirectionVoltRead",0,SendMessageOptions.DontRequireReceiver);
+                            }
                             //List<wire2way.ToggleRay> toggleRays = this.gameObject.transform.parent.Find("wire.dive").GetComponent<wire2way>().toggleRays;
                         }else{
                             waitTime = 8;
@@ -142,15 +170,13 @@ public class wire : wireProp
             if(waitTime >= 0){
                 float voltTemp = wireQueryGroup.findWireHit(toggleRay[current].getRay(),scale,7);
                 if(Mathf.Abs(voltTemp)==0&&waitTime==0){
-                    this.transform.parent.BroadcastMessage("setDirectionVoltRead",(current+1)%toggleRay.Count,SendMessageOptions.DontRequireReceiver);
+                    if(this.gameObject.name=="wire.curve.001"){
+                        this.transform.parent.BroadcastMessage("setDirectionVoltRead",1,SendMessageOptions.DontRequireReceiver);
+                    }
+
                 }
                 waitTime--;
-            }
-            if(Regex.IsMatch(this.gameObject.name,@"\bwire.resistor.slot")){
-                voltage = -voltage;
-            }
-            
-            
+            }   
 
             cosValue = nextCosValue;
         }

@@ -821,6 +821,10 @@ PrefabInstance:
       propertyPath: m_Avatar
       value: 
       objectReference: {fileID: 9000000, guid: baeb1c3d074ff2e47a67caac0badb2a0, type: 2}
+    - target: {fileID: 8872977816338549914, guid: 776023135198d8346bf4962e7ab240d8, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 776023135198d8346bf4962e7ab240d8, type: 3}
 --- !u!1 &4847239009883208998 stripped
@@ -922,6 +926,10 @@ PrefabInstance:
       propertyPath: subcolor.r
       value: 0.18861733
       objectReference: {fileID: 0}
+    - target: {fileID: 6852105471540556067, guid: 087d97e6a78ea10459d2daf50743857d, type: 3}
+      propertyPath: formerParent
+      value: 
+      objectReference: {fileID: 8854968430104878861}
     - target: {fileID: 6852105471540556067, guid: 087d97e6a78ea10459d2daf50743857d, type: 3}
       propertyPath: fresnelColor.b
       value: 0.6415094

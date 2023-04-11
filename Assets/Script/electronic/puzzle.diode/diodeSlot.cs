@@ -21,7 +21,7 @@ public class diodeSlot : MonoBehaviour
     }
     IEnumerator spawnTest(){
         
-        yield return new WaitForSeconds(Random.Range(0,30));
+        yield return new WaitForSeconds(Random.Range(0,2));
         diode = (GameObject)Resources.Load("Prefabs/electronic/diode");
         Instantiate(diode,transform.position+Vector3.up,transform.rotation);
         
@@ -31,7 +31,7 @@ public class diodeSlot : MonoBehaviour
         if(Regex.IsMatch(other.gameObject.name,@"\bdiode")){
             CapsuleCollider collider = other.GetComponent<CapsuleCollider>();
             collideGameObject = collider.gameObject;
-            Ray cathodeDirection = new Ray(transform.position,other.transform.TransformDirection(-Vector3.forward));
+            Ray cathodeDirection = new Ray(transform.position+Vector3.down*0.1f,other.transform.TransformDirection(-Vector3.forward));
             float angle = Mathf.Atan2(cathodeDirection.direction.z,cathodeDirection.direction.x)*Mathf.Rad2Deg - Mathf.Atan2(wireDiodeSlot.toggleRay.getRay().direction.z,wireDiodeSlot.toggleRay.getRay().direction.x)*Mathf.Rad2Deg;
 
             //change current direction when diode change direction

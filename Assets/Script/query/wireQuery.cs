@@ -16,13 +16,14 @@ public class wireQuery : MonoBehaviour
         RaycastHit hit;
         GameObject hitParentObj = null;
         if(Physics.Raycast(ray,out hit,length+(float)0.01,1<<layer)){
-            //if(Regex.IsMatch(this.gameObject.name,@"\bgate")){Debug.Log(hit.collider.gameObject.name);}
+            //if(Regex.IsMatch(this.gameObject.name,@"\bwire.curve.001")){Debug.Log(hit.collider.gameObject.name);}
+            
             if(hit.transform.parent!=null){
                 //if(Regex.IsMatch(this.gameObject.name,@"\bwire.curve")&&Regex.IsMatch(hit.collider.gameObject.transform.parent.gameObject.name,@"\bpuzzle.slot")){Debug.Log("hit");}
-                hitParentObj = hit.collider.gameObject.transform.parent.gameObject;
-            }else{
-                if(Regex.IsMatch(hit.collider.name,@"\bgate")){
+                if(Regex.IsMatch(hit.collider.gameObject.name,@"\bgate")){
                     hitParentObj = hit.collider.gameObject;
+                }else{
+                    hitParentObj = hit.collider.gameObject.transform.parent.gameObject;
                 }
             }
             

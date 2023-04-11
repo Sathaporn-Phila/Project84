@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Collections;
 using UnityEngine.XR.Interaction.Toolkit;
-using System.Linq;
+
+
 
 public class resistor : MonoBehaviour
 {
@@ -15,55 +16,7 @@ public class resistor : MonoBehaviour
             return mpb;
         }
     }
-    public class Sticker {
-        public string colorName;
-        public Color color;
-        public float Value;
-        public Sticker(string name,Color col,float val ){
-            colorName = name;
-            color = col;
-            Value = val;
-        }    
-    }
-    public class Attribute {
-        public List<Sticker> allSticker;
-        public double val = 0;
-        private int width=1024,height=1024;
-        private Dictionary<string,Sticker> oneOfthreeBar,fourthBar;
-        public Attribute(Dictionary<string,Sticker> stickers){//ค่า r
-            allSticker = new List<Sticker>();
-            //allSticker = stickers;
-            oneOfthreeBar = stickers.Where(x=>x.Key!="gold"&&x.Key!="silver").ToDictionary(c => c.Key, c => c.Value);
-            fourthBar = stickers.Where(x=>!oneOfthreeBar.Contains(x)).ToDictionary(c => c.Key, c => c.Value);
-
-            //NativeArray<JobHandle> jobs = new NativeArray<JobHandle>();
-            for(int bar=0;bar<4;bar++){
-                if(bar<3){
-                    Sticker stickerProp = oneOfthreeBar.ElementAt(Random.Range(0,oneOfthreeBar.Count-1)).Value;   
-                    val = (bar<2)? (val+stickerProp.Value*Mathf.Pow(10,1-bar)) : (val*Mathf.Pow(10,stickerProp.Value));
-                    allSticker.Add(stickerProp);
-                }else{
-                    Sticker stickerProp = fourthBar.ElementAt(Random.Range(0,fourthBar.Count-1)).Value;
-                    allSticker.Add(stickerProp);   
-                }
-            }
-            
-        }
-        public List<Vector4> getAllColor(){
-            return allSticker.Select(obj=>new Vector4(obj.color.r,obj.color.g,obj.color.b,obj.color.a)).ToList();
-        }
-        public string findPrefixSymbol(int val){
-            if(val==3){
-                return "K";
-            }else if(val==6){
-                return "M";
-            }else if(val==9){
-                return "G";
-            }else{
-                return "";
-            }
-        }
-    }
+    
     private Attribute prop;
     public Attribute Prop{
         get{return prop;}

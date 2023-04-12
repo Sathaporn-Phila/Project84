@@ -10,12 +10,12 @@ public class Box: MonoBehaviour
 {
     protected Query query;
     private Realm _realm;
+    private Coroutine coroutine;
 
     private resistorBox resistorBox;
     private GateBox gateBox;
-
-    List<GameObject> itemSpawn = new List<GameObject>();
-    List<GameObject> allObj = new List<GameObject>();
+    float reSpawntime;
+    List<GameObject> itemSpawn = new(),slots,allObj=new();
     public enum SpawnType {resistor,gate,diode}
     string pattern = @"\bmini-box\.\d*$",path;
     /*[SerializeField]*/public SpawnType spawnType = new SpawnType();
@@ -27,6 +27,7 @@ public class Box: MonoBehaviour
         return true;
     }
     bool hasSpawned;
+    Regex regex;
     GameObject prefab2Spawn(SpawnType type){
         GameObject Prefab;
         switch(type){
@@ -36,6 +37,7 @@ public class Box: MonoBehaviour
                 Prefab.transform.rotation = Quaternion.Euler(0,0,0);
 
                 resistorBox = _realm.Find<resistorBox>(path);
+                Debug.Log(resistorBox==null);
                 if(resistorBox is null){
                     hasSpawned = false;
                 }else{
@@ -57,7 +59,10 @@ public class Box: MonoBehaviour
     private void Awake() {
         Application.wantsToQuit += WanttoQuit;
         _realm = Realm.GetInstance();
-
+        regex = new Regex(pattern);
+        //Debug.Log(regex==null);
+        slots = this.gameObject.GetComponentsInChildren<Transform>().Skip(1).Where(t=>t.gameObject.name != "mini-box").Select(t=>t.gameObject).ToList();
+        Debug.Log(slots==null);
         path = this.FindPath(this.transform);
         query = this.gameObject.AddComponent<Query>();
         spawn();
@@ -96,10 +101,7 @@ public class Box: MonoBehaviour
         }
         return path;
     }
-    void spawn(){
-
-        Regex regex = new Regex(pattern);
-        List<GameObject> slots = query.queryByName(this.gameObject,regex);
+    public void spawn(){
 
         if(spawnType == SpawnType.resistor || spawnType == SpawnType.diode){
             GameObject obj2Clone = prefab2Spawn(spawnType);
@@ -108,9 +110,8 @@ public class Box: MonoBehaviour
                 if(!hasSpawned && spawnType == SpawnType.resistor){
                     resistorBox = new resistorBox(path);
                 }
-                
+                //Debug.Log(!hasSpawned);
                 foreach(GameObject slot in slots){
-
                     int numSpawn = Random.Range(1,3);
                     GameObject cloneObjPrototype = Instantiate(obj2Clone,slot.transform.position+Vector3.up+0.1f*transform.TransformDirection(Vector3.right),slot.transform.rotation);
                     
@@ -121,7 +122,7 @@ public class Box: MonoBehaviour
                 
                     if(spawnType == SpawnType.resistor){
                         resistor rProp = cloneObjPrototype.AddComponent<resistor>();
-
+    
                     //ยังไม่เคย spawn ครั้งแรกไปจะทำการ gen ก่อนเข้า db
                         if(!hasSpawned){
                             for(int i=0;i<numSpawn;i++){
@@ -142,6 +143,7 @@ public class Box: MonoBehaviour
                                 }
 
                                 resistorBox.inside.Add(data);
+                                allObj.Add(cloneObj);
                                 //allObj.Add(cloneObj);
                               
                             }
@@ -213,21 +215,47 @@ public class Box: MonoBehaviour
 
         }
     }
-    void respawn(){
-        if(allObj.Count > 0){
-            foreach(GameObject item in allObj){
-                Destroy(item);            
-            }
-            if(resistorBox.inside.Count>0){
+    public void respawn(){
+        if(spawnType == SpawnType.resistor){
+            if(allObj.Count > 0){
+                foreach(GameObject item in allObj){
+                    Destroy(item);           
+                }
                 _realm.Write(()=>{
                     _realm.Remove(resistorBox);
                 });
                 resistorBox = null;
+                allObj.Clear();
                 itemSpawn.Clear();
                 hasSpawned = false;
                 spawn();
                 this.transform.parent.Find("r.machine").GetComponent<rMachine>().refresh();
+                
+            }
+        }else if(spawnType == SpawnType.gate){
+            if(allObj.Count > 0){
+                foreach(GameObject item in allObj){
+                    Destroy(item);           
+                }
+                _realm.Write(()=>{
+                    _realm.Remove(gateBox);
+                });
+                gateBox = null;
+                allObj.Clear();            
+                hasSpawned = false;
+                spawn();
+                
             }
         }
+    }
+    private void Update() {
+       /* if(Input.GetMouseButtonDown(0) && spawnType == SpawnType.resistor){
+            coroutine = StartCoroutine(testRespawn());
+            
+        }*/
+    }
+    IEnumerator testRespawn(){
+        respawn();
+        yield return new WaitForSeconds(2f);
     }
 }

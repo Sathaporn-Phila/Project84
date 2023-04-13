@@ -18,7 +18,7 @@ public class ChangeScene : MonoBehaviour
         yield return new WaitForSeconds(fadeScreen.fadeDuration);
         SceneManager.LoadScene(sceneindex);
     }
-
+/*
     public void GoToSceneAsync(int sceneindex)
     {
         StartCoroutine(GotoSceneAsyncRoutine(sceneindex));
@@ -40,7 +40,7 @@ public class ChangeScene : MonoBehaviour
 
         operation.allowSceneActivition = true;
     }
-
+*/
     public void Start_Scene() 
     {  
         SceneManager.LoadScene("Start_Scene");  

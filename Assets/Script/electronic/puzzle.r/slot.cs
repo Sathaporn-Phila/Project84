@@ -44,7 +44,7 @@ public class slot : MonoBehaviour
                     TurnLight(ledGroup.led,true);
                     ledGroup.setLedActive(true);
                     if(resistorMachine.checkAllLed()){
-                        resistorMachine.unlockCard();
+                        resistorMachine.action();
                     }
                 }
             }

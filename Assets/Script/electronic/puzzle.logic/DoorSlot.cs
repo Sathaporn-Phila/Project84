@@ -17,7 +17,7 @@ public class DoorSlot : MonoBehaviour {
         this.setInitValue();
         this.setSlot();
     }
-    void setInitValue(){
+    public virtual void setInitValue(){
         doorOpen = this.gameObject.AddComponent<doorAnimOpen>();
         doorClose = this.gameObject.AddComponent<doorAnimClose>();
         wireQuery = this.gameObject.AddComponent<wireQuery>();

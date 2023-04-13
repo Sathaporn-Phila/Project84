@@ -18,7 +18,7 @@ Shader "Custom/safebox.door"
         [Header(ledOut)]
         [HDR]_ledOutEmissionCloseColor("Led Close Color", Color) = (0.5,0.5,0.5,1)
         [HDR]_ledOutEmissionOpenColor("Led Open Color", Color) = (0.5,0.5,0.5,1)
-        _ledOutEmissionTexture("Led out texture", 2D) = "white" {}
+        _ledOutEmissionTexture("Led out texture", 2D) = "black" {}
         _ledOutEmissionIntensity("Led Out strength",float) = 1
         _ledOutAnim("Led Out Animation", Range(-1.5,1.5)) = 0
 
@@ -45,7 +45,7 @@ Shader "Custom/safebox.door"
         // that can match multiple render pipelines. If a RenderPipeline tag is not set it will match
         // any render pipeline. In case you want your subshader to only run in LWRP set the tag to
         // "UniversalRenderPipeline"
-        Tags{"RenderType" = "Opaque" "RenderPipeline" = "UniversalRenderPipeline" "IgnoreProjector" = "True"}
+        Tags{"RenderType" = "Opaque" "RenderPipeline" = "UniversalPipeline" "IgnoreProjector" = "True"}
         LOD 300
         HLSLINCLUDE
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
@@ -166,7 +166,7 @@ Shader "Custom/safebox.door"
                 return output;
             }
             half4 setInitialTexture(Varyings input){
-                half4 colorBase = SAMPLE_TEXTURE2D(_BaseMap,sampler_BaseMap, input.uv)*_BaseColor;
+                half4 colorBase = SAMPLE_TEXTURE2D(_BaseMap,sampler_BaseMap, input.uv);
                 half4 color = colorBase;
                 return color;
             }
@@ -196,6 +196,7 @@ Shader "Custom/safebox.door"
                 // You can write your own function to initialize the surface data of your shader.
                 SurfaceData surfaceData;
                 InitializeStandardLitSurfaceData(input.uv, surfaceData);
+
 
                 #if _NORMALMAP
                 half3 normalWS = TransformTangentToWorld(surfaceData.normalTS,
@@ -241,7 +242,6 @@ Shader "Custom/safebox.door"
 
                 // LightingPhysicallyBased computes direct light contribution.
                 color += LightingPhysicallyBased(brdfData, mainLight, normalWS, viewDirectionWS);
-
                 // Additional lights loop
                 #ifdef _ADDITIONAL_LIGHTS
 
@@ -266,7 +266,6 @@ Shader "Custom/safebox.door"
 
                 // Mix the pixel color with fogColor. You can optionaly use MixFogColor to override the fogColor
                 // with a custom one.
-                color = MixFog(color, fogFactor);
                 return half4(color, surfaceData.alpha);
             }
             ENDHLSL

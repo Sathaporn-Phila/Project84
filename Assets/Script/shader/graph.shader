@@ -5,7 +5,8 @@ Shader "Custom/graph"
         // Specular vs Metallic workflow
         [HideInInspector] _WorkflowMode("WorkflowMode", Float) = 1.0
 
-        [MainColor] _BaseColor("Color", Color) = (0.5,0.5,0.5,1)
+        _NegativeColor("Color", Color) = (0.5,0.5,0.5,1)
+        _PositiveColor("Color", Color) = (0.5,0.5,0.5,1)
         [MainTexture] _BaseMap("Albedo", 2D) = "white" {}
         //[Header("Resistor Color")]
         _Amplitude("Amplitude",Range(-5,5)) = 0
@@ -56,7 +57,8 @@ Shader "Custom/graph"
             
             CBUFFER_START(UnityPerMaterial)
             float4 _BaseMap_ST;
-            half4 _BaseColor;
+            half4 _NegativeColor;
+            half4 _PositiveColor;
             CBUFFER_END
 
             Varyings vert(Attributes IN)
@@ -65,6 +67,10 @@ Shader "Custom/graph"
                 OUT.positionHCS = TransformObjectToHClip(IN.positionOS.xyz);
                 OUT.uv = TRANSFORM_TEX(IN.uv, _BaseMap);
                 return OUT;
+            }
+            float InvLerp(float from, float to, float value)
+            {
+                return (value - from) / (to - from);
             }
             half4 setGraph(Varyings input){
                 half4 color = half4(0, 0, 0, 1);
@@ -79,7 +85,8 @@ Shader "Custom/graph"
             }
             half4 frag(Varyings IN) : SV_Target
             {
-                return SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, IN.uv) * setGraph(IN) * _BaseColor ;
+                return SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, IN.uv) * setGraph(IN) * lerp(_NegativeColor,_PositiveColor,InvLerp(_MaxAmplitude, -_MaxAmplitude, _Amplitude)); ;
+                
             }
             ENDHLSL
         

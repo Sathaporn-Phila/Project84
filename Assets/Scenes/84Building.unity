@@ -6685,6 +6685,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.2227359, y: 0.8852389, z: 1}
   m_Center: {x: -0.0034495294, y: -0.003350675, z: 0.017572435}
+--- !u!1 &1820903873 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4798247273489360096, guid: 383da0a665502c14d92add85ab942a2d, type: 3}
+  m_PrefabInstance: {fileID: 2099835038}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1820903874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820903873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d661356c2321d5044b16ba34f55f4f0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP: 100
 --- !u!1 &1842696606
 GameObject:
   m_ObjectHideFlags: 0
@@ -6971,11 +6989,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4798247273087162910, guid: 383da0a665502c14d92add85ab942a2d, type: 3}
       propertyPath: range
-      value: 10
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 4798247273087162910, guid: 383da0a665502c14d92add85ab942a2d, type: 3}
       propertyPath: sightRange
-      value: 7
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4798247273087162910, guid: 383da0a665502c14d92add85ab942a2d, type: 3}
+      propertyPath: attackRange
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4798247273087162910, guid: 383da0a665502c14d92add85ab942a2d, type: 3}
       propertyPath: groundLayer.m_Bits
@@ -6984,6 +7006,14 @@ PrefabInstance:
     - target: {fileID: 4798247273087162910, guid: 383da0a665502c14d92add85ab942a2d, type: 3}
       propertyPath: playerLayer.m_Bits
       value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 4798247273087162911, guid: 383da0a665502c14d92add85ab942a2d, type: 3}
+      propertyPath: m_Speed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4798247273087162911, guid: 383da0a665502c14d92add85ab942a2d, type: 3}
+      propertyPath: m_Radius
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4798247273489360064, guid: 383da0a665502c14d92add85ab942a2d, type: 3}
       propertyPath: m_Layer
@@ -32522,6 +32552,23 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 1221c4e776d11b14188e6bf65047977d, type: 2}
   m_BuildHeightMesh: 0
+--- !u!1 &5108168551398881592 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5108168551085411169, guid: 866b84a4fe8a3414cbdb8cbfc1fd9704, type: 3}
+  m_PrefabInstance: {fileID: 5108168551398881589}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5108168551398881593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5108168551398881592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae23084a0d5ed6749827f85fafebfe20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8547561127658031642
 PrefabInstance:
   m_ObjectHideFlags: 0

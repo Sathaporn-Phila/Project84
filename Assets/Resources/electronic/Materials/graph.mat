@@ -97,7 +97,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaClip: 0
-    - _Amplitude: -1
+    - _Amplitude: 3
     - _Blend: 0
     - _BlendOp: 0
     - _BumpScale: 1
@@ -131,7 +131,7 @@ Material:
     - _NoiseScale: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
-    - _Position: 120
+    - _Position: 15
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1

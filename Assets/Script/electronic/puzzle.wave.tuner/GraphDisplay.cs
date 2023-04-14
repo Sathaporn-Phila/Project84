@@ -8,14 +8,19 @@ public class GraphDisplay : MonoBehaviour
 {
     public Image originGraph,yourGraph;
     public doorRoom doortrigger;
+    
     public void Awake() {
         originGraph = this.transform.Find("wave.origin").GetComponent<Image>();
         yourGraph = this.transform.Find("wave.your").GetComponent<Image>();
-
-        originGraph.material.SetFloat("_Amplitude",Random.Range(-5,5));
+        Material mat = Instantiate(originGraph.material);
+        Material mat2 = Instantiate(yourGraph.material);
+        mat.SetFloat("_Amplitude",Random.Range(-5,5));
 
         float pos = Random.Range(0,360);
-        originGraph.material.SetFloat("_Position",pos-pos%15f);
+        mat.SetFloat("_Position",pos-pos%15f);
+
+        originGraph.material = mat;
+        yourGraph.material = mat2;
     }
     public void ChangeVal(DirectionButton.Direction dir,DirectionButton.ButtonBehaviour buttonBehaviour){
         float maxAmp = 5;

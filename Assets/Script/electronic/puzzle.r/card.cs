@@ -31,6 +31,9 @@ public class card : MonoBehaviour
                 cardData = _realm.Add(new CardData(path,this.transform));
                 cardData.isAnimated = false;
             });
+        }else{
+            this.transform.position = cardData.transformModel.Position;
+            this.transform.rotation = cardData.transformModel.Rotation;
         }
         isAnimated = cardData.isAnimated;
         rb = GetComponent<Rigidbody>();

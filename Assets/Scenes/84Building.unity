@@ -6281,6 +6281,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SK_Bio_Mutant
       objectReference: {fileID: 0}
+    - target: {fileID: 4798247273489360180, guid: 383da0a665502c14d92add85ab942a2d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 4798247273489660160, guid: 383da0a665502c14d92add85ab942a2d, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -6767,11 +6771,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2300578621093795113, guid: 866b84a4fe8a3414cbdb8cbfc1fd9704, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.085327215
+      value: -0.00012212993
       objectReference: {fileID: 0}
     - target: {fileID: 2300578621093795113, guid: 866b84a4fe8a3414cbdb8cbfc1fd9704, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.8845215
+      value: -7.884506
       objectReference: {fileID: 0}
     - target: {fileID: 2300578621093795113, guid: 866b84a4fe8a3414cbdb8cbfc1fd9704, type: 3}
       propertyPath: m_LocalPosition.z

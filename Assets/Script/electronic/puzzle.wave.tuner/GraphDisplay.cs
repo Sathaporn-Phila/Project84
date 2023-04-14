@@ -11,7 +11,11 @@ public class GraphDisplay : MonoBehaviour
     public void Awake() {
         originGraph = this.transform.Find("wave.origin").GetComponent<Image>();
         yourGraph = this.transform.Find("wave.your").GetComponent<Image>();
-        
+
+        originGraph.material.SetFloat("_Amplitude",Random.Range(-5,5));
+
+        float pos = Random.Range(0,360);
+        originGraph.material.SetFloat("_Position",pos-pos%15f);
     }
     public void ChangeVal(DirectionButton.Direction dir,DirectionButton.ButtonBehaviour buttonBehaviour){
         float maxAmp = 5;

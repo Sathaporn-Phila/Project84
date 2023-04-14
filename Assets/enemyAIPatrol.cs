@@ -22,6 +22,8 @@ public class enemyAIPatrol : MonoBehaviour
     [SerializeField] float sightRange, attackRange;
     bool playerInSight, playerInAttackRange;
 
+    //speed setup
+    [SerializeField] float walkSpeed, runSpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -49,6 +51,7 @@ public class enemyAIPatrol : MonoBehaviour
         {
             animator.SetTrigger("Chase");
             agent.SetDestination(player.transform.position);
+            agent.speed = runSpeed;
         }
     }
 
@@ -70,6 +73,7 @@ public class enemyAIPatrol : MonoBehaviour
             animator.SetTrigger("Patrol");
         } 
         if (Vector3.Distance(transform.position, destPoint) < 10) walkpointSet = false;
+        agent.speed = walkSpeed;
     }
 
     void SearchForDest()

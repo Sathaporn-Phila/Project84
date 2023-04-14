@@ -215,25 +215,25 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Chase
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Patrol
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Dying
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -286,16 +286,16 @@ AnimatorStateMachine:
     m_Position: {x: -80, y: -30, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -724463250368769681}
-    m_Position: {x: -80, y: -240, z: 0}
+    m_Position: {x: -80, y: -180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -769226004332316520}
-    m_Position: {x: 150, y: -80, z: 0}
+    m_Position: {x: 170, y: -30, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 9212118174386036096}
-    m_Position: {x: 150, y: -180, z: 0}
+    m_Position: {x: 170, y: -180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7594468608705448841}
-    m_Position: {x: 150, y: -290, z: 0}
+    m_Position: {x: 170, y: -290, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []

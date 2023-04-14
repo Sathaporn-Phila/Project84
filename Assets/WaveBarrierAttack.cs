@@ -6,12 +6,12 @@ public class WaveBarrierAttack : MonoBehaviour
 {
     [SerializeField] float damage;
 
-    BoxCollider triggerBox;
+    MeshCollider triggerMesh;
 
     private void Start()
     {
-        triggerBox = GetComponent<MeshCollider>();
-        triggerBox.enabled = true;
+        triggerMesh = GetComponent<MeshCollider>();
+        triggerMesh.enabled = true;
     }
 
     public void OnTriggerEnter(Collider other)

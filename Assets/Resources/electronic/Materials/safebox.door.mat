@@ -21,10 +21,9 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: safebox.door
-  m_Shader: {fileID: 4800000, guid: 2fc455d5f4187224eaffc2bb09a9e40b, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: e13e96911527ae147ae1a5be7fded40a, type: 3}
   m_ValidKeywords: []
-  m_InvalidKeywords:
-  - _SHOULDDOFLICKER_ON
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0

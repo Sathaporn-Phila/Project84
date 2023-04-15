@@ -124,11 +124,13 @@ public class playerDataController : MonoBehaviour
         PlayerPrefs.Save();*/
     }
     public Vector3 getPostionfromCheckpoint(){
-        checkpointData checkpointData = _realm.Find<checkpointData>(playerInfo.checkpointName);
-        if(checkpointData is not null){
+        if(playerInfo.checkpointName is null){
+            return _realm.Find<checkpointData>("start").transformModel.Position;
+        }
+        else{
+            checkpointData checkpointData = _realm.Find<checkpointData>(playerInfo.checkpointName);
             return checkpointData.transformModel.Position;
-        }else{
-            return playerInfo.transformModel.Position;
+        
         }
     }
 }

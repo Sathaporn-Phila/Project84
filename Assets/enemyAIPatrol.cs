@@ -81,7 +81,7 @@ public class enemyAIPatrol : MonoBehaviour
         float z = Random.Range(-range, range);
         float x = Random.Range(-range, range);
 
-        destPoint = new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z);
+        destPoint = new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z); 
         if (Physics.Raycast(destPoint, Vector3.down, groundLayer))
         {
             walkpointSet = true;

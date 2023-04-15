@@ -96801,15 +96801,15 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 1.1666666
-    functionName: EnableAttack
+  - time: 1.15
+    functionName: screamSound
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.2166667
-    functionName: screamSound
+  - time: 1.1666666
+    functionName: EnableAttack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

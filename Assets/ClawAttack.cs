@@ -17,7 +17,7 @@ public class ClawAttack : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
         var player = other.gameObject.GetComponent<PlayerHealth>();
-        var sound = other.gameObject.GetComponent<SoundController>();
+        var sound = GetComponent<SoundController>();
         if (player != null)
         {
             player.HP -= damage;

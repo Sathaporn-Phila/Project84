@@ -8,6 +8,9 @@ public class WalkingController : MonoBehaviour
     private float speedMinimum = 0.05f;
     [SerializeField, Range(0,1)]
     private float lerpFactor = 0.3f;
+    /*[SerializeField]
+    public AudioSource walkSound;
+    public AudioSource ambientSound;*/
 
     private Animator animator;
     private HeadBodyRig rig;
@@ -36,4 +39,5 @@ public class WalkingController : MonoBehaviour
         animator.SetFloat("x", Mathf.Lerp(previousX, Mathf.Clamp(localHeadSpeed.x, -1, 1), lerpFactor));
         animator.SetFloat("y", Mathf.Lerp(previousY, Mathf.Clamp(localHeadSpeed.z, -1, 1), lerpFactor));
     }
+
 }

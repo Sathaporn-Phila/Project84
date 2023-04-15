@@ -16,6 +16,7 @@ public class memoryPlatform : MonoBehaviour
     idleEffect idle = new();
     tornadoEffect tornadoEffect = new();
     Animator animator;
+    public GameObject teleportPoint;
     float childCount;
     bool isTornadoAnimated;
     public float scale,alpha,alphaThreshold;
@@ -34,6 +35,7 @@ public class memoryPlatform : MonoBehaviour
         //Debug.Log(memoryboxes.Count);
         if(memoryboxes.Count == childCount){
             Animate();
+
         }
     }
     public void Animate(){
@@ -43,10 +45,11 @@ public class memoryPlatform : MonoBehaviour
         GradientEffect gradientEffect = new(memoryboxes.Select(obj=>obj.fresnelColor).ToList());
         if(!isTornadoAnimated){
             effectState = tornadoEffect;
-            Debug.Log(sphereEffect.GetFloat("alpha"));
+            //Debug.Log(sphereEffect.GetFloat("alpha"));
             sphereEffect.SetGradient("Gradient",gradientEffect.gradient);
             effectState.Enter(animator);
             isTornadoAnimated = true;
+            teleportPoint.SetActive(true);
         }
 
     }

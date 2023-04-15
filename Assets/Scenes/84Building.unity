@@ -6668,7 +6668,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1935424912240177979, guid: 602436bb71621984cbdebbdf4183af5c, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1935424913117321316, guid: 602436bb71621984cbdebbdf4183af5c, type: 3}
       propertyPath: m_LeftHandTurnAction.m_UseReference

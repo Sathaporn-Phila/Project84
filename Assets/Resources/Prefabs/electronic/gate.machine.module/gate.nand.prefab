@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1260468397123277941}
   - component: {fileID: 770566133791302558}
   - component: {fileID: 3886597726318566196}
-  - component: {fileID: 2313948763836844850}
+  - component: {fileID: 4177107232467795148}
   m_Layer: 0
   m_Name: gate.nand
   m_TagString: Untagged
@@ -254,8 +254,8 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
---- !u!136 &2313948763836844850
-CapsuleCollider:
+--- !u!64 &4177107232467795148
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -264,7 +264,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.75
-  m_Height: 2.76
-  m_Direction: 2
-  m_Center: {x: -0.00000059604656, y: 0, z: -0.23383385}
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -952468191404046326, guid: 7932f90d8e83ed748bf7baa910774362, type: 3}

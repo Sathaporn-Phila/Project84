@@ -97,10 +97,10 @@ public class wireY : wireProp
         meshFilter = this.gameObject.transform.Find("wire.y").GetComponent<MeshFilter>();
 
         controlRay = new FlowControlRay(
-                new List<Ray>(){new Ray(transform.position+Vector3.down*0.01f,transform.TransformDirection(Vector3.forward))},
+                new List<Ray>(){new Ray(transform.position+Vector3.down*0.1f,transform.TransformDirection(Vector3.forward))},
                 new List<Ray>(){
-                    new Ray(transform.position+Vector3.down*0.01f,transform.TransformDirection(new Vector3(-1,0,-1))),
-                    new Ray(transform.position+Vector3.down*0.01f,transform.TransformDirection(new Vector3(1,0,-1)))
+                    new Ray(transform.position+Vector3.down*0.1f,transform.TransformDirection(new Vector3(-1,0,-1))),
+                    new Ray(transform.position+Vector3.down*0.1f,transform.TransformDirection(new Vector3(1,0,-1)))
                 },Vector2.Distance(Vector2.zero,new Vector2(meshFilter.mesh.bounds.size.x,meshFilter.mesh.bounds.size.z))
         );
         

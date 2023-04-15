@@ -121,10 +121,10 @@ public class memorybox : MonoBehaviour
         return path;
     }
     private void saveObjectPosition(){
-        _realm.Write(()=>{
+        /*_realm.Write(()=>{
             memoryBoxData.transformModel.Position = this.transform.position;
             memoryBoxData.transformModel.Rotation = this.transform.rotation;
-        });
+        });*/
     }
     bool WanttoQuit(){
         this.saveObjectPosition();

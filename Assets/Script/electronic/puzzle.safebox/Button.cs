@@ -10,6 +10,7 @@ public class Button : MonoBehaviour
         safeBoxDoor = this.transform.parent.Find("safeBox.door.base").GetComponent<safeBoxDoor>();
     }
     private void OnCollisionEnter(Collision other) {
-        safeBoxDoor.CurrentState.UpdateState(safeBoxDoor,nameButton);    
+        safeBoxDoor.CurrentState.UpdateState(safeBoxDoor,nameButton);
+        Debug.Log("Button trigger");    
     }
 }

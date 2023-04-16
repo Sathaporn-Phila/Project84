@@ -8,14 +8,14 @@ public class EnemyAIPatrolV2 : MonoBehaviour
     public GameObject player;
     NavMeshAgent agent;
 
-    [SerializeField] LayerMask groundLayer, playerLayer, obstructionLayer;
+    [SerializeField] public LayerMask groundLayer, playerLayer, obstructionLayer;
 
     Animator animator;
     BoxCollider boxCollider;
 
     //patrol
     public Vector3 destPoint;
-    public Vector3 obstuctPoint;
+    public Vector3 obstructPoint;
     bool walkpointSet;
     [SerializeField] public float patrolRange;
 
@@ -39,6 +39,7 @@ public class EnemyAIPatrolV2 : MonoBehaviour
         player = GameObject.Find("Robot Kyle");
         animator = GetComponent<Animator>();
         boxCollider = GetComponentInChildren<BoxCollider>();
+        StartCoroutine(FOVRoutine());
     }
 
     // Update is called once per frame
@@ -66,28 +67,37 @@ public class EnemyAIPatrolV2 : MonoBehaviour
     private void FOVCheck()
     {
         Collider[] rangeChecks = Physics.OverlapSphere(transform.position, sightRange, playerLayer);
-        Transform target = rangeChecks[0].transform;  // maybe can remove this line
-        Vector3 directionToTarget = (target.position - transform.position).normalized;
-            //Vector3 directionToTarget = (player.transform.position - transform.position).normalized;
-        if (rangeChecks.Length != 0) 
-            //if (player != null)
-            {
+        
+        if (rangeChecks.Length != 0)
+        {
+            Transform target = rangeChecks[0].transform;  // maybe can remove this line
+            Vector3 directionToTarget = (target.position - transform.position).normalized;
             if (Vector3.Angle(transform.forward, directionToTarget) < fovAngle / 2)
             {
                 float distanceToTarget = Vector3.Distance(transform.position, target.position);
                 //float distanceToTarget = Vector3.Distance(transform.position, player.transform.position);
-                //if player is in enemy sight range
-                if (Physics.Raycast(transform.position, directionToTarget, distanceToTarget, playerLayer))
+                
+                if (Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionLayer))
                 {
-                    canSeePlayer = true;
-                    playerInSight = true;
-                    //if player is in enemy attack range
-                    if (distanceToTarget < attackRange)
+                    //if player is in enemy sight range
+                    if (distanceToTarget < sightRange)
                     {
-                        playerInAttackRange = true;
+                        canSeePlayer = true;
+                        playerInSight = true;
+                        //if player is in enemy attack range
+                        if (distanceToTarget < attackRange)
+                        {
+                            playerInAttackRange = true;
+                        }
+                        else
+                        {
+                            playerInAttackRange = false;
+                        }
                     }
                     else
                     {
+                        canSeePlayer = false;
+                        playerInSight = false;
                         playerInAttackRange = false;
                     }
                 }
@@ -151,10 +161,10 @@ public class EnemyAIPatrolV2 : MonoBehaviour
         float x = Random.Range(-attackRange, attackRange);
 
         destPoint = new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z); 
-        //Vector3 obstructPoint = transform.TransformDirection(Vector3.forward);
+        Vector3 obstructPoint = transform.TransformDirection(Vector3.forward);
         RaycastHit hit;
 
-        if (Physics.Raycast(destPoint, Vector3.down, groundLayer) && Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, sightRange, obstructionLayer))
+        if (Physics.Raycast(destPoint, Vector3.down, groundLayer) && Physics.Raycast(transform.position, obstructPoint, out hit, sightRange))
         //if (Physics.Raycast(destPoint, transform.forward, groundLayer)) //Vector3.down
         {
             walkpointSet = true;

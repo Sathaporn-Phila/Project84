@@ -96802,21 +96802,21 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 1.15
-    functionName: screamSound
+    functionName: attackSound
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.1666666
-    functionName: EnableAttack
+    functionName: EnableEnemyAttack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.3333334
-    functionName: DisableAttack
+    functionName: DisableEnemyAttack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

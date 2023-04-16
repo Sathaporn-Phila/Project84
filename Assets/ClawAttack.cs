@@ -21,10 +21,10 @@ public class ClawAttack : MonoBehaviour
         if (player != null)
         {
             player.HP -= damage;
+            sound.hitSound();
             if (player.HP <= 0)
             {
                 player.die();
-                sound.hitSound();
             }
 
         }

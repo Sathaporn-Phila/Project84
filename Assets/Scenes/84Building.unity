@@ -7512,7 +7512,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   destPoint: {x: 0, y: 0, z: 0}
-  obstuctPoint: {x: 0, y: 0, z: 0}
+  obstructPoint: {x: 0, y: 0, z: 0}
   patrolRange: 200
   sightRange: 100
   attackRange: 20
@@ -8202,7 +8202,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4798247273087162910, guid: 383da0a665502c14d92add85ab942a2d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 383da0a665502c14d92add85ab942a2d, type: 3}
 --- !u!4 &2125422126 stripped
 Transform:

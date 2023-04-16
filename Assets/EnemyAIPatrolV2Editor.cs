@@ -25,6 +25,9 @@ public class EnemyAIPatrolV2Editor : Editor
         Handles.color = Color.blue;
         Handles.DrawLine(fov.transform.position, fov.transform.position + viewAngle01 * fov.sightRange);
         Handles.DrawLine(fov.transform.position, fov.transform.position + viewAngle02 * fov.sightRange);
+        //dest point
+        Handles.color = Color.blue;
+        Handles.DrawLine(fov.transform.position, fov.destPoint);
 
         if (fov.playerInSight)
         {

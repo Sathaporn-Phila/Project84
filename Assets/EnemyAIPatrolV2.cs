@@ -14,7 +14,8 @@ public class EnemyAIPatrolV2 : MonoBehaviour
     BoxCollider boxCollider;
 
     //patrol
-    Vector3 destPoint;
+    public Vector3 destPoint;
+    public Vector3 obstuctPoint;
     bool walkpointSet;
     [SerializeField] public float patrolRange;
 
@@ -66,7 +67,8 @@ public class EnemyAIPatrolV2 : MonoBehaviour
     {
         Collider[] rangeChecks = Physics.OverlapSphere(transform.position, sightRange, playerLayer);
 
-        if (rangeChecks.Length != 0) //if (player != NULL)
+        if (rangeChecks.Length != 0) 
+        //if (player != null)
         {
             Transform target = rangeChecks[0].transform;  // maybe can remove this line
             Vector3 directionToTarget = (target.position - transform.position).normalized;
@@ -141,19 +143,26 @@ public class EnemyAIPatrolV2 : MonoBehaviour
             agent.SetDestination(destPoint);
             animator.SetTrigger("Patrol");
         } 
-        if (Vector3.Distance(transform.position, destPoint) < 1) walkpointSet = false; //dafault is < 10
+        if (Vector3.Distance(transform.position, destPoint) < attackRange) walkpointSet = false; //dafault is < 10
         agent.speed = walkSpeed;
     }
 
     void FindDest()
     {
-        float z = Random.Range(-patrolRange, patrolRange);
-        float x = Random.Range(-patrolRange, patrolRange);
+        float z = Random.Range(-attackRange, attackRange);
+        float x = Random.Range(-attackRange, attackRange);
 
         destPoint = new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z); 
-        if (Physics.Raycast(destPoint, Vector3.down, groundLayer))
+        Vector3 obstructPoint = transform.TransformDirection(Vector3.forward);
+
+        if (Physics.Raycast(destPoint, Vector3.down, groundLayer) && Physics.Raycast(transform.position, obstructPoint, sightRange))
+        //if (Physics.Raycast(destPoint, transform.forward, groundLayer)) //Vector3.down
         {
             walkpointSet = true;
+        }
+        else
+        {
+            walkpointSet = false;
         }
     }
 
@@ -166,14 +175,5 @@ public class EnemyAIPatrolV2 : MonoBehaviour
     {
         boxCollider.enabled = false;
     }
-
-    /*private void OnTriggerEnter(Collider other) 
-    {
-        var player = other.GetComponent<playerDataController>();
-        if (player != null)
-        {
-            print("HIT");
-        }
-    }*/
-
+    
 }

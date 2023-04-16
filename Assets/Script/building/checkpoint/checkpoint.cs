@@ -66,9 +66,8 @@ public class checkpoint : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if(other.TryGetComponent<PlayerHealth>(out PlayerHealth me)){
             state = touchCheckpoint;
-            _realm.Write(()=>{
-                me.playerInfo.setCurrentCheckpoint(checkpointName);
-            });
+            Debug.Log("checkpoint trigger");
+            me.playerInfo.setCurrentCheckpoint(checkpointName);
         }
         
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     public float HP = 100;
-    playerDataController playerInfo; 
+    public playerDataController playerInfo; 
     private void Start() {
         playerInfo = GameObject.Find("VR/XR Origin").GetComponent<playerDataController>();
         //die();

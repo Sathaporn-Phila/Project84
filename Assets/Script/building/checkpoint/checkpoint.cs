@@ -64,15 +64,13 @@ public class checkpoint : MonoBehaviour
         }
     }
     private void OnTriggerEnter(Collider other) {
-        GameObject player = other.transform.root.Find("XR Origin").gameObject;
-        if(player){
-            if(player.TryGetComponent<playerDataController>(out playerDataController me)){
-                state = touchCheckpoint;
-                _realm.Write(()=>{
-                    me.setCurrentCheckpoint(checkpointName);
-                });
-            }
+        if(other.TryGetComponent<PlayerHealth>(out PlayerHealth me)){
+            state = touchCheckpoint;
+            _realm.Write(()=>{
+                me.playerInfo.setCurrentCheckpoint(checkpointName);
+            });
         }
+        
     }
     public void setIsTouched(){
         _realm.Write(()=>{

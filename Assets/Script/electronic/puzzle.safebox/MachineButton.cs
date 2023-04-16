@@ -8,8 +8,6 @@ public class MachineButton : Button{
         safeBoxDoor = this.transform.parent.GetComponent<safeBoxDoor>();
     }
     private void OnCollisionEnter(Collision other) {
-        if(other.gameObject.name == "player"){
-            safeBoxDoor.UpdateState(nameButton);
-        }    
+        safeBoxDoor.UpdateState(nameButton);   
     }    
 }

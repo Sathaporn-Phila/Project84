@@ -66,20 +66,18 @@ public class EnemyAIPatrolV2 : MonoBehaviour
     private void FOVCheck()
     {
         Collider[] rangeChecks = Physics.OverlapSphere(transform.position, sightRange, playerLayer);
-
-        if (rangeChecks.Length != 0) 
-        //if (player != null)
-        {
-            Transform target = rangeChecks[0].transform;  // maybe can remove this line
-            Vector3 directionToTarget = (target.position - transform.position).normalized;
+        Transform target = rangeChecks[0].transform;  // maybe can remove this line
+        Vector3 directionToTarget = (target.position - transform.position).normalized;
             //Vector3 directionToTarget = (player.transform.position - transform.position).normalized;
+        if (rangeChecks.Length != 0) 
+            //if (player != null)
+            {
             if (Vector3.Angle(transform.forward, directionToTarget) < fovAngle / 2)
             {
                 float distanceToTarget = Vector3.Distance(transform.position, target.position);
                 //float distanceToTarget = Vector3.Distance(transform.position, player.transform.position);
-
                 //if player is in enemy sight range
-                if (Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionLayer))
+                if (Physics.Raycast(transform.position, directionToTarget, distanceToTarget, playerLayer))
                 {
                     canSeePlayer = true;
                     playerInSight = true;
@@ -92,20 +90,20 @@ public class EnemyAIPatrolV2 : MonoBehaviour
                     {
                         playerInAttackRange = false;
                     }
-                }    
+                }
                 else
                 {
                     canSeePlayer = false;
                     playerInSight = false;
                     playerInAttackRange = false;
                 }
-            }
+            }    
             else
             {
                 canSeePlayer = false;
                 playerInSight = false;
                 playerInAttackRange = false;
-            }
+            }          
         }
         else if (canSeePlayer) 
         {
@@ -153,9 +151,10 @@ public class EnemyAIPatrolV2 : MonoBehaviour
         float x = Random.Range(-attackRange, attackRange);
 
         destPoint = new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z); 
-        Vector3 obstructPoint = transform.TransformDirection(Vector3.forward);
+        //Vector3 obstructPoint = transform.TransformDirection(Vector3.forward);
+        RaycastHit hit;
 
-        if (Physics.Raycast(destPoint, Vector3.down, groundLayer) && Physics.Raycast(transform.position, obstructPoint, sightRange))
+        if (Physics.Raycast(destPoint, Vector3.down, groundLayer) && Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, sightRange, obstructionLayer))
         //if (Physics.Raycast(destPoint, transform.forward, groundLayer)) //Vector3.down
         {
             walkpointSet = true;

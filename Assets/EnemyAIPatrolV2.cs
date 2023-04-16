@@ -27,7 +27,7 @@ public class EnemyAIPatrolV2 : MonoBehaviour
     //public float radius; same as sightRange
     [Range(0,360)]
     public float fovAngle;
-    public bool canSeePlayer;
+    //public bool canSeePlayer;
 
     //speed setup
     [SerializeField] float walkSpeed, runSpeed;
@@ -80,44 +80,37 @@ public class EnemyAIPatrolV2 : MonoBehaviour
                 if (Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionLayer))
                 {
                     //if player is in enemy sight range
-                    if (distanceToTarget < sightRange)
+                    
+                    //canSeePlayer = true;
+                    playerInSight = true;
+                    //if player is in enemy attack range
+                    if (distanceToTarget < attackRange)
                     {
-                        canSeePlayer = true;
-                        playerInSight = true;
-                        //if player is in enemy attack range
-                        if (distanceToTarget < attackRange)
-                        {
-                            playerInAttackRange = true;
-                        }
-                        else
-                        {
-                            playerInAttackRange = false;
-                        }
+                        playerInAttackRange = true;
                     }
                     else
                     {
-                        canSeePlayer = false;
-                        playerInSight = false;
                         playerInAttackRange = false;
                     }
+                    
                 }
                 else
                 {
-                    canSeePlayer = false;
+                    //canSeePlayer = false;
                     playerInSight = false;
                     playerInAttackRange = false;
                 }
             }    
             else
             {
-                canSeePlayer = false;
+                //canSeePlayer = false;
                 playerInSight = false;
                 playerInAttackRange = false;
             }          
         }
-        else if (canSeePlayer) 
+        else if (playerInSight) 
         {
-            canSeePlayer = false;
+            //canSeePlayer = false;
             playerInSight = false;
             playerInAttackRange = false;
         }
@@ -125,13 +118,13 @@ public class EnemyAIPatrolV2 : MonoBehaviour
     
     void Chasing()
     {   
-        agent.SetDestination(player.transform.position);
+        //agent.SetDestination(player.transform.position);
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName("idle"))
         {
             animator.SetTrigger("Chase");
             agent.SetDestination(player.transform.position);
-            agent.speed = runSpeed;
         }
+        agent.speed = runSpeed;
     }
 
     void Attacking()
@@ -151,20 +144,20 @@ public class EnemyAIPatrolV2 : MonoBehaviour
             agent.SetDestination(destPoint);
             animator.SetTrigger("Patrol");
         } 
-        if (Vector3.Distance(transform.position, destPoint) < attackRange) walkpointSet = false; //dafault is < 10
+        if (Vector3.Distance(transform.position, destPoint) < 10) walkpointSet = false; //dafault is < 10
         agent.speed = walkSpeed;
     }
 
     void FindDest()
     {
-        float z = Random.Range(-attackRange, attackRange);
-        float x = Random.Range(-attackRange, attackRange);
+        float z = Random.Range(-patrolRange, patrolRange);
+        float x = Random.Range(-patrolRange, patrolRange);
 
         destPoint = new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z); 
         Vector3 obstructPoint = transform.TransformDirection(Vector3.forward);
         RaycastHit hit;
 
-        if (Physics.Raycast(destPoint, Vector3.down, groundLayer) && Physics.Raycast(transform.position, obstructPoint, out hit, sightRange))
+        if (Physics.Raycast(destPoint, Vector3.down, groundLayer) && /*!*/Physics.Raycast(transform.position, obstructPoint, out hit, sightRange)) 
         //if (Physics.Raycast(destPoint, transform.forward, groundLayer)) //Vector3.down
         {
             walkpointSet = true;
@@ -175,12 +168,12 @@ public class EnemyAIPatrolV2 : MonoBehaviour
         }
     }
 
-    void EnableEnemyAttack()
+    public void EnableEnemyAttack()
     {
         boxCollider.enabled = true;
     }
 
-    void DisableEnemyAttack()
+    public void DisableEnemyAttack()
     {
         boxCollider.enabled = false;
     }

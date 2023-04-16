@@ -43,7 +43,7 @@ public class wireY : wireProp
                 Ray raySlot = wireDiodeSlot.toggleRay.getRay();
                 float angle = Mathf.Atan2(ray.direction.z,ray.direction.x)*Mathf.Rad2Deg - Mathf.Atan2(raySlot.direction.z,raySlot.direction.x)*Mathf.Rad2Deg;
                 
-                if(Mathf.Abs(angle)<90){
+                if(Mathf.Abs(angle)<90 && wireDiodeSlot.diodeSlot.collideGameObject){
                     isDiodeOutputWay = true;
                     if(Mathf.Abs(wireDiodeSlot.getVoltage())>distance){
                         
@@ -55,7 +55,7 @@ public class wireY : wireProp
             }else if(voltInputObj.CompareTag("wire")){
                 wire wireObj = voltInputObj.GetComponent<wire>();
                 if(!isDiodeOutputWay || wireObj.m_isNearGenerator){
-                    /*if(this.gameObject.name == "wire.y"){
+                    /*if(this.gameObject.name == "wire.y.001"){
                         Debug.Log(wireObj.getVoltage());
                     }*/
                     if(Mathf.Abs(wireObj.getVoltage())>distance){
@@ -108,6 +108,13 @@ public class wireY : wireProp
 
     void FixedUpdate(){
         cosValue = waveGenerator.getCosValue();
+        if(this.gameObject.name == "wire.y.001"){
+            /*RaycastHit hit;
+            if(Physics.Raycast(controlRay.input[0],out hit,Mathf.Infinity)){
+                Debug.DrawLine(controlRay.input[0].origin,controlRay.input[0].origin+hit.distance*controlRay.input[0].direction,Color.red);
+                Debug.Log(hit.collider.transform.parent.gameObject.name);
+            }*/
+        }
         voltage = calVoltage(controlRay.output.Concat(controlRay.input).ToList());
         wireQueryGroup.SetColor(voltage,childRenderer);
     }

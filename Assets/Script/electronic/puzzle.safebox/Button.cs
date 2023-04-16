@@ -13,4 +13,8 @@ public class Button : MonoBehaviour
         safeBoxDoor.CurrentState.UpdateState(safeBoxDoor,nameButton);
         Debug.Log("Button trigger");    
     }
+    /*private void OnTriggerEnter(Collider other) {
+        safeBoxDoor.CurrentState.UpdateState(safeBoxDoor,nameButton);
+        Debug.Log("Button trigger");    
+    }*/
 }

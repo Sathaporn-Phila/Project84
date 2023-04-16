@@ -7372,7 +7372,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1820903873}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 47e88bfb813443842a049a66a8bc902b, type: 3}
   m_Name: 
@@ -7387,6 +7387,8 @@ MonoBehaviour:
   obstructionLayer:
     serializedVersion: 2
     m_Bits: 128
+  destPoint: {x: 0, y: 0, z: 0}
+  obstuctPoint: {x: 0, y: 0, z: 0}
   patrolRange: 300
   sightRange: 100
   attackRange: 20
@@ -7394,8 +7396,8 @@ MonoBehaviour:
   playerInAttackRange: 0
   fovAngle: 90
   canSeePlayer: 0
-  walkSpeed: 3
-  runSpeed: 6
+  walkSpeed: 5
+  runSpeed: 10
 --- !u!1 &1842696606
 GameObject:
   m_ObjectHideFlags: 0
@@ -7691,6 +7693,10 @@ PrefabInstance:
     - target: {fileID: 4798247273087162910, guid: 383da0a665502c14d92add85ab942a2d, type: 3}
       propertyPath: runSpeed
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4798247273087162910, guid: 383da0a665502c14d92add85ab942a2d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4798247273087162910, guid: 383da0a665502c14d92add85ab942a2d, type: 3}
       propertyPath: walkSpeed

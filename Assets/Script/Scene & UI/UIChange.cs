@@ -14,8 +14,8 @@ public class UIChange : MonoBehaviour
     }
     public void close_option()
     {
-        Main_Menu_UI.SetActive(false);
-        Option_UI.SetActive(true);
+        Main_Menu_UI.SetActive(true);
+        Option_UI.SetActive(false);
         
     }
 }

@@ -64,11 +64,9 @@ public class checkpoint : MonoBehaviour
         }
     }
     private void OnTriggerEnter(Collider other) {
-        if(other.TryGetComponent<PlayerHealth>(out PlayerHealth me)){
-            state = touchCheckpoint;
-            Debug.Log("checkpoint trigger");
-            me.playerInfo.setCurrentCheckpoint(checkpointName);
-        }
+        state = touchCheckpoint;
+        Debug.Log("checkpoint trigger");
+        GameObject.Find("Robot Kyle").GetComponent<PlayerHealth>().playerInfo.setCurrentCheckpoint(checkpointName);
         
     }
     public void setIsTouched(){

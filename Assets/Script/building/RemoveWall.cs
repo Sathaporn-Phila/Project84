@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class RemoveWall : MonoBehaviour
 {
-    public GameObject Wall;
 
     public void remove()
     {
-        Wall.SetActive(false);
+        this.gameObject.SetActive(false);
 
     }
 

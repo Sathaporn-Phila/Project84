@@ -9,7 +9,11 @@ public class GraphDisplay : MonoBehaviour
     public Image originGraph,yourGraph;
     public doorRoom doortrigger;
     
-    public void Awake() {
+    public virtual void Awake() {
+        setGraph();
+        setEnemy();
+    }
+    public void setGraph(){
         originGraph = this.transform.Find("wave.origin").GetComponent<Image>();
         yourGraph = this.transform.Find("wave.your").GetComponent<Image>();
         Material mat = Instantiate(originGraph.material);
@@ -22,6 +26,7 @@ public class GraphDisplay : MonoBehaviour
         originGraph.material = mat;
         yourGraph.material = mat2;
     }
+    public virtual void setEnemy(){}
     public void ChangeVal(DirectionButton.Direction dir,DirectionButton.ButtonBehaviour buttonBehaviour){
         float maxAmp = 5;
         float minAmp = 5;

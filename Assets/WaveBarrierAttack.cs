@@ -20,10 +20,7 @@ public class WaveBarrierAttack : MonoBehaviour
         if (enemy != null)
         {
             enemy.HP -= damage;
-            if (enemy.HP <= 0)
-            {
-                enemy.die();
-            }
+            
 
         }
     }

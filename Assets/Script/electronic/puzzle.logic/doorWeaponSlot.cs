@@ -4,7 +4,8 @@ using UnityEngine;
 using System.Text.RegularExpressions;
 public class doorWeaponSlot : DoorSlot
 {
-    // Start is called before the first frame update
+    public List<normalGen> allgen = new();
+    
     public override void setInitValue(){
         doorOpen = this.gameObject.AddComponent<doorOpenWeapon>();
         doorClose = this.gameObject.AddComponent<doorAnimClose>();
@@ -23,5 +24,8 @@ public class doorWeaponSlot : DoorSlot
     public virtual void Update() {
         Ray ray = new Ray(transform.position,transform.TransformDirection(Vector3.forward));
         currerntState.UpdateState(this,skinnedMesh,wireQuery.findWireHit(ray,2,0));
+    }
+    public void reset(){
+        allgen.ForEach(item=>item.reset());
     }
 }

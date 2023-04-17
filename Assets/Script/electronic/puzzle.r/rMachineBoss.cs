@@ -5,8 +5,12 @@ using UnityEngine;
 public class rMachineBoss : rMachine
 {
     float atk = 1;
+    EnemyHealth enemyHealth;
+    private void Awake() {
+        enemyHealth = GameObject.FindGameObjectWithTag("boss").GetComponent<EnemyHealth>();
+    }
     public override void action(){
-        //boss.hp -= 1;
+        enemyHealth.HP -= 10;
         box.respawn();
     }
     public override void refresh(){

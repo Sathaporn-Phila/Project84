@@ -8,6 +8,7 @@ public class normalGen : wireProp
     List<MeshRenderer> childRenderer = new List<MeshRenderer>();
     float baseVolt = 5;
     wireQuery wireQueryGroup;
+    doorWeaponSlot weaponSlot;
     private void Awake() {
         voltage = Random.Range(0,2)*baseVolt;
         wireQueryGroup = this.gameObject.AddComponent<wireQuery>();
@@ -15,6 +16,13 @@ public class normalGen : wireProp
             wireQueryGroup.SetColor(voltage,meshRenderer);
             childRenderer.Add(meshRenderer);
         }
+        weaponSlot = this.transform.parent.parent.Find("puzzle.unlock/wire.slot.withDoor").GetComponent<doorWeaponSlot>();
+        if(weaponSlot){
+            weaponSlot.allgen.Add(this);
+        }
+    }
+    public void reset(){
+        voltage = Random.Range(0,2)*baseVolt;
     }
 
     // Update is called once per frame

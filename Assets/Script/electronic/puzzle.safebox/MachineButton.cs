@@ -7,7 +7,7 @@ public class MachineButton : Button{
     private void Awake() {
         safeBoxDoor = this.transform.parent.GetComponent<safeBoxDoor>();
     }
-    private void OnCollisionEnter(Collision other) {
+    private void OnTriggerEnter(Collider other) {
         safeBoxDoor.UpdateState(nameButton);   
     }    
 }

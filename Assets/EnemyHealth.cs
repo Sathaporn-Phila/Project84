@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {   
-    Animator animator;
+    public Animator animator;
 
     public float HP = 100;
 
-    void Start()
+    private void Start()
     {
         animator = GetComponent<Animator>();
     }
-
-    public void die()
+    private void Update() {
+        die();
+    }
+    public virtual void die()
     {
         if (HP <= 0)
         {

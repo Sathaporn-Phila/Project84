@@ -5,12 +5,14 @@ using System.Linq;
 public class safeboxMachine : safeBoxDoor
 {
     // Start is called before the first frame update
+    EnemyHealth enemyHealth;
     
     private void Awake() {
         safeboxPassword = new Password();
         meshRenderer = GetComponent<MeshRenderer>();
         Mpb.SetFloatArray("_IntArray",new List<float>(){-1f,-1f,-1f,-1f,-1f,-1f,-1f,-1f});
         meshRenderer.SetPropertyBlock(Mpb);
+        enemyHealth = GameObject.FindGameObjectWithTag("boss").GetComponent<EnemyHealth>();
     }
     public override void UpdateState(string input)
     {
@@ -32,7 +34,7 @@ public class safeboxMachine : safeBoxDoor
         meshRenderer.SetPropertyBlock(Mpb);
     }
     private void action(){
-        //boss.hp -= 1;
+        enemyHealth.HP -= 10;
         reset();
     }
     private void reset(){

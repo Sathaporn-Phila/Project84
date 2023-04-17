@@ -238,7 +238,7 @@ GameObject:
   - component: {fileID: 4798247273087162911}
   m_Layer: 9
   m_Name: SK_Bio_Mutant
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -405,6 +405,8 @@ MonoBehaviour:
   range: 100
   sightRange: 100
   attackRange: 5
+  walkSpeed: 0
+  runSpeed: 0
 --- !u!195 &4798247273087162911
 NavMeshAgent:
   m_ObjectHideFlags: 0

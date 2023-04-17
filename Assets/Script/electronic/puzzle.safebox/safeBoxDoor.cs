@@ -36,9 +36,7 @@ public class safeBoxDoor : MonoBehaviour
             if(current.Length<8){
                 if(value == 0.ToString() || value == 1.ToString()){
                     current += value;
-                }
-            }
-            else if(value == "DEL" && current.Length > 0 && current.Length <= 8){
+            }}else if(value == "DEL" && current.Length > 0 && current.Length<=8){
                     current = current.Substring(0,current.Length-1);
             }
         }

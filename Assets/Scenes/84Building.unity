@@ -10099,22 +10099,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42871a4c08b9bfe4f913368c3cda18cf, type: 3}
---- !u!114 &2304164944628776137 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1327318129007976832, guid: 42871a4c08b9bfe4f913368c3cda18cf, type: 3}
-  m_PrefabInstance: {fileID: 2304164944628776136}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9b2b41df484c174ba562c71381c09ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &2304164944628776138 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1474906131067763708, guid: 42871a4c08b9bfe4f913368c3cda18cf, type: 3}
-  m_PrefabInstance: {fileID: 2304164944628776136}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3916541858707797848
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10125,7 +10109,7 @@ PrefabInstance:
     - target: {fileID: 4690235609395718797, guid: 51e609b88575f4b4ab362f49d15db4a9, type: 3}
       propertyPath: removeWall
       value: 
-      objectReference: {fileID: 2304164944628776137}
+      objectReference: {fileID: 0}
     - target: {fileID: 5362867099928905114, guid: 51e609b88575f4b4ab362f49d15db4a9, type: 3}
       propertyPath: player
       value: 
@@ -10178,7 +10162,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4690235609395718797, guid: 51e609b88575f4b4ab362f49d15db4a9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 51e609b88575f4b4ab362f49d15db4a9, type: 3}
 --- !u!1001 &5108168551398881589
 PrefabInstance:
@@ -14558,7 +14543,7 @@ PrefabInstance:
     - target: {fileID: 4587688956750764259, guid: 866b84a4fe8a3414cbdb8cbfc1fd9704, type: 3}
       propertyPath: enemySpawnPoint
       value: 
-      objectReference: {fileID: 2304164944628776138}
+      objectReference: {fileID: 0}
     - target: {fileID: 4598550386364887737, guid: 866b84a4fe8a3414cbdb8cbfc1fd9704, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

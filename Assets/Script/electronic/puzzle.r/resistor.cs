@@ -41,19 +41,15 @@ public class resistor : MonoBehaviour
         Mpb.SetVectorArray("_ColorArray",prop.getAllColor());
 
         for(int i=0;i<renderer.materials.Length;i++){
-            //if(renderer.materials[i].HasProperty("_ColorArray")){
-                renderer.SetPropertyBlock(Mpb,i);
-            //}
-            //}
+            renderer.SetPropertyBlock(Mpb,i);
+            
         }
     }
     void Awake(){
         prop = new Attribute(stickerData);
         this.gameObject.GetComponent<XRGrabInteractable>().interactionManager = GameObject.Find("XR Interaction Manager").GetComponent<XRInteractionManager>();
         SetColor();
-        /*foreach(Sticker attr in prop.allSticker){
-            Debug.Log(attr.colorName+new Vector4(attr.color.r,attr.color.g,attr.color.b));
-        }*/
+        
         
 
     }

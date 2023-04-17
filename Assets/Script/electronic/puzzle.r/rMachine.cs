@@ -1,9 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using System;
-using System.Threading.Tasks;
+
 using System.Linq;
 using TMPro;
 public class rMachine : MonoBehaviour
@@ -63,13 +62,13 @@ public class rMachine : MonoBehaviour
         List<GameObject> slots = query.queryByName(this.gameObject,new Regex(patterns["slot"]));
         List<GameObject> led = query.queryByName(this.gameObject,new Regex(patterns["led"]));
         List<GameObject> text = (this.gameObject.transform.Find("ohm.sticker/Canvas").GetComponentsInChildren<Transform>()).Skip(1).Where(t=>Regex.IsMatch(t.gameObject.name,@"\bText")).Select(t=>t.gameObject).ToList();
-        //Debug.Log(slots.Count);
-        //set property for rMachine
+        
         for(int i=0;i<slots.Count;i++){
             float nearDivider = (attributes[i].val.ToString().Length-1) - ((attributes[i].val.ToString().Length-1) % 3);
-            //Debug.Log(string.Join(" ",attributes[i].val,attributes[i].val.ToString().Length,nearDivider));
+            
+            //map to scientific symbol
             text[i].GetComponent<TextMeshPro>().text = string.Join(" ",attributes[i].val/Math.Pow(10,nearDivider),string.Join("",attributes[i].findPrefixSymbol((int)nearDivider),"\u2126"));
-            //Debug.Log(string.Join(" ",attributes[i].val/Math.Pow(10,nearDivider),string.Join("",attributes[i].findPrefixSymbol((int)nearDivider),"\u2126")));
+            
             SlotGroup slotGroup = new SlotGroup(slots[i],led[i],text[i]);
             slotGroups.Add(slotGroup);
         }

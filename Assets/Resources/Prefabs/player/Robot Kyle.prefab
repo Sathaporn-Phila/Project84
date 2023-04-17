@@ -2208,7 +2208,6 @@ GameObject:
   - component: {fileID: 410956979213919877}
   - component: {fileID: 410956979213919930}
   - component: {fileID: 410956979213919935}
-  - component: {fileID: 796773657433456518}
   m_Layer: 8
   m_Name: Robot Kyle
   m_TagString: Untagged
@@ -2290,7 +2289,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8544997721961075394}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b2d8418b0b9634b1892b0268dd9c2743, type: 3}
   m_Name: 
@@ -2437,20 +2436,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 100
---- !u!114 &796773657433456518
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8544997721961075394}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f49cbd2e768f84a4eab15a4b603c665b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 2
-  turnSpeed: 2
 --- !u!1 &8652475019433754366
 GameObject:
   m_ObjectHideFlags: 0

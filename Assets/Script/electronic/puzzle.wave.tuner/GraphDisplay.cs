@@ -6,12 +6,21 @@ using System.Linq;
  
 public class GraphDisplay : MonoBehaviour
 {
-    Image originGraph,yourGraph;
+    public Image originGraph,yourGraph;
     public doorRoom doortrigger;
-    private void Awake() {
+    
+    public void Awake() {
         originGraph = this.transform.Find("wave.origin").GetComponent<Image>();
         yourGraph = this.transform.Find("wave.your").GetComponent<Image>();
-        
+        Material mat = Instantiate(originGraph.material);
+        Material mat2 = Instantiate(yourGraph.material);
+        mat.SetFloat("_Amplitude",Random.Range(-5,5));
+
+        float pos = Random.Range(0,360);
+        mat.SetFloat("_Position",pos-pos%15f);
+
+        originGraph.material = mat;
+        yourGraph.material = mat2;
     }
     public void ChangeVal(DirectionButton.Direction dir,DirectionButton.ButtonBehaviour buttonBehaviour){
         float maxAmp = 5;
@@ -38,13 +47,13 @@ public class GraphDisplay : MonoBehaviour
             }
         }
 
+        checkSameVal();
+    } 
+    public virtual void checkSameVal(){
         if(originGraph.material.GetFloat("_Amplitude") == yourGraph.material.GetFloat("_Amplitude") && originGraph.material.GetFloat("_Position") == yourGraph.material.GetFloat("_Position")){
             doortrigger.Open();
         }
-    } 
-
-       
-    
-    
+    }
+          
     
 }

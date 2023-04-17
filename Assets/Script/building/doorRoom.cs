@@ -9,6 +9,10 @@ public class doorRoom : MonoBehaviour {
     public doorState currentState;
     public doorAnimOpen doorOpen;
     public doorAnimClose doorClose;
+    public AudioSource audiosound;
+    public AudioClip opensound;
+    public AudioClip closesound;
+
     [SerializeField] doorInitialState doorInitial = new();
     public virtual void Awake() {
         setData();
@@ -23,9 +27,11 @@ public class doorRoom : MonoBehaviour {
     public void Open(){
         currentState = doorOpen;
         currentState.Enter(m_animator);
+        audiosound.PlayOneShot(opensound);
     }
     public void Close(){
         currentState = doorClose;
         currentState.Enter(m_animator);
+        audiosound.PlayOneShot(closesound);
     }    
 }

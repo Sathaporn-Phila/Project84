@@ -10,7 +10,7 @@ public class wireDiodeSlot : wireProp
     public float waitCounter;
     public toggleRay toggleRay;
     WaveGenerator waveGenerator;
-    diodeSlot diodeSlot;
+    public diodeSlot diodeSlot;
     wireQuery wireQueryGroup;
     
     

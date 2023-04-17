@@ -5,8 +5,15 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     public float HP = 100;
-    public void die(){
-        transform.position = GetComponent<playerDataController>().getPostionfromCheckpoint();
+    public playerDataController playerInfo; 
+    private void Start() {
+        playerInfo = GameObject.Find("VR/XR Origin").GetComponent<playerDataController>();
+        //die();
+    }
+    
+    public void die()
+    {
+        playerInfo.transform.position = playerInfo.getPostionfromCheckpoint();
         HP = 100;
     }
 }

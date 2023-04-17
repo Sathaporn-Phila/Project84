@@ -8,7 +8,7 @@ public class console : MonoBehaviour
     private void Awake() {
         rfidCard = GameObject.Find("card").GetComponent<card>();
     }
-    private void OnCollisionTrigger(Collision other) {
+    private void OnCollisionEnter(Collision other) {
         if(other.gameObject == rfidCard.gameObject){
             this.transform.parent.Find("Wall_Door_02").GetComponent<doorRoom>().Open();
         }

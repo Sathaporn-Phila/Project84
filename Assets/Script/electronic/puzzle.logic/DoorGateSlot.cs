@@ -11,10 +11,8 @@ public class DoorGateSlot : DoorSlot
             allSlot.Add(collider.GetComponent<GateSlot>());
         }
     }
-    private void Update() {
+    public virtual void Update() {
         Ray ray = new Ray(transform.position,transform.TransformDirection(Vector3.forward));
         currerntState.UpdateState(this,skinnedMesh,wireQuery.findWireHit(ray,2,0));
-
-
     }
 }

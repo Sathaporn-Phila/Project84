@@ -16,8 +16,9 @@ public abstract class Gate : MonoBehaviour
    }
    public void getVoltageFromHit(){
       //Debug.Log(wireQueryGroup.findParentObjectHit(rayInputLeft,2,0));
-      voltageLeft = wireQueryGroup.findWireHit(rayInputLeft,2);
-      voltageRight = wireQueryGroup.findWireHit(rayInputRight,2);
+      //Debug.DrawLine(rayInputLeft.origin,rayInputLeft.origin + 2*rayInputLeft.direction,Color.magenta);
+      voltageLeft = wireQueryGroup.findWireHit(rayInputLeft,2,0);
+      voltageRight = wireQueryGroup.findWireHit(rayInputRight,2,0);
    }
 
    private void Awake() {
@@ -31,6 +32,7 @@ public abstract class Gate : MonoBehaviour
    
       isInSlot?.Invoke();
       if(isInSlot != null){
+         getVoltageFromHit();
          voltage = calVoltage(voltageLeft,voltageRight);
       }
    }

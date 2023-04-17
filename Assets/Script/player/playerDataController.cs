@@ -13,7 +13,6 @@ public class playerDataController : MonoBehaviour
     private PlayerData playerInfo;
     /*Vector3 nextMovement;
     Quaternion rotation,desiredforward = Quaternion.identity;*/
-    private Rigidbody rb;
     private CapsuleCollider hitbox;
     [SerializeField]
     private float speed = 2f,turnSpeed = 2f;
@@ -33,7 +32,6 @@ public class playerDataController : MonoBehaviour
         playerInfo = _realm.Find<PlayerData>("player");
 
     
-        rb = GetComponent<Rigidbody>();
         hitbox = GetComponent<CapsuleCollider>();
         
 
@@ -42,8 +40,8 @@ public class playerDataController : MonoBehaviour
                 playerInfo = _realm.Add(new PlayerData("player", this.transform));
             });
         }else{
-            rb.MovePosition(playerInfo.transformModel.Position);
-            rb.MoveRotation(playerInfo.transformModel.Rotation);
+            transform.position = playerInfo.transformModel.Position;
+            transform.rotation = playerInfo.transformModel.Rotation;
         }
         
             /*var jsonData = File.ReadAllText(playerPath);
@@ -126,11 +124,14 @@ public class playerDataController : MonoBehaviour
         PlayerPrefs.Save();*/
     }
     public Vector3 getPostionfromCheckpoint(){
-        checkpointData checkpointData = _realm.Find<checkpointData>(playerInfo.checkpointName);
-        if(checkpointData is not null){
+        //Debug.Log(playerInfo.checkpointName);
+        if(playerInfo.checkpointName is null){
+            return _realm.Find<checkpointData>("start").transformModel.Position;
+        }
+        else{
+            checkpointData checkpointData = _realm.Find<checkpointData>(playerInfo.checkpointName);
+            Debug.Log(checkpointData.transformModel.Position);
             return checkpointData.transformModel.Position;
-        }else{
-            return playerInfo.transformModel.Position;
         }
     }
 }

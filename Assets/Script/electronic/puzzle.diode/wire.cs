@@ -69,6 +69,7 @@ public class wire : wireProp
             origin = transform.position + Vector3.down*0.1f;
         }else{
             origin = transform.position + Vector3.down*0.5f;
+            
         }
         if(Regex.IsMatch(this.gameObject.name,@"\bwire.straight") || Regex.IsMatch(this.gameObject.name,@"\bwire.resistor.slot")){
             Ray m_InputRay1 = new Ray(origin,transform.TransformDirection(Vector3.forward));
@@ -77,7 +78,7 @@ public class wire : wireProp
         }else if(Regex.IsMatch(this.gameObject.name,@"\bwire.curve")){
             Ray m_InputRay1 = new Ray(origin,transform.TransformDirection(Vector3.back));
             Ray m_InputRay2 = new Ray(origin,transform.TransformDirection(Vector3.left));
-            
+            //Debug.DrawLine(m_InputRay1.origin,m_InputRay1.origin + scale*m_InputRay1.direction,Color.magenta,60);
             toggleRay.AddRange(new List<toggleRay>{
                 new toggleRay(m_InputRay1,0),new toggleRay(m_InputRay2,0)
             });
@@ -106,12 +107,9 @@ public class wire : wireProp
     private void FixedUpdate() {
         GameObject wireLineHit = wireQueryGroup.findParentObjectHit(toggleRay[current].getRay(),scale,0);
         GameObject wireYHit = wireQueryGroup.findParentObjectHit(toggleRay[current].getRay(),scale,7);
-        /*if(this.gameObject.name == "wire.resistor.slot"){
-            RaycastHit hit;
-            if(Physics.Raycast(toggleRay[current].getRay(),out hit,Mathf.Infinity,1<<0)){
-                Debug.DrawLine(transform.position,transform.position+toggleRay[current].getRay().direction*hit.distance,Color.magenta);
-                Debug.Log(hit.transform.name);
-            }
+        /*if(this.gameObject.name == "wire.curve.001"){
+            GameObject gameObj = wireQueryGroup.findParentObjectHit(toggleRay[current].getRay(), scale, 7);
+            Debug.Log(gameObj.name);
         }*/
         
         if(!Regex.IsMatch(this.gameObject.name,@"\bwire.resistor.slot")){
@@ -128,6 +126,7 @@ public class wire : wireProp
                 voltage = 0;
             }
         }
+
         else {
             RaycastHit[] hits;
             hits = Physics.RaycastAll(toggleRay[current].getRay(), scale);

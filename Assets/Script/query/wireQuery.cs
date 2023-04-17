@@ -9,6 +9,9 @@ public class wireQuery : MonoBehaviour
     public float findWireHit(Ray ray,float length,int layer=0){
         float volt = 0;
         GameObject hitParentObj = findParentObjectHit(ray,length,layer);
+        /*if(hitParentObj){
+            if(hitParentObj.name=="wire") Debug.Log(hitParentObj);
+        }*/
         volt = getVoltFromHitObj(hitParentObj);
         return volt;
     }
@@ -17,7 +20,10 @@ public class wireQuery : MonoBehaviour
         GameObject hitParentObj = null;
         if(Physics.Raycast(ray,out hit,length+(float)0.01,1<<layer)){
             //if(Regex.IsMatch(this.gameObject.name,@"\bwire.curve.001")){Debug.Log(hit.collider.gameObject.name);}
-            
+            /*if(Regex.IsMatch(this.gameObject.name,@"\bgate")){
+                Debug.Log(hitParentObj.name);
+            }*/
+            //Debug.DrawLine(ray.origin,ray.origin+hit.distance*ray.direction,Color.red);
             if(hit.transform.parent!=null){
                 //if(Regex.IsMatch(this.gameObject.name,@"\bwire.curve")&&Regex.IsMatch(hit.collider.gameObject.transform.parent.gameObject.name,@"\bpuzzle.slot")){Debug.Log("hit");}
                 if(Regex.IsMatch(hit.collider.gameObject.name,@"\bgate")){

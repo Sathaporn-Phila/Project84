@@ -195,7 +195,8 @@ GameObject:
   - component: {fileID: 2096679099670599047}
   - component: {fileID: 4652518223715011431}
   - component: {fileID: 1648348478570131549}
-  - component: {fileID: 1948773110159358923}
+  - component: {fileID: 710314987997971391}
+  - component: {fileID: 3936901302661578604}
   m_Layer: 0
   m_Name: button.002
   m_TagString: Untagged
@@ -282,7 +283,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameButton: 0
   safeBoxDoor: {fileID: 0}
---- !u!64 &1948773110159358923
+--- !u!54 &710314987997971391
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3573249488884875125}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!64 &3936901302661578604
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -293,7 +310,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 865404387769868967, guid: 52e49ab3bae4bd346951c2eaed346ca5, type: 3}
 --- !u!1 &4461325396409434983
@@ -340,7 +357,8 @@ GameObject:
   - component: {fileID: 2290663652393394368}
   - component: {fileID: 1571745324423018271}
   - component: {fileID: 4411502082329656814}
-  - component: {fileID: 5119762055332975888}
+  - component: {fileID: 7383275887957352738}
+  - component: {fileID: 6393122659191275270}
   m_Layer: 0
   m_Name: button.001
   m_TagString: Untagged
@@ -427,7 +445,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameButton: DEL
   safeBoxDoor: {fileID: 0}
---- !u!64 &5119762055332975888
+--- !u!54 &7383275887957352738
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5022051905435050320}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!64 &6393122659191275270
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -438,7 +472,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 1225810344610519237, guid: 52e49ab3bae4bd346951c2eaed346ca5, type: 3}
 --- !u!1 &5804295921244373769
@@ -507,7 +541,8 @@ GameObject:
   - component: {fileID: 9110338481047035535}
   - component: {fileID: 4965421762447441995}
   - component: {fileID: 2637774877270339824}
-  - component: {fileID: 2466759214104420360}
+  - component: {fileID: 2734489049497479415}
+  - component: {fileID: 528533506861278453}
   m_Layer: 0
   m_Name: button.004
   m_TagString: Untagged
@@ -594,7 +629,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameButton: OK
   safeBoxDoor: {fileID: 0}
---- !u!64 &2466759214104420360
+--- !u!54 &2734489049497479415
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7650495000377201839}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!64 &528533506861278453
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -605,7 +656,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -5887738540613475733, guid: 52e49ab3bae4bd346951c2eaed346ca5, type: 3}
 --- !u!1 &8108407417972550600
@@ -620,7 +671,8 @@ GameObject:
   - component: {fileID: 115030378557816147}
   - component: {fileID: 4569856153272962285}
   - component: {fileID: 7841053750129361787}
-  - component: {fileID: 3435876989157588765}
+  - component: {fileID: 699956216597668061}
+  - component: {fileID: 6031481301622838710}
   m_Layer: 0
   m_Name: button.003
   m_TagString: Untagged
@@ -707,7 +759,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameButton: 1
   safeBoxDoor: {fileID: 0}
---- !u!64 &3435876989157588765
+--- !u!54 &699956216597668061
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8108407417972550600}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!64 &6031481301622838710
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -718,7 +786,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 1480540138992573077, guid: 52e49ab3bae4bd346951c2eaed346ca5, type: 3}
 --- !u!1 &8872977816338549914

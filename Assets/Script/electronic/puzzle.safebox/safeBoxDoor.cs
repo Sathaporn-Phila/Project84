@@ -26,10 +26,8 @@ public class safeBoxDoor : MonoBehaviour
         private string Value = "";
         public string current = "";
         public Password(){
-            for(int i=0;i<8;i++){
-                Value += Random.Range(0,2).ToString();
-            }
-            Debug.Log(Value);
+            randomPassword();
+            //Debug.Log(Value);
         }
         public string get(){
             return Value;
@@ -38,10 +36,18 @@ public class safeBoxDoor : MonoBehaviour
             if(current.Length<8){
                 if(value == 0.ToString() || value == 1.ToString()){
                     current += value;
-                }else if(value == "DEL"){
-                    current = current.Substring(0,current.Length-1);
                 }
             }
+            else if(value == "DEL" && current.Length > 0 && current.Length <= 8){
+                    current = current.Substring(0,current.Length-1);
+            }
+        }
+        public void randomPassword(){
+            string rnd = "";
+            for(int i=0;i<8;i++){
+                rnd += Random.Range(0,2).ToString();
+            }
+            Value = rnd;
         }
     }
     public Password safeboxPassword;
@@ -85,7 +91,9 @@ public class safeBoxDoor : MonoBehaviour
         currentState.Enter(m_animator);
     }
     // Update is called once per frame
-    private void Update() {
+    public virtual void Update() {
+        Debug.Log(string.Join(",",this.gameObject.name,currentState==null));
         currentState.UpdateState(this);
     }
+    public virtual void UpdateState(string input){}
 }

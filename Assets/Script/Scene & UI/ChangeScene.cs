@@ -2,55 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement; 
+using Realms;
 
 public class ChangeScene : MonoBehaviour
 {
     public FadeScreen fadeScreen;
-    
-    public void GoToScene(int sceneindex)
-    {
-        StartCoroutine(GotoSceneRoutine(sceneindex));
-    }
-
-    IEnumerator GotoSceneRoutine(int sceneindex)
-    {
-        fadeScreen.FadeOut();
-        yield return new WaitForSeconds(fadeScreen.fadeDuration);
-        SceneManager.LoadScene(sceneindex);
-    }
-
+    public Realm realm;
     public void GoToSceneAsync(int sceneindex)
     {
         StartCoroutine(GotoSceneAsyncRoutine(sceneindex));
     }
 
-    IEnumerator GotoSceneAsyncRoutineA(int sceneindex)
+    public void newGame()
+    {
+        realm = Realm.GetInstance();
+        realm.Write(()=>{realm.RemoveAll();});
+        StartCoroutine(GotoSceneAsyncRoutine(2));
+    }
+
+    IEnumerator GotoSceneAsyncRoutine(int sceneindex)
     {
         fadeScreen.FadeOut();
         yield return new WaitForSeconds(fadeScreen.fadeDuration);
-        AsynceOperation operation = SceneManager.LoadSceneAsync(sceneindex);
-        operation.allowSceneActivition = false;
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneindex);
+        asyncOperation.allowSceneActivation = false;
 
-        float timer = 0
-        while(timer <= fadeScreen.fadeDuration && !operation.isDone)
+        float timer = 0;
+        while(timer <= fadeScreen.fadeDuration && !asyncOperation.isDone)
         {
             timer += Time.deltaTime;
             yield return null;
         }
 
-        operation.allowSceneActivition = true;
+        asyncOperation.allowSceneActivation = true;
     }
-
-    public void Start_Scene() 
-    {  
-        SceneManager.LoadScene("Start_Scene");  
-    }  
-    public void Tutorial_Scene() 
-    {  
-        SceneManager.LoadScene("Tutorial_Scene");  
-    }  
-    public void Building() {
-
-        SceneManager.LoadScene("84Building");  
-    }  
 }

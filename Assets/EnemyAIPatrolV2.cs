@@ -144,7 +144,7 @@ public class EnemyAIPatrolV2 : MonoBehaviour
             agent.SetDestination(destPoint);
             animator.SetTrigger("Patrol");
         } 
-        if (Vector3.Distance(transform.position, destPoint) < 10) walkpointSet = false; //dafault is < 10
+        if (Vector3.Distance(transform.position, destPoint) < patrolRange) walkpointSet = false; //dafault is < 10
         agent.speed = walkSpeed;
     }
 
@@ -157,7 +157,7 @@ public class EnemyAIPatrolV2 : MonoBehaviour
         Vector3 obstructPoint = transform.TransformDirection(Vector3.forward);
         RaycastHit hit;
 
-        if (Physics.Raycast(destPoint, Vector3.down, groundLayer) && /*!*/Physics.Raycast(transform.position, obstructPoint, out hit, sightRange)) 
+        if (Physics.Raycast(destPoint, Vector3.down, groundLayer) && Physics.Raycast(transform.position, obstructPoint, out hit, sightRange)) 
         //if (Physics.Raycast(destPoint, transform.forward, groundLayer)) //Vector3.down
         {
             walkpointSet = true;

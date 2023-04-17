@@ -14,6 +14,7 @@ public class rMachineBoss : rMachine
         box.respawn();
     }
     public override void refresh(){
+        slotGroups.ForEach(item=>item.slotObj.GetComponent<slot>().TurnLight(item.led,false));
         slotGroups.Clear();
         //await Task.Run(()=>this.transform.parent.Find("box").GetComponent<Box>().spawn());
         matchSlotGroup();

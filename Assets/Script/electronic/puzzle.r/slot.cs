@@ -17,7 +17,7 @@ public class slot : MonoBehaviour
             return mpb;
         }
     }
-    void TurnLight(GameObject led,bool on){
+    public void TurnLight(GameObject led,bool on){
         MeshRenderer renderer = led.GetComponent<MeshRenderer>();
         renderer.material.EnableKeyword("_EMISSION");
         if(on){

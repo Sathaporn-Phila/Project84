@@ -39,7 +39,7 @@ public class slot : MonoBehaviour
             rMachine.SlotGroup ledGroup = resistorMachine.getSlotFrom(this.gameObject.name);
             //if insert correct slot and correct value
                 float nearDivider = (r.Prop.val.ToString().Length-1) - ((r.Prop.val.ToString().Length-1) % 3);
-                if(string.Join(" ",r.Prop.val/Mathf.Pow(10,nearDivider),string.Join("",r.Prop.findPrefixSymbol((int)nearDivider),"\u2126")) == resistorMachine.getSlotGroup().Find(x=>x.slotObj==this.gameObject).textObj.GetComponent<TextMeshPro>().text && !ledGroup.led){
+                if(string.Join(" ",r.Prop.val/Mathf.Pow(10,nearDivider),string.Join("",r.Prop.findPrefixSymbol((int)nearDivider),"\u2126")) == resistorMachine.getSlotGroup().Find(x=>x.slotObj==this.gameObject).textObj.GetComponent<TextMeshPro>().text){
                     TurnLight(ledGroup.led,true);
                     ledGroup.setLedActive(true);
                     if(resistorMachine.checkAllLed()){
@@ -52,7 +52,7 @@ public class slot : MonoBehaviour
     private void OnTriggerExit(Collider other) {
         if(other.TryGetComponent<resistor>(out resistor r)){
             rMachine.SlotGroup ledGroup = resistorMachine.getSlotFrom(this.gameObject.name);
-            ledGroup.setLedActive(false);
+
             TurnLight(ledGroup.led,false);
         }
     }

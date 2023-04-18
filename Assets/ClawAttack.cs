@@ -11,7 +11,17 @@ public class ClawAttack : MonoBehaviour
     private void Start()
     {
         triggerBox = GetComponent<BoxCollider>();
+        //triggerBox.enabled = true;
+    }
+
+    public void EnableEnemyAttack()
+    {
         triggerBox.enabled = true;
+    }
+
+    public void DisableEnemyAttack()
+    {
+        triggerBox.enabled = false;
     }
 
     public void OnTriggerEnter(Collider other)

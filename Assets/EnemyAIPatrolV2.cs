@@ -13,21 +13,24 @@ public class EnemyAIPatrolV2 : MonoBehaviour
     Animator animator;
     BoxCollider boxCollider;
 
+    //check if blocked
+    public Transform endRay;
+    private NavMeshHit hit;
+    private bool blocked = false;
+
     //patrol
     public Vector3 destPoint;
-    public Vector3 obstructPoint;
-    bool walkpointSet;
-    [SerializeField] public float patrolRange;
-
+    //public Vector3 obstructPoint;
+    public bool walkpointSet;
+    [SerializeField] public float minPatrolRange, maxPatrolRange, blockRange;
+    
     //enemy chasing state change
     [SerializeField] public float sightRange, attackRange;
     public bool playerInSight, playerInAttackRange;
 
     //FOV setup
-    //public float radius; same as sightRange
     [Range(0,360)]
     public float fovAngle;
-    //public bool canSeePlayer;
 
     //speed setup
     [SerializeField] float walkSpeed, runSpeed;
@@ -72,19 +75,16 @@ public class EnemyAIPatrolV2 : MonoBehaviour
         {
             Transform target = rangeChecks[0].transform;  // maybe can remove this line
             Vector3 directionToTarget = (target.position - transform.position).normalized;
+
             if (Vector3.Angle(transform.forward, directionToTarget) < fovAngle / 2)
             {
                 float distanceToTarget = Vector3.Distance(transform.position, target.position);
-                //float distanceToTarget = Vector3.Distance(transform.position, player.transform.position);
-                
-                if (Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionLayer))
+
+                if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionLayer))
                 {
-                    //if player is in enemy sight range
-                    
-                    //canSeePlayer = true;
                     playerInSight = true;
-                    //if player is in enemy attack range
-                    if (distanceToTarget < attackRange)
+
+                    if (distanceToTarget <= attackRange)
                     {
                         playerInAttackRange = true;
                     }
@@ -96,24 +96,21 @@ public class EnemyAIPatrolV2 : MonoBehaviour
                 }
                 else
                 {
-                    //canSeePlayer = false;
                     playerInSight = false;
                     playerInAttackRange = false;
                 }
             }    
             else
             {
-                //canSeePlayer = false;
                 playerInSight = false;
                 playerInAttackRange = false;
             }          
         }
-        else if (playerInSight) 
+        /*else if (playerInSight) 
         {
-            //canSeePlayer = false;
             playerInSight = false;
             playerInAttackRange = false;
-        }
+        }*/
     }
     
     void Chasing()
@@ -122,8 +119,8 @@ public class EnemyAIPatrolV2 : MonoBehaviour
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName("idle"))
         {
             animator.SetTrigger("Chase");
-            agent.SetDestination(player.transform.position);
         }
+        agent.SetDestination(player.transform.position);
         agent.speed = runSpeed;
     }
 
@@ -144,31 +141,40 @@ public class EnemyAIPatrolV2 : MonoBehaviour
             agent.SetDestination(destPoint);
             animator.SetTrigger("Patrol");
         } 
-        if (Vector3.Distance(transform.position, destPoint) < patrolRange) walkpointSet = false; //dafault is < 10
+        if (Vector3.Distance(transform.position, destPoint) <= minPatrolRange) walkpointSet = false; //dafault is < 10
         agent.speed = walkSpeed;
     }
 
     void FindDest()
     {
-        float z = Random.Range(-patrolRange, patrolRange);
-        float x = Random.Range(-patrolRange, patrolRange);
+        float z = Random.Range(-maxPatrolRange, maxPatrolRange);
+        float x = Random.Range(-maxPatrolRange, maxPatrolRange);
 
         destPoint = new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z); 
-        Vector3 obstructPoint = transform.TransformDirection(Vector3.forward);
-        RaycastHit hit;
+        //Vector3 obstructPoint = transform.TransformDirection(Vector3.forward);
+        //RaycastHit hit;
 
-        if (Physics.Raycast(destPoint, Vector3.down, groundLayer) && Physics.Raycast(transform.position, obstructPoint, out hit, sightRange)) 
+        blocked = NavMesh.Raycast(transform.position, endRay.position, out hit, groundLayer); //NavMesh.AllAreas
+
         //if (Physics.Raycast(destPoint, transform.forward, groundLayer)) //Vector3.down
+        //if (Physics.Raycast(destPoint, transform.forward, groundLayer) && Physics.Raycast(transform.position, obstructPoint, out hit, sightRange)) 
+        if (/*Physics.Raycast(destPoint, Vector3.down, groundLayer) && */!blocked) 
         {
             walkpointSet = true;
-        }
+            /*Debug.DrawLine(transform.position, transform.forward * minPatrolRange, blocked ? Color.red : Color.green);
+
+            if (blocked)
+            {
+                Debug.DrawRay(hit.position, Vector3.up, Color.red);
+            }*/
+        }   
         else
         {
             walkpointSet = false;
         }
     }
 
-    public void EnableEnemyAttack()
+    /*public void EnableEnemyAttack()
     {
         boxCollider.enabled = true;
     }
@@ -176,6 +182,23 @@ public class EnemyAIPatrolV2 : MonoBehaviour
     public void DisableEnemyAttack()
     {
         boxCollider.enabled = false;
+    }*/
+
+    /*
+    public Transform endRay;
+    private NavMeshHit hit;
+    private bool blocked = false;
+        
+    void Update()
+    {
+        blocked = NavMesh.Raycast(transform.position, endRay.position, out hit, NavMesh.AllAreas);
+        Debug.DrawLine(transform.position, endRay.position, blocked ? Color.red : Color.green);
+
+        if (blocked)
+            Debug.DrawRay(hit.position, Vector3.up, Color.red);
     }
+
+    */
+
     
 }

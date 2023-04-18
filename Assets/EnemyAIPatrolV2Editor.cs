@@ -10,7 +10,11 @@ public class EnemyAIPatrolV2Editor : Editor
         
         //patrol range
         Handles.color = Color.white;
-        Handles.DrawWireArc(fov.transform.position, Vector3.up, Vector3.forward, 360, fov.patrolRange);
+        Handles.DrawWireArc(fov.transform.position, Vector3.up, Vector3.forward, 360, fov.minPatrolRange);
+        Handles.DrawWireArc(fov.transform.position, Vector3.up, Vector3.forward, 360, fov.maxPatrolRange);
+        //block range
+        Handles.color = Color.black;
+        Handles.DrawWireArc(fov.transform.position, Vector3.up, Vector3.forward, 360, fov.blockRange);
         //sight range
         Handles.color = Color.yellow;
         Handles.DrawWireArc(fov.transform.position, Vector3.up, Vector3.forward, 360, fov.sightRange);
@@ -26,8 +30,9 @@ public class EnemyAIPatrolV2Editor : Editor
         Handles.DrawLine(fov.transform.position, fov.transform.position + viewAngle01 * fov.sightRange);
         Handles.DrawLine(fov.transform.position, fov.transform.position + viewAngle02 * fov.sightRange);
         //dest point
-        Handles.color = Color.blue;
         Handles.DrawLine(fov.transform.position, fov.destPoint);
+        //DrawGizmos(fov.transform.position, Vector3.up);
+        //Handles.DrawLine(fov.transform.position, fov.transform.forward * fov.maxPatrolRange);
 
         if (fov.playerInSight)
         {

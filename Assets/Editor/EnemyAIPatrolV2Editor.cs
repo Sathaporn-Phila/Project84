@@ -1,4 +1,4 @@
-using UnityEditor;
+/*using UnityEditor;
 using UnityEngine;
 
 [CustomEditor(typeof(EnemyAIPatrolV2))]
@@ -47,4 +47,4 @@ public class EnemyAIPatrolV2Editor : Editor
 
         return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
     }
-}
+}*/

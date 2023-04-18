@@ -5,16 +5,30 @@ using UnityEngine;
 public class ClawAttack : MonoBehaviour
 {
     [SerializeField] float damage;
-
+    
+    Animator animator;
     BoxCollider triggerBox;
 
     private void Start()
     {
         triggerBox = GetComponent<BoxCollider>();
-        //triggerBox.enabled = true;
+        animator = GetComponentInParent<Animator>();
     }
 
     public void EnableEnemyAttack()
+    {
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("swiping"))
+        {
+            triggerBox.enabled = true;
+        }
+        else
+        {
+            triggerBox.enabled = false;
+        }
+        
+    }
+
+    /*public void EnableEnemyAttack()
     {
         triggerBox.enabled = true;
     }
@@ -22,7 +36,7 @@ public class ClawAttack : MonoBehaviour
     public void DisableEnemyAttack()
     {
         triggerBox.enabled = false;
-    }
+    }*/
 
     public void OnTriggerEnter(Collider other)
     {

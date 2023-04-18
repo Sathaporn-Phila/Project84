@@ -1,4 +1,4 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -48,6 +48,21 @@ public class EnemyAIPatrolV2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        blocked = NavMesh.Raycast(transform.position, endRay.position, out hit, groundLayer);
+        if (!blocked)
+        {
+            walkpointSet = true;
+            Debug.DrawLine(transform.position, endRay.position, blocked ? Color.red : Color.green);
+
+            if (blocked)
+            {
+                Debug.DrawRay(hit.position, Vector3.up, Color.red);
+            }
+        }   
+        else
+        {
+            walkpointSet = false;
+        }
         //the bottom lines of code are old method...
         //playerInSight = Physics.CheckSphere(transform.position, sightRange, playerLayer);
         //playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerLayer);
@@ -106,11 +121,11 @@ public class EnemyAIPatrolV2 : MonoBehaviour
                 playerInAttackRange = false;
             }          
         }
-        /*else if (playerInSight) 
+        else if (playerInSight) 
         {
             playerInSight = false;
             playerInAttackRange = false;
-        }*/
+        }
     }
     
     void Chasing()
@@ -153,25 +168,6 @@ public class EnemyAIPatrolV2 : MonoBehaviour
         destPoint = new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z); 
         //Vector3 obstructPoint = transform.TransformDirection(Vector3.forward);
         //RaycastHit hit;
-
-        blocked = NavMesh.Raycast(transform.position, endRay.position, out hit, groundLayer); //NavMesh.AllAreas
-
-        //if (Physics.Raycast(destPoint, transform.forward, groundLayer)) //Vector3.down
-        //if (Physics.Raycast(destPoint, transform.forward, groundLayer) && Physics.Raycast(transform.position, obstructPoint, out hit, sightRange)) 
-        if (/*Physics.Raycast(destPoint, Vector3.down, groundLayer) && */!blocked) 
-        {
-            walkpointSet = true;
-            /*Debug.DrawLine(transform.position, transform.forward * minPatrolRange, blocked ? Color.red : Color.green);
-
-            if (blocked)
-            {
-                Debug.DrawRay(hit.position, Vector3.up, Color.red);
-            }*/
-        }   
-        else
-        {
-            walkpointSet = false;
-        }
     }
 
     /*public void EnableEnemyAttack()
@@ -198,7 +194,7 @@ public class EnemyAIPatrolV2 : MonoBehaviour
             Debug.DrawRay(hit.position, Vector3.up, Color.red);
     }
 
-    */
+    
 
     
-}
+}*/

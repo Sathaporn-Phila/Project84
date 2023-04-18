@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Linq;
+
  
 public class GraphDisplay : MonoBehaviour
 {
@@ -58,7 +56,5 @@ public class GraphDisplay : MonoBehaviour
         if(originGraph.material.GetFloat("_Amplitude") == yourGraph.material.GetFloat("_Amplitude") && originGraph.material.GetFloat("_Position") == yourGraph.material.GetFloat("_Position")){
             doortrigger.Open();
         }
-    }
-          
-    
+    }    
 }

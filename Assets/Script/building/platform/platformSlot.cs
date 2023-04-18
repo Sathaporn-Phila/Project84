@@ -22,7 +22,7 @@ public class platformSlot : MonoBehaviour
             platform.AddMembox(membox);
             isAdd = true;
             memorybox = membox;
-            memorybox.transform.SetParent(this.transform.parent);
+            //memorybox.transform.SetParent(this.transform.parent);
             Rigidbody rb = other.GetComponent<Rigidbody>();
             rb.useGravity = false;
             rb.velocity = Vector3.zero;
@@ -30,7 +30,7 @@ public class platformSlot : MonoBehaviour
     }
     private void OnTriggerExit(Collider other) {
         if(other.TryGetComponent<memorybox>(out memorybox membox)&& !isAdd){
-            memorybox.transform.SetParent(membox.formerParent);
+            //memorybox.transform.SetParent(membox.formerParent);
             memorybox = null;
             platform.RemoveMembox(membox);
             isAdd = false;

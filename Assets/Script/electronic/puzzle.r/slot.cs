@@ -17,7 +17,7 @@ public class slot : MonoBehaviour
             return mpb;
         }
     }
-    void TurnLight(GameObject led,bool on){
+    public void TurnLight(GameObject led,bool on){
         MeshRenderer renderer = led.GetComponent<MeshRenderer>();
         renderer.material.EnableKeyword("_EMISSION");
         if(on){
@@ -35,12 +35,11 @@ public class slot : MonoBehaviour
         
     }
     private void OnTriggerEnter(Collider other) {
-        if(rgx.IsMatch(other.gameObject.name)){
+        if(other.TryGetComponent<resistor>(out resistor r)){
             rMachine.SlotGroup ledGroup = resistorMachine.getSlotFrom(this.gameObject.name);
             //if insert correct slot and correct value
-            if(other.TryGetComponent<resistor>(out resistor r)){
                 float nearDivider = (r.Prop.val.ToString().Length-1) - ((r.Prop.val.ToString().Length-1) % 3);
-                if(string.Join(" ",r.Prop.val/Mathf.Pow(10,nearDivider),string.Join("",r.Prop.findPrefixSymbol((int)nearDivider),"\u2126")) == resistorMachine.getSlotGroup().Find(x=>x.slotObj==this.gameObject).textObj.GetComponent<TextMeshPro>().text){
+                if(string.Join(" ",r.Prop.val/Mathf.Pow(10,nearDivider),string.Join("",r.Prop.findPrefixSymbol((int)nearDivider),"\u2126")) == resistorMachine.getSlotGroup().Find(x=>x.slotObj==this.gameObject).textObj.GetComponent<TextMeshPro>().text && !ledGroup.led){
                     TurnLight(ledGroup.led,true);
                     ledGroup.setLedActive(true);
                     if(resistorMachine.checkAllLed()){
@@ -49,10 +48,11 @@ public class slot : MonoBehaviour
                 }
             }
         }
-    }
+    
     private void OnTriggerExit(Collider other) {
-        if(rgx.IsMatch(other.gameObject.name)){
+        if(other.TryGetComponent<resistor>(out resistor r)){
             rMachine.SlotGroup ledGroup = resistorMachine.getSlotFrom(this.gameObject.name);
+            ledGroup.setLedActive(false);
             TurnLight(ledGroup.led,false);
         }
     }

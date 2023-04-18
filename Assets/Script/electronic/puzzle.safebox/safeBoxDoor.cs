@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -9,7 +8,6 @@ public class safeBoxDoor : MonoBehaviour
 {
     // Start is called before the first frame update
     
-    public string passwordEnter;
     Animator m_animator;
     
     public MeshRenderer meshRenderer;
@@ -81,7 +79,6 @@ public class safeBoxDoor : MonoBehaviour
         doorOpen = this.gameObject.AddComponent<doorAnimOpen>();
         doorClose = this.gameObject.AddComponent<doorAnimClose>();
         SetAnim();
-        //m_animator = this.gameObject.GetComponent<Animator>();
         meshRenderer = GetComponent<MeshRenderer>();
         Mpb.SetFloatArray("_IntArray",new List<float>(){-1f,-1f,-1f,-1f,-1f,-1f,-1f,-1f});
         meshRenderer.SetPropertyBlock(Mpb);
@@ -90,7 +87,6 @@ public class safeBoxDoor : MonoBehaviour
     }
     // Update is called once per frame
     public virtual void Update() {
-        Debug.Log(string.Join(",",this.gameObject.name,currentState==null));
         currentState.UpdateState(this);
     }
     public virtual void UpdateState(string input){}

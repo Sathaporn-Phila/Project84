@@ -74,7 +74,7 @@ Shader "Custom/graph"
             }
             half4 setGraph(Varyings input){
                 half4 color = half4(0, 0, 0, 1);
-                float threshold = 0.05; // adjust this to control the thickness of the line
+                float threshold = 0.05;
                 float pi = 3.14;
                 float y = (_Amplitude/_MaxAmplitude)*sin(input.uv.x*2*pi*_Frequency+_Position/(2*pi))+0.5;
                 if (abs(input.uv.y - y) < threshold) {

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using System;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -15,8 +13,7 @@ public abstract class Gate : MonoBehaviour
       return voltage;
    }
    public void getVoltageFromHit(){
-      //Debug.Log(wireQueryGroup.findParentObjectHit(rayInputLeft,2,0));
-      //Debug.DrawLine(rayInputLeft.origin,rayInputLeft.origin + 2*rayInputLeft.direction,Color.magenta);
+      
       voltageLeft = wireQueryGroup.findWireHit(rayInputLeft,2,0);
       voltageRight = wireQueryGroup.findWireHit(rayInputRight,2,0);
    }

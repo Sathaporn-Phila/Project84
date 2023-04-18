@@ -16,7 +16,7 @@ public class memoryPlatform : MonoBehaviour
     idleEffect idle = new();
     tornadoEffect tornadoEffect = new();
     Animator animator;
-    public GameObject teleportPoint;
+    public GameObject teleportPoint,flashbackNote;
     float childCount;
     bool isTornadoAnimated;
     public float scale,alpha,alphaThreshold;
@@ -50,6 +50,7 @@ public class memoryPlatform : MonoBehaviour
             effectState.Enter(animator);
             isTornadoAnimated = true;
             teleportPoint.SetActive(true);
+            flashbackNote.SetActive(true);
         }
 
     }

@@ -10,6 +10,8 @@ public class doorOpenWeapon : doorAnimOpen
         enemyHealth = GameObject.FindGameObjectWithTag("boss").GetComponent<EnemyHealth>();
     }
     public void UpdateState(doorWeaponSlot doorSlot,SkinnedMeshRenderer skinnedMesh,float voltage){
+        Vector3 relativePos = transform.InverseTransformDirection(this.transform.position-enemyHealth.transform.position);
+        doorSlot.vfx.SetVector3("targetPosition",relativePos);
         if(voltage == 5){
             this.animateDoorOpen(doorSlot,skinnedMesh);
         }else{
@@ -28,6 +30,7 @@ public class doorOpenWeapon : doorAnimOpen
     }
     private void action(doorWeaponSlot doorSlot){
         enemyHealth.HP -= 10;
+        doorSlot.vfx.SendEvent("PlayLaserBeam");
         this.transform.parent.parent.parent.Find("Box").GetComponent<Box>().respawn();
         doorSlot.reset();
     }

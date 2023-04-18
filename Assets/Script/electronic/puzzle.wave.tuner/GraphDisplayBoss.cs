@@ -1,12 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.VFX;
 public class GraphDisplayBoss : GraphDisplay
 {
     EnemyHealth enemyHealth;
+    VisualEffect vfx;
+    GradientEffect gradientEffect;
     public override void setEnemy() {
         enemyHealth = GameObject.FindGameObjectWithTag("boss").GetComponent<EnemyHealth>();
+        vfx = GetComponent<VisualEffect>();
+        gradientEffect = new GradientEffect(Color.Lerp(new Color(198, 230, 251)*Random.Range(1.0f,2.5f),new Color(0, 0, 128)*Random.Range(1.0f,2.5f),Random.Range(0f,1.0f)),Color.white);
+        vfx.SetGradient("Gradient",gradientEffect.gradient);
     }
     public override void checkSameVal(){
         if(originGraph.material.GetFloat("_Amplitude") == yourGraph.material.GetFloat("_Amplitude") && originGraph.material.GetFloat("_Position") == yourGraph.material.GetFloat("_Position")){
@@ -15,6 +18,7 @@ public class GraphDisplayBoss : GraphDisplay
     }
     private void action(){
         enemyHealth.HP -= 10;
+        vfx.SendEvent("PlayLaserBeam");
         reset();
     }
     private void reset(){
@@ -23,5 +27,9 @@ public class GraphDisplayBoss : GraphDisplay
 
         float pos = Random.Range(0,360);
         originGraph.material.SetFloat("_Position",pos-pos%15f);
+    }
+    private void Update() {
+        Vector3 relativePos = transform.InverseTransformDirection(this.transform.position-enemyHealth.transform.position);
+        vfx.SetVector3("targetPosition",relativePos);
     }
 }

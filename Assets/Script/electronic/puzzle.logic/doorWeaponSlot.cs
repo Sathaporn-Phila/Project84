@@ -1,11 +1,12 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Text.RegularExpressions;
+using UnityEngine.VFX;
 public class doorWeaponSlot : DoorSlot
 {
     public List<normalGen> allgen = new();
-    
+    public VisualEffect vfx;
+    public GradientEffect gradientEffect;
     public override void setInitValue(){
         doorOpen = this.gameObject.AddComponent<doorOpenWeapon>();
         doorClose = this.gameObject.AddComponent<doorAnimClose>();
@@ -13,6 +14,9 @@ public class doorWeaponSlot : DoorSlot
         skinnedMesh = this.gameObject.GetComponent<SkinnedMeshRenderer>();    
         currerntState = doorClose;
         currerntState.Enter(this.skinnedMesh);
+        vfx = GetComponent<VisualEffect>();
+        gradientEffect = new GradientEffect(Color.Lerp(new Color(255, 168, 54)*Random.Range(1.0f,2.5f),new Color(255, 79, 0)*Random.Range(1.0f,2.5f),Random.Range(0f,1.0f)),Color.white);
+        vfx.SetGradient("Gradient",gradientEffect.gradient);
     }
     public override void setSlot()
     {

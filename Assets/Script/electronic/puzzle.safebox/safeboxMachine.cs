@@ -2,17 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.VFX;
 public class safeboxMachine : safeBoxDoor
 {
     // Start is called before the first frame update
     EnemyHealth enemyHealth;
-    
+    VisualEffect vfx;
+    GradientEffect gradientEffect;
     private void Awake() {
         safeboxPassword = new Password();
         meshRenderer = GetComponent<MeshRenderer>();
         Mpb.SetFloatArray("_IntArray",new List<float>(){-1f,-1f,-1f,-1f,-1f,-1f,-1f,-1f});
         meshRenderer.SetPropertyBlock(Mpb);
         enemyHealth = GameObject.FindGameObjectWithTag("boss").GetComponent<EnemyHealth>();
+        vfx = GetComponent<VisualEffect>();
+        gradientEffect = new GradientEffect(Color.Lerp(new Color(57, 255, 20)*Random.Range(1.0f,2.5f),new Color(11, 102, 35)*Random.Range(1.0f,2.5f),Random.Range(0f,1.0f)),Color.white);
+        vfx.SetGradient("Gradient",gradientEffect.gradient);
     }
     public override void UpdateState(string input)
     {
@@ -35,6 +40,7 @@ public class safeboxMachine : safeBoxDoor
     }
     private void action(){
         enemyHealth.HP -= 10;
+        vfx.SendEvent("PlayLaserBeam");
         reset();
     }
     private void reset(){
@@ -43,5 +49,8 @@ public class safeboxMachine : safeBoxDoor
         this.transform.Find("paper").GetComponent<paper>().reset();
         mapColor();
     }
-    public override void Update(){}
+    public override void Update(){
+        Vector3 relativePos = transform.InverseTransformDirection(this.transform.position-enemyHealth.transform.position);
+        vfx.SetVector3("targetPosition",relativePos);
+    }
 }

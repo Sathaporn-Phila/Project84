@@ -6,19 +6,22 @@ using UnityEngine.AI;
 public class PatrolPath : MonoBehaviour 
 {
     public GameObject player;
-    public Transform[] stopPoints;
-    public int destPoint = 0;
     private NavMeshAgent agent;
     private bool blocked = false;
+
+    public Transform[] stopPoints;
+    public int destPoint = 0;
+    bool walkpointSet = true;
+
+    //ActivateEnemyObject activator;
+    public bool isActive;
 
     [SerializeField] 
     public LayerMask groundLayer, playerLayer;
 
     Animator animator;
     BoxCollider boxCollider;
-
-    bool walkpointSet = true;
-
+    
     [SerializeField] 
     public float sightRange, attackRange;
     public bool playerInSight, playerInAttackRange;
@@ -35,6 +38,8 @@ public class PatrolPath : MonoBehaviour
         agent.autoBraking = false;
         walkpointSet = true;
         agent.SetDestination(stopPoints[0].position);
+        //activator = GetComponent<ActivateEnemyObject>();
+        
     }
 
     void Update () 

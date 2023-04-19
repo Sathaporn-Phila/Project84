@@ -12,9 +12,12 @@ public class EnemyHealth : MonoBehaviour
     {
         animator = GetComponent<Animator>();
     }
-    private void Update() {
+
+    private void Update() 
+    {
         die();
     }
+    
     public virtual void die()
     {
         if (HP <= 0)

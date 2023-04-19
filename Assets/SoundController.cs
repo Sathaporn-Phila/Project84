@@ -6,7 +6,7 @@ public class SoundController : MonoBehaviour
 {
     public AudioSource source;
 
-    public AudioClip footstep, run, attack, hit, scream, dying;
+    public AudioClip footstep, run, attack, hit, detect, scream, dying;
 
     public void footSound()
     {
@@ -29,6 +29,12 @@ public class SoundController : MonoBehaviour
     public void hitSound()
     {
         source.clip = hit;
+        source.Play();
+    }
+
+    public void detectSound()
+    {
+        source.clip = detect;
         source.Play();
     }
 

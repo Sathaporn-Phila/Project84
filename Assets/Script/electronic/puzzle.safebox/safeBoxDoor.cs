@@ -31,10 +31,11 @@ public class safeBoxDoor : MonoBehaviour
             return Value;
         }
         public void append(string value){
-            if(current.Length<8){
+            Debug.Log(current.Length);
+            if( value != "DEL" &&current.Length<8){
                 if(value == 0.ToString() || value == 1.ToString()){
                     current += value;
-            }}else if(value == "DEL" && current.Length > 0 && current.Length<=8){
+            }}else if(value == "DEL" && current.Length > 0){
                     current = current.Substring(0,current.Length-1);
             }
         }
@@ -43,6 +44,7 @@ public class safeBoxDoor : MonoBehaviour
             for(int i=0;i<8;i++){
                 rnd += Random.Range(0,2).ToString();
             }
+            Debug.Log(current.Length);
             Value = rnd;
         }
     }
@@ -66,20 +68,17 @@ public class safeBoxDoor : MonoBehaviour
         List<AnimationClip> animList = Resources.LoadAll<AnimationClip>("Animation/door/safebox").ToList();
         AnimatorOverrideController controller = new AnimatorOverrideController(m_animator.runtimeAnimatorController);
         m_animator.runtimeAnimatorController = controller;
-        
         foreach(var item in controller.animationClips){
-            Match animPattern = Regex.Match(item.name,@"\b(\w+)\.\b(\w+)");
-            controller[item.name] = animList.Find(anim => Regex.IsMatch(anim.name,animPattern.Groups[2].Value));
+            controller[item.name] = animList.Find(anim => anim.name == item.name);
         }
             
-        
     }
     private void Awake() {
         safeboxPassword = new Password();
         doorOpen = this.gameObject.AddComponent<doorAnimOpen>();
         doorClose = this.gameObject.AddComponent<doorAnimClose>();
-        SetAnim();
         meshRenderer = GetComponent<MeshRenderer>();
+        SetAnim();
         Mpb.SetFloatArray("_IntArray",new List<float>(){-1f,-1f,-1f,-1f,-1f,-1f,-1f,-1f});
         meshRenderer.SetPropertyBlock(Mpb);
         currentState = doorClose;

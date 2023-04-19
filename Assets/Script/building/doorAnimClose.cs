@@ -56,6 +56,7 @@ public class doorAnimClose : doorState
         List<float> binaryInput = safeBoxDoor.safeboxPassword.current.Select(c => float.TryParse(c.ToString(), out n) ? n : 0).ToList();
         List<float> emptyInput = Enumerable.Repeat(-1f,8-binaryInput.Count).ToList();
         binaryInput.AddRange(emptyInput);
+        Debug.Log(string.Join(",",binaryInput));
         safeBoxDoor.Mpb.SetFloatArray("_IntArray",binaryInput);
         safeBoxDoor.meshRenderer.SetPropertyBlock(safeBoxDoor.Mpb);
         //Debug.Log(string.Join(",",safeBoxDoor.Mpb.GetFloatArray("_IntArray")));

@@ -31,6 +31,7 @@ public class doorOpenWeapon : doorAnimOpen
     private void action(doorWeaponSlot doorSlot){
         enemyHealth.HP -= 10;
         doorSlot.vfx.SendEvent("PlayLaserBeam");
+        doorSlot.laserBeam.Play();
         this.transform.parent.parent.parent.Find("Box").GetComponent<Box>().respawn();
         doorSlot.reset();
     }

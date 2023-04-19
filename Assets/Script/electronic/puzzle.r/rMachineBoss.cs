@@ -7,6 +7,7 @@ public class rMachineBoss : rMachine
     EnemyHealth enemyHealth;
     VisualEffect vfx;
     GradientEffect gradientEffect;
+    public AudioSource laserBeam;
     private void Awake() {
         enemyHealth = GameObject.FindGameObjectWithTag("boss").GetComponent<EnemyHealth>();
         vfx = this.transform.Find("resistor.machine").GetComponent<VisualEffect>();
@@ -16,6 +17,7 @@ public class rMachineBoss : rMachine
     public override void action(){
         enemyHealth.HP -= 10;
         vfx.SendEvent("PlayLaserBeam");
+        laserBeam.Play();
         box.respawn();
     }
     public override void Start() {

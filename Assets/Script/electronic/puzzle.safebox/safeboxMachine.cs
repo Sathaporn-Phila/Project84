@@ -9,6 +9,7 @@ public class safeboxMachine : safeBoxDoor
     EnemyHealth enemyHealth;
     VisualEffect vfx;
     GradientEffect gradientEffect;
+    public AudioSource laserBeam;
     private void Awake() {
         safeboxPassword = new Password();
         meshRenderer = GetComponent<MeshRenderer>();
@@ -41,6 +42,7 @@ public class safeboxMachine : safeBoxDoor
     private void action(){
         enemyHealth.HP -= 10;
         vfx.SendEvent("PlayLaserBeam");
+        laserBeam.Play();
         reset();
     }
     private void reset(){

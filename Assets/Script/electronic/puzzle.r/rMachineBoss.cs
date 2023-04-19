@@ -18,6 +18,12 @@ public class rMachineBoss : rMachine
         vfx.SendEvent("PlayLaserBeam");
         box.respawn();
     }
+    public override void Start() {
+        box = this.transform.parent.Find("box").GetComponent<Box>();
+        matchSlotGroup();
+        
+        //unlockCard();
+    }
     private void Update() {
         Vector3 relativePos = transform.InverseTransformDirection(this.transform.position-enemyHealth.transform.position);
         vfx.SetVector3("targetPosition",relativePos);

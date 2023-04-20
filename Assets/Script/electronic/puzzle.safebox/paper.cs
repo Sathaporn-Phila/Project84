@@ -15,7 +15,7 @@ public class paper : MonoBehaviour
         query = this.gameObject.AddComponent<Query>();
         textMeshPro = this.transform.Find("Canvas/password").GetComponent<TextMeshPro>();
   
-        textMeshPro.text = "<style=\"Title\">"+Convert.ToInt32(safeBoxDoor.safeboxPassword.get(),2)+"</style>";
+        textMeshPro.text = "<style=\"Title\"><color=\"black\">"+Convert.ToInt32(safeBoxDoor.safeboxPassword.get(),2)+"</color></style>";
         this.gameObject.GetComponent<XRGrabInteractable>().interactionManager = GameObject.Find("XR Interaction Manager").GetComponent<XRInteractionManager>();
     }
     public void reset(){

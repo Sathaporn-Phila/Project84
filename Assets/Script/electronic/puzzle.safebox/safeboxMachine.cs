@@ -52,7 +52,7 @@ public class safeboxMachine : safeBoxDoor
         mapColor();
     }
     public override void Update(){
-        Vector3 relativePos = transform.InverseTransformDirection(this.transform.position-enemyHealth.transform.position);
+        Vector3 relativePos = vfx.transform.InverseTransformDirection(enemyHealth.transform.position-this.transform.position);
         vfx.SetVector3("targetPosition",relativePos);
     }
 }

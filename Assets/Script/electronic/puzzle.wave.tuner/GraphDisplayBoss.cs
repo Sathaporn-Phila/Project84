@@ -8,7 +8,7 @@ public class GraphDisplayBoss : GraphDisplay
     public AudioSource laserBeam;
     public override void setEnemy() {
         enemyHealth = GameObject.FindGameObjectWithTag("boss").GetComponent<EnemyHealth>();
-        vfx = GetComponent<VisualEffect>();
+        vfx = this.transform.parent.Find("wave.tuner/wave.tuner.machine").GetComponent<VisualEffect>();
         gradientEffect = new GradientEffect(Color.Lerp(new Color(198, 230, 251)*Random.Range(1.0f,2.5f),new Color(0, 0, 128)*Random.Range(1.0f,2.5f),Random.Range(0f,1.0f)),Color.white);
         vfx.SetGradient("Gradient",gradientEffect.gradient);
     }
@@ -31,7 +31,7 @@ public class GraphDisplayBoss : GraphDisplay
         originGraph.material.SetFloat("_Position",pos-pos%15f);
     }
     private void Update() {
-        Vector3 relativePos = transform.InverseTransformDirection(this.transform.position-enemyHealth.transform.position);
+        Vector3 relativePos = vfx.transform.InverseTransformDirection(enemyHealth.transform.position-this.transform.position)+Vector3.up;
         vfx.SetVector3("targetPosition",relativePos);
     }
 }

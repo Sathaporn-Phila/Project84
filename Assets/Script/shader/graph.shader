@@ -12,7 +12,7 @@ Shader "Custom/graph"
         _Amplitude("Amplitude",Range(-5,5)) = 0
         _MaxAmplitude("Max Amplitude",Range(-5,5)) =5
         _Frequency("Frequency",float) = 2
-        _Position("Position",Range(-90,90)) = 0
+        _Position("Position",Range(0,180)) = 0
     }
 
     SubShader

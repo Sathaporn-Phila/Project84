@@ -27,7 +27,8 @@ public class rMachineBoss : rMachine
         //unlockCard();
     }
     private void Update() {
-        Vector3 relativePos = transform.InverseTransformDirection(this.transform.position-enemyHealth.transform.position);
+        Vector3 relativePos = vfx.transform.InverseTransformDirection(enemyHealth.transform.position-this.transform.position)+Vector3.up;
+
         vfx.SetVector3("targetPosition",relativePos);
         
     }

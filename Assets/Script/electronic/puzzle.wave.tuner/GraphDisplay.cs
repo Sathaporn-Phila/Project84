@@ -18,7 +18,7 @@ public class GraphDisplay : MonoBehaviour
         Material mat2 = Instantiate(yourGraph.material);
         mat.SetFloat("_Amplitude",Random.Range(-5,5));
 
-        float pos = Random.Range(-90,90);
+        float pos = Random.Range(0,180);
         mat.SetFloat("_Position",pos-pos%15f);
 
         originGraph.material = mat;

@@ -10,6 +10,6 @@ public class Nand : Gate
     {
         input1 = Mathf.InverseLerp(0,5,input1);
         input2 = Mathf.InverseLerp(0,5,input2);
-        return this.baseVoltage*Convert.ToInt32(!(Convert.ToBoolean((int)input1) || Convert.ToBoolean((int)input2)));
+        return this.baseVoltage*Convert.ToInt32(!(Convert.ToBoolean((int)input1) && Convert.ToBoolean((int)input2)));
     }
 }

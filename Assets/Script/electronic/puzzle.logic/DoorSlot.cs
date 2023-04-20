@@ -16,7 +16,8 @@ public class DoorSlot : MonoBehaviour {
     public SkinnedMeshRenderer skinnedMesh;
 
     public VisualEffect vfx;
-    public AudioSource laserBeam;
+    public AudioSource audiosound;
+    public AudioClip laserBeam;
     public virtual void Awake() {
         this.setInitValue();
         this.setSlot();

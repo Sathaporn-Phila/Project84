@@ -6,8 +6,7 @@ public class doorWeaponSlot : DoorSlot
 {
     public List<normalGen> allgen = new();
     public GradientEffect gradientEffect;
-    public AudioSource audiosound;
-    public AudioClip laserBeam;
+    
     EnemyHealth enemyHealth;
     public override void setInitValue(){
         doorOpen = this.gameObject.AddComponent<doorOpenWeapon>();

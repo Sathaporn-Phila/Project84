@@ -276,6 +276,8 @@ MonoBehaviour:
   query: {fileID: 0}
   wireQuery: {fileID: 0}
   skinnedMesh: {fileID: 0}
+  vfx: {fileID: 0}
+  laserBeam: {fileID: 0}
 --- !u!4 &6254733165733996104 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5390295969071149070, guid: 3a802dc5030d8d645a7843f49be0fc05, type: 3}

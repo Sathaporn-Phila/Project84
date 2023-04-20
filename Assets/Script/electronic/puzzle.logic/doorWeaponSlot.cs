@@ -7,6 +7,7 @@ public class doorWeaponSlot : DoorSlot
     public List<normalGen> allgen = new();
     public VisualEffect vfx;
     public GradientEffect gradientEffect;
+    public AudioSource laserBeam;
     public override void setInitValue(){
         doorOpen = this.gameObject.AddComponent<doorOpenWeapon>();
         doorClose = this.gameObject.AddComponent<doorAnimClose>();

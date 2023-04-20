@@ -5,7 +5,6 @@ using UnityEngine.VFX;
 public class doorWeaponSlot : DoorSlot
 {
     public List<normalGen> allgen = new();
-    public VisualEffect vfx;
     public GradientEffect gradientEffect;
     public AudioSource audiosound;
     public AudioClip laserBeam;
@@ -36,7 +35,10 @@ public class doorWeaponSlot : DoorSlot
 
         vfx.SetVector3("targetPosition",relativePos);
     }
-    public void reset(){
+    public override void reset(){
         allgen.ForEach(item=>item.reset());
+    }
+    public override void changeState(doorState state){
+        currerntState = state;
     }
 }

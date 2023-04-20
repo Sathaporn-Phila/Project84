@@ -65,12 +65,8 @@ public class wire : wireProp
     
     private void InitialRay(){
         Vector3 origin;
-        if(transform.parent.name=="diode.machine"){
-            origin = transform.position + Vector3.down*0.1f;
-        }else{
-            origin = transform.position + Vector3.down*0.5f;
-            
-        }
+        origin = transform.position + Vector3.down*0.1f;
+        
         if(Regex.IsMatch(this.gameObject.name,@"\bwire.straight") || Regex.IsMatch(this.gameObject.name,@"\bwire.resistor.slot")){
             Ray m_InputRay1 = new Ray(origin,transform.TransformDirection(Vector3.forward));
             Ray m_InputRay2 = new Ray(origin,transform.TransformDirection(Vector3.back));
@@ -107,15 +103,18 @@ public class wire : wireProp
     private void FixedUpdate() {
         GameObject wireLineHit = wireQueryGroup.findParentObjectHit(toggleRay[current].getRay(),scale,0);
         GameObject wireYHit = wireQueryGroup.findParentObjectHit(toggleRay[current].getRay(),scale,7);
-        /*if(this.gameObject.name == "wire.curve.001"){
-            GameObject gameObj = wireQueryGroup.findParentObjectHit(toggleRay[current].getRay(), scale, 7);
-            Debug.Log(gameObj.name);
-        }*/
+        if(this.gameObject.name == "wire.curve" && this.transform.parent.gameObject.name == "puzzle.slot.001"){
+            RaycastHit hit;
+            if(Physics.Raycast(toggleRay[current].getRay(),out hit,Mathf.Infinity,0)){
+                Debug.DrawLine(toggleRay[current].getRay().origin,toggleRay[current].getRay().origin + hit.distance*toggleRay[current].getRay().direction,Color.red);
+            }
+        }
         
         if(!Regex.IsMatch(this.gameObject.name,@"\bwire.resistor.slot")){
             if (wireLineHit)
             {
                 voltage = wireQueryGroup.findWireHit(toggleRay[current].getRay(), scale, 0);
+                
             }
             else if (wireYHit)
             {

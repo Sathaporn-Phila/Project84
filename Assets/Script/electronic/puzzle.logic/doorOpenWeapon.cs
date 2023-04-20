@@ -12,26 +12,26 @@ public class doorOpenWeapon : doorAnimOpen
     private void Awake() {
         enemyHealth = GameObject.FindGameObjectWithTag("boss").GetComponent<EnemyHealth>();
     }
-    public void UpdateState(doorWeaponSlot doorSlot,SkinnedMeshRenderer skinnedMesh,float voltage){
+    public override void UpdateState(DoorSlot doorSlot,SkinnedMeshRenderer skinnedMesh,float voltage){
         Vector3 relativePos = transform.InverseTransformDirection(this.transform.position-enemyHealth.transform.position);
-        doorSlot.vfx.SetVector3("targetPosition",relativePos);
         if(voltage == 5){
             this.animateDoorOpen(doorSlot,skinnedMesh);
         }else{
             doorSlot.changeState(doorSlot.doorClose);
         }
     }
-    public void animateDoorOpen(doorWeaponSlot doorSlot,SkinnedMeshRenderer skinnedMesh){
+    public void animateDoorOpen(DoorSlot doorSlot,SkinnedMeshRenderer skinnedMesh){
         float blendShape = skinnedMesh.GetBlendShapeWeight(0);
         float blendShapeSpeed = 0.5f;
-        if(skinnedMesh.GetBlendShapeWeight(0)>0){
+        if(skinnedMesh.GetBlendShapeWeight(0)>=0){
             skinnedMesh.SetBlendShapeWeight(0,blendShape-blendShapeSpeed);
             if(skinnedMesh.GetBlendShapeWeight(0)==0){
-                action(doorSlot);
+                Debug.Log("here");
+                this.action(doorSlot);
             }
         }
     }
-    private void action(doorWeaponSlot doorSlot){
+    public override void action(DoorSlot doorSlot){
         enemyHealth.HP -= 25;
         doorSlot.vfx.SendEvent("PlayLaserBeam");
         doorSlot.audiosound.PlayOneShot(laserBeam);

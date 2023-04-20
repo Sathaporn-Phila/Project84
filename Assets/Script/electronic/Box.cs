@@ -216,6 +216,7 @@ public class Box: MonoBehaviour
         }
     }
     public void respawn(){
+        Debug.Log("destroy");
         if(spawnType == SpawnType.resistor){
             if(allObj.Count > 0){
                 foreach(GameObject item in allObj){

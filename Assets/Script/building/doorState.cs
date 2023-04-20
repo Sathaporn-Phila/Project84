@@ -11,6 +11,7 @@ public class doorState : MonoBehaviour
     }
     public virtual void UpdateState(safeBoxDoor safeBoxDoor){
     }
+    public virtual void action(DoorSlot doorSlot){}
     public virtual void UpdateState(safeBoxDoor safeBoxDoor,string input){
     }
     public virtual void UpdateState(SkinnedMeshRenderer skinnedMesh){

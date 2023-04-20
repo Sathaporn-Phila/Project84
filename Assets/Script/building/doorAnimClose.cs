@@ -16,6 +16,7 @@ public class doorAnimClose : doorState
     public override void Enter(SkinnedMeshRenderer skinnedMesh){
     }
     public override void UpdateState(DoorSlot doorSlot,SkinnedMeshRenderer skinnedMesh,float voltage){
+        Debug.Log(voltage);
         if(voltage == 0){
             float blendShape = skinnedMesh.GetBlendShapeWeight(0);
             float blendShapeSpeed = 2f;
@@ -23,7 +24,10 @@ public class doorAnimClose : doorState
                 skinnedMesh.SetBlendShapeWeight(0,blendShape+blendShapeSpeed);
             }
         }else{
+            Debug.Log("enter");
+            Debug.Log(doorSlot.triggerSlots.Count);
             if(doorSlot.allSlot.Count == doorSlot.triggerSlots.Count){
+                Debug.Log("change State");
                 doorSlot.changeState(doorSlot.doorOpen);
             }
         }

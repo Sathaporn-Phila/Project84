@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
+using UnityEngine.VFX;
 
-using System;
+
 
 public class DoorSlot : MonoBehaviour {
     public List<GateSlot> triggerSlots = new List<GateSlot>(),allSlot = new List<GateSlot>();
@@ -13,6 +14,9 @@ public class DoorSlot : MonoBehaviour {
     public Query query;
     public wireQuery wireQuery;
     public SkinnedMeshRenderer skinnedMesh;
+
+    public VisualEffect vfx;
+    public AudioSource laserBeam;
     public virtual void Awake() {
         this.setInitValue();
         this.setSlot();
@@ -27,7 +31,8 @@ public class DoorSlot : MonoBehaviour {
     }
     public virtual void setSlot(){}
     
-    public void changeState(doorState state){
+    public virtual void changeState(doorState state){
         currerntState = state;
     }
+    public virtual void reset(){}
 }

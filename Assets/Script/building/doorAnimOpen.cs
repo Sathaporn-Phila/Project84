@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class doorAnimOpen : doorState
 {
     // Start is called before the first frame update

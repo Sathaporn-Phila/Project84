@@ -45,7 +45,7 @@ public class PatrolPath : MonoBehaviour
         {
             hp.die();
         }
-        else
+        else if (hp.HP > 0)
         {
             //FOVCheck();
             if (!playerInSight && !playerInAttackRange) 

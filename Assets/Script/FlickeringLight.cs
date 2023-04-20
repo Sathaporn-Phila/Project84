@@ -5,7 +5,8 @@ using UnityEngine;
 public class FlickeringLight : MonoBehaviour
 {
     public Light _Light;
-
+    public AudioSource source;
+    public AudioClip sound;
     public float MinTime;
     public float MaxTime;
     public float Timer;
@@ -15,7 +16,6 @@ public class FlickeringLight : MonoBehaviour
     {
         Timer = Random.Range(MinTime,MaxTime);
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -31,6 +31,7 @@ public class FlickeringLight : MonoBehaviour
         {
             _Light.enabled =! _Light.enabled;
             Timer = Random.Range(MinTime,MaxTime);
+            source.PlayOneShot(sound);
         }
     }
 }

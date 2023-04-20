@@ -8,6 +8,7 @@ public class doorWeaponSlot : DoorSlot
     public VisualEffect vfx;
     public GradientEffect gradientEffect;
     public AudioSource laserBeam;
+    EnemyHealth enemyHealth;
     public override void setInitValue(){
         doorOpen = this.gameObject.AddComponent<doorOpenWeapon>();
         doorClose = this.gameObject.AddComponent<doorAnimClose>();
@@ -15,6 +16,7 @@ public class doorWeaponSlot : DoorSlot
         skinnedMesh = this.gameObject.GetComponent<SkinnedMeshRenderer>();    
         currerntState = doorClose;
         currerntState.Enter(this.skinnedMesh);
+        enemyHealth = GameObject.FindGameObjectWithTag("boss").GetComponent<EnemyHealth>();
         vfx = GetComponent<VisualEffect>();
         gradientEffect = new GradientEffect(Color.Lerp(new Color(255, 168, 54)*Random.Range(1.0f,2.5f),new Color(255, 79, 0)*Random.Range(1.0f,2.5f),Random.Range(0f,1.0f)),Color.white);
         vfx.SetGradient("Gradient",gradientEffect.gradient);
@@ -29,6 +31,9 @@ public class doorWeaponSlot : DoorSlot
     public virtual void Update() {
         Ray ray = new Ray(transform.position,transform.TransformDirection(Vector3.forward));
         currerntState.UpdateState(this,skinnedMesh,wireQuery.findWireHit(ray,2,0));
+        Vector3 relativePos = vfx.transform.InverseTransformDirection(enemyHealth.transform.position-this.transform.position)+Vector3.up;
+
+        vfx.SetVector3("targetPosition",relativePos);
     }
     public void reset(){
         allgen.ForEach(item=>item.reset());

@@ -130,7 +130,7 @@ public class wire : wireProp
         else {
             RaycastHit[] hits;
             hits = Physics.RaycastAll(toggleRay[current].getRay(), scale);
-            RaycastHit hit = hits[1]; //skip first object
+            RaycastHit hit = hits[0]; //skip first object
             voltage = -wireQueryGroup.getVoltFromHitObj(hit.collider.transform.parent.gameObject);
         }
 
@@ -191,6 +191,7 @@ public class wire : wireProp
                 }
             }
         }
+
         
         /*if(this.transform.root.name=="puzzle.gate"){
             GameObject hitObj = wireQueryGroup.findParentObjectHit(toggleRay[current].getRay(),scale,0);

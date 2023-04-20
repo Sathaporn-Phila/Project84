@@ -13,9 +13,6 @@ public class PatrolPath : MonoBehaviour
     public int destPoint = 0;
     bool walkpointSet = true;
 
-    //ActivateEnemyObject activator;
-    public bool isActive;
-
     [SerializeField] 
     public LayerMask groundLayer, playerLayer;
 
@@ -38,14 +35,13 @@ public class PatrolPath : MonoBehaviour
         agent.autoBraking = false;
         walkpointSet = true;
         agent.SetDestination(stopPoints[0].position);
-        //activator = GetComponent<ActivateEnemyObject>();
-        
     }
 
     void Update () 
     {
+        FOVCheck();
         if (!playerInSight && !playerInAttackRange) Patroling();
-        if (playerInSight && !playerInAttackRange) Detecting();
+        if (playerInSight && !playerInAttackRange) Chasing();
         if (playerInSight && playerInAttackRange) Attacking();
         Debug.DrawLine(transform.position, agent.destination, blocked ? Color.red : Color.green);
     }    
@@ -67,7 +63,7 @@ public class PatrolPath : MonoBehaviour
         
         if (rangeChecks.Length != 0)
         {
-            Transform target = rangeChecks[0].transform;  // maybe can remove this line
+            Transform target = rangeChecks[0].transform;
             Vector3 directionToTarget = (target.position - transform.position).normalized;
 
             if (Vector3.Angle(transform.forward, directionToTarget) < fovAngle / 2)
@@ -78,7 +74,7 @@ public class PatrolPath : MonoBehaviour
                 {
                     playerInSight = true;
 
-                    if (distanceToTarget <= attackRange)
+                    if (distanceToTarget < attackRange)
                     {
                         playerInAttackRange = true;
                     }
@@ -100,11 +96,11 @@ public class PatrolPath : MonoBehaviour
                 playerInAttackRange = false;
             }          
         }
-        /*else if (playerInSight) 
+        else if (playerInSight) 
         {
             playerInSight = false;
             playerInAttackRange = false;
-        }*/
+        }
     }
 
     void GotoNextPoint() 
@@ -126,19 +122,23 @@ public class PatrolPath : MonoBehaviour
         }
     }
 
-    void Detecting()
+    /*void Detecting()
     {   
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName("idle"))
         {
             animator.SetTrigger("Chase");
         }
-    }
+    }*/
 
     void Chasing()
     {   
+        agent.SetDestination(transform.position); 
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("idle"))
+        {
+            animator.SetTrigger("Chase");
+        }
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName("run"))
         {
-            //animator.SetTrigger("Run");
             agent.SetDestination(player.transform.position);
         }
         
@@ -146,10 +146,10 @@ public class PatrolPath : MonoBehaviour
 
     void Attacking()
     {
+        agent.SetDestination(transform.position);
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName("swiping"))
         {
             animator.SetTrigger("Attack");
-            //agent.SetDestination(transform.position); 
         }
     }
 }

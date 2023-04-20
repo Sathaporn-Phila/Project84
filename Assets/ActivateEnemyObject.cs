@@ -21,7 +21,7 @@ public class ActivateEnemyObject : MonoBehaviour
         toggleActive = false;
     }
 
-    void Update () 
+    /*void Update () 
     {
         if (toggleActive)
         {
@@ -33,7 +33,7 @@ public class ActivateEnemyObject : MonoBehaviour
             enemyIsActive = false;
             enemy.SetActive(false);
         }
-    }
+    }*/
 
     public void OnTriggerEnter(Collider other)
     {
@@ -42,10 +42,10 @@ public class ActivateEnemyObject : MonoBehaviour
             enemyIsActive = true;
             enemy.SetActive(true);
         }
-        else
+        /*else
         {
             enemyIsActive = false;
             enemy.SetActive(false);
-        }
+        }*/
     }
 }

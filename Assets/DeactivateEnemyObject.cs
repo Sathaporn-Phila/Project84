@@ -21,7 +21,7 @@ public class DeactivateEnemyObject : MonoBehaviour
         activator = activateDoor.GetComponent<ActivateEnemyObject>();
     }
 
-    void Update () 
+    /*void Update () 
     {
         if (toggleDeactive)
         {
@@ -31,7 +31,7 @@ public class DeactivateEnemyObject : MonoBehaviour
                 activator.toggleActive = false;
             }
         }
-    }
+    }*/
 
     public void OnTriggerEnter(Collider other)
     {

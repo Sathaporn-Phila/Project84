@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {   
-    public Animator animator;
+    //public Animator animator;
+    public PatrolPath enemy;
 
     public float HP = 100;
 
     private void Start()
     {
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
+        enemy = GetComponent<PatrolPath>();
     }
 
     private void Update() 
@@ -22,10 +24,7 @@ public class EnemyHealth : MonoBehaviour
     {
         if (HP <= 0)
         {
-            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("dying"))
-            {
-                animator.SetTrigger("Dying"); 
-            }
+            enemy.Dying();
         }
     }
 }

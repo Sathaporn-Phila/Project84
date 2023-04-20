@@ -5,7 +5,8 @@ public class GraphDisplayBoss : GraphDisplay
     EnemyHealth enemyHealth;
     VisualEffect vfx;
     GradientEffect gradientEffect;
-    public AudioSource laserBeam;
+    public AudioSource audiosound;
+    public AudioClip laserBeam;
     public override void setEnemy() {
         enemyHealth = GameObject.FindGameObjectWithTag("boss").GetComponent<EnemyHealth>();
         vfx = this.transform.parent.Find("wave.tuner/wave.tuner.machine").GetComponent<VisualEffect>();
@@ -18,9 +19,9 @@ public class GraphDisplayBoss : GraphDisplay
         }
     }
     private void action(){
-        enemyHealth.HP -= 10;
+        enemyHealth.HP -= 25;
         vfx.SendEvent("PlayLaserBeam");
-        laserBeam.Play();
+        audiosound.PlayOneShot(laserBeam);
         reset();
     }
     private void reset(){

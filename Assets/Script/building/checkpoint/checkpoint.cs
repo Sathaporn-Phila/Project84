@@ -46,6 +46,8 @@ public class checkpoint : MonoBehaviour
     idleCheckpoint idle = new();
     TouchCheckpoint touchCheckpoint = new();
     SkinnedMeshRenderer skinnedMeshRenderer;
+    public AudioSource audiosound;
+    public AudioClip checkpointsound;
     private void Awake() {
         skinnedMeshRenderer = GetComponent<SkinnedMeshRenderer>();
         _realm = Realm.GetInstance();
@@ -64,6 +66,7 @@ public class checkpoint : MonoBehaviour
         }
     }
     private void OnTriggerEnter(Collider other) {
+        audiosound.PlayOneShot(checkpointsound);
         state = touchCheckpoint;
         Debug.Log("checkpoint trigger");
         GameObject.Find("Robot Kyle").GetComponent<PlayerHealth>().playerInfo.setCurrentCheckpoint(checkpointName);

@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class PatrolPath : MonoBehaviour 
 {
     public GameObject player;
+    public EnemyHealth hp;
     private NavMeshAgent agent;
     private bool blocked = false;
 
@@ -28,6 +29,7 @@ public class PatrolPath : MonoBehaviour
 
     void Start () {
         agent = GetComponentInChildren<NavMeshAgent>();
+        hp = GetComponentInChildren<EnemyHealth>();
         player = GameObject.Find("Robot Kyle");
         animator = GetComponent<Animator>();
         boxCollider = GetComponentInChildren<BoxCollider>();
@@ -39,11 +41,28 @@ public class PatrolPath : MonoBehaviour
 
     void Update () 
     {
-        FOVCheck();
-        if (!playerInSight && !playerInAttackRange) Patroling();
-        if (playerInSight && !playerInAttackRange) Chasing();
-        if (playerInSight && playerInAttackRange) Attacking();
-        Debug.DrawLine(transform.position, agent.destination, blocked ? Color.red : Color.green);
+        if (hp.HP <= 0)
+        {
+            hp.die();
+        }
+        else
+        {
+            //FOVCheck();
+            if (!playerInSight && !playerInAttackRange) 
+            {
+                Patroling();
+            }
+            else if (playerInSight && !playerInAttackRange)
+            {
+                Chasing();
+            }
+            else if (playerInSight && playerInAttackRange) 
+            {
+                Attacking();
+            }
+            Debug.DrawLine(transform.position, agent.destination, blocked ? Color.red : Color.green);
+        }
+        
     }    
 
     private IEnumerator FOVRoutine()
@@ -141,7 +160,6 @@ public class PatrolPath : MonoBehaviour
         {
             agent.SetDestination(player.transform.position);
         }
-        
     }
 
     void Attacking()
@@ -150,6 +168,15 @@ public class PatrolPath : MonoBehaviour
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName("swiping"))
         {
             animator.SetTrigger("Attack");
+        }
+    }
+
+    public void Dying()
+    {
+        agent.SetDestination(transform.position);
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("dying"))
+        {
+            animator.SetTrigger("Dying");
         }
     }
 }

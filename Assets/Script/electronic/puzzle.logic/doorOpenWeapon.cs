@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class doorOpenWeapon : doorAnimOpen
 {
+    
+    public AudioSource audiosound;
+    public AudioClip laserBeam;
     // Start is called before the first frame update
     EnemyHealth enemyHealth;
     private void Awake() {
@@ -29,9 +32,9 @@ public class doorOpenWeapon : doorAnimOpen
         }
     }
     private void action(doorWeaponSlot doorSlot){
-        enemyHealth.HP -= 10;
+        enemyHealth.HP -= 25;
         doorSlot.vfx.SendEvent("PlayLaserBeam");
-        doorSlot.laserBeam.Play();
+        doorSlot.audiosound.PlayOneShot(laserBeam);
         this.transform.parent.parent.parent.Find("Box").GetComponent<Box>().respawn();
         doorSlot.reset();
     }

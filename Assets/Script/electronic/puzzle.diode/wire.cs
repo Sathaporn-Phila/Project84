@@ -127,9 +127,10 @@ public class wire : wireProp
         }
 
         else {
+            //Debug.DrawLine(toggleRay[current].getRay().origin,toggleRay[current].getRay().origin+2*toggleRay[current].getRay().direction,Color.magenta);
             RaycastHit[] hits;
             hits = Physics.RaycastAll(toggleRay[current].getRay(), scale);
-            RaycastHit hit = hits[0]; //skip first object
+            RaycastHit hit = hits[1]; //skip first object
             voltage = -wireQueryGroup.getVoltFromHitObj(hit.collider.transform.parent.gameObject);
         }
 
